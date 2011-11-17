@@ -1,0 +1,81 @@
+Cahier des charges
+Projet ManateeX
+
+Jeu de Tower Defense
+
+
+Sommaire
+
+
+I. Introduction
+	1. Description du jeu
+	2. Compétences requises
+	3. Critères de choix
+
+?. Contraintes techniques
+
+?. Délais
+
+II. Terminologie
+
+III. Architecture générale
+ 
+IV. Architecture détaillée
+
+A - Annexes
+	A1 - Règles du jeu
+
+
+Introduction
+	1. Description du jeu
+
+Le jeu de Tower Defense (TD) consiste à défendre un objectif contre des vagues d'ennemis. Pour cela, le joueur peut construire
+des éléments défensifs qui peuvent gêner la progression des ennemis et/ou les détruire. Les ennemis se dirigent aussi vite que
+possible vers l'objectif et l'attaquent dès qu'ils sont à portée. Le jeu se termine si le joueur élimine toutes les vagues
+d'ennemis sans perdre l'objectif (victoire) ou si l'objectif est détruit (défaite).
+
+Les TD sont nés avec les premiers jeux de stratégie proposant un éditeur de cartes, tel Age of Empires. Les bases étaient déjà
+posées : possibilité de construire des bâtiments, dont des tourelles défensives, présences de nombreuses unités de force variable
+pouvant attaquer les bâtiments, etc. Il suffisait donc de scripter le comportement des ennemis contrôlés par l'IA, les conditions
+de victoire et de défaite, et de modifier le cas échéant les caractéristiques des éléments du jeu.
+
+Deux jeu de stratégie développés par Blizzard Entertainment, Starcraft puis Warcraft III, ont grandement contribué à l'essor du
+TD. D'une part grâce à leurs éditeurs de cartes puissants, d'autre part grâce à leur succès auprès des joueurs.
+
+Le Flash a également permis la démocratisation du TD sur navigateur. On en trouve également sous forme de jeux complets, payants
+ou gratuits, sur PC ou smartphone.
+
+Il existe deux variantes au TD : avec ou sans mazing. Ce terme désigne la possibilité laissée au joueur de ralentir les ennemis
+en construisant un labyrinthe.
+
+   - Dans un TD sans mazing, le chemin emprunté par les vagues d'ennemis n'est pas constructible. Le joueur place des tours offensives
+en bordure du chemin et tente de détruire les ennemis avant qu'ils n'atteignent l'objectif.
+   - Dans un TD avec mazing, le joueur construit directement sur le chemin emprunté par les ennemis. Il est donc libre de disposer
+ses éléments de manière à rallonger le chemin vers l'objectif. Dans ce cas de figure, il lui est interdit de bloquer totalement
+l'accès à l'objectif.
+
+Le projet ManateeX consiste à concevoir un jeu de Tower Defense avec mazing.
+
+	2. Compétences requises
+
+Conception d'algorithmes
+Représentation UML
+Programmation en langage C++
+Connaissances dans le domaine des jeux.
+
+	3. Critères de choix
+
+## il me semple que cette partie concerne le choix entre les différents postulants non? ##
+
+Nous avons fait le choix de développer un TD car c'est un type de jeu que nous aimons tous les deux. Il correspond aux exigences
+du projet de programmation objet car il consiste à programmer une IA gérant les interactions entre ennemis, défenses et objectif,
+avec une phase de jeu entre chaque vague durant laquelle le joueur est autorisé à mettre en place les éléments défensifs pour la
+prochaine vague. Le rôle du joueur du point de vue programmation est donc purement un rôle de création d'objets, qui interagiront
+par la suite de manière automatique.
+
+?. Contraintes techniques
+
+Le projet de jeux vidéo défini dans ce cahier des charges devra être écrit en language C++, par souci de portabilité future.
+Le projet final sera donc  multi-plateformes, mais le présent document cible à minima les distributions Linux Debian/Ubuntu et Archlinux.
+Une interface graphique minimale est également requise, cependant le choix de la librairie à utiliser reste libre.
+
