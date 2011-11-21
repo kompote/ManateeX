@@ -10,17 +10,21 @@ Sommaire
 I. Introduction
 	1. Description du jeu
 	2. Compétences requises
-	3. Critères de choix
+	3. Motivations
 
 ?. Contraintes techniques
 
-?. Délais
+
 
 II. Terminologie
 
 III. Architecture générale
  
 IV. Architecture détaillée
+
+V. Livrables
+
+VI. Délais
 
 A - Annexes
 	A1 - Règles du jeu
@@ -63,7 +67,7 @@ Représentation UML
 Programmation en langage C++
 Connaissances dans le domaine des jeux.
 
-	3. Critères de choix
+	3. Motivations
 
 ## il me semple que cette partie concerne le choix entre les différents postulants non? ##
 
@@ -76,6 +80,30 @@ par la suite de manière automatique.
 ?. Contraintes techniques
 
 Le projet de jeux vidéo défini dans ce cahier des charges devra être écrit en language C++, par souci de portabilité future.
-Le projet final sera donc  multi-plateformes, mais le présent document cible à minima les distributions Linux Debian/Ubuntu et Archlinux.
-Une interface graphique minimale est également requise, cependant le choix de la librairie à utiliser reste libre.
+Le projet final sera donc multi-plateformes, mais le présent document cible à minima les distributions Linux Debian/Ubuntu et Archlinux.
+Une interface graphique minimale est également requise, cependant le choix de la librairie à utiliser reste libre. Notons également
+que, quelque soit le choix des graphismes, la performance générale doit être le fil conducteur de ce projet. Il parait necessaire
+que le jeux ne souffre pas de ralentissements, de lenteurs ou de lourdeurs afin d'enrichir au maximum l'experience utilisateur.
+
+V. Livrables
+
+   Les devellopeurs auront à leur charge les fournitures suivantes:
+
+    - Le / les logiciel(s) objet du présent CDC, fonctionnant(s) sur les plateformes precedemment citées;
+    - Un manuel d'utilisation, avec règles du jeu
+    - Un rapport détaillé de développement
+    - Une documentation complete concernant le developpement (wiki du code);
+    - Tous les sources, ainsi que les fichiers concernés (images, config, ...)
+
+    ...
+
+    Tous les documents seront fournis en version papier, mais aussi en version numerique (pdf et executable (installer) via un lien
+de telechargement)
+
+VI. Delais
+
+    Les applications et documentations associées devront être receptionnées au plus tard le 1er Janvier 2012. Le planning de developpement
+est donc à organiser en conséquence.
+
+
 
