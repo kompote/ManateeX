@@ -26,6 +26,8 @@ V. Livrables
 
 VI. Délais
 
+VII. License
+
 A - Annexes
 	A1 - Règles du jeu
 
@@ -106,4 +108,30 @@ VI. Delais
 est donc à organiser en conséquence.
 
 
+?. Fonctionnalités
 
+## à réécrire ##
+
+   Le jeux devra avoir les fonctionnalités suivantes :
+
+   - Ecran d'acceuil permettant le lancement du jeu ainsi que l'accès aux autres fonctionnalités (options, scores, modes...)
+   - Ecran d'options permettant de regler les differentes options du jeux, comme la difficulté;
+   - Ecran de modes permettant de choisir entre le mode normal et survivor
+   - Ecran des scores affichant le top 10
+   - Ecran de jeux: Represente le "plateau" où se déroule la partie. Le plateau est divisé en NxM cases (à definir) ayant le comportement suivant:
+	- Un click sur une case vide ouvre un menu permettant de choisir l'objet defensif à construire.
+	- Un click sur une case où se trouve un element defensif ouvre un menu indiquant les informations relatives à ses caractéristique ainsi qu'une paire de bouton: lun permettant de "vendre" l'element, l'autre de faire une amélioration des un ou plusieurs de ses caractéristiques d'un porcentage donné (et indiqué).
+	- Un click sur une case où se trouve un ennemie indique brievement ses caractéristiques.
+	- Un click sur l'objectif indique brievement son état.
+	Sur les contours du plateau sont disposés divers boutons (pause, avance rapide, menu du jeu,...) ainsi que des indications sur la partie en cours (score, pv de l'objectif, nb de vagues restantes, temps,...)
+
+
+VII. License - Propriété
+
+     Ce logiciel une fois réalisé sera disponible exclusivement  sous licence GNU/GPLv3 dont la version juridique complete est disponible à cette addresse :
+
+	http://www.gnu.org/licenses/gpl.html
+
+	ou une traduction en français:
+
+	http://org.rodage.com/gpl-3.0.fr.html
