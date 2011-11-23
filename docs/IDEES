@@ -1,0 +1,17 @@
+ - Utilisons la SFML au lieu de la SDL comme librairie graphique, elle est déjà orientée objet
+contrairement à la SDL qui est plutôt C, et les screens que j'ai trouvé sur le net sont prometteur :)
+
+ - Je pense qu'il serait jusdicieux de faire des cases hexagonales plutôt que carrés non? Si les cases
+sont grosses, ça peut être interessant (par contre je sais pas si les algos vont changer.)
+Ou sinon 'utiliser des zones mortes autour d'un pixel position centrale:
+
+  .........
+  ....^....
+  .../x\...	--> la position est donné par le X, et l'empreinte de l'objet est defini par des coordonnées
+  ...'|'...	    relatives. (x+1,x-1,...)
+  .........
+  .........
+
+Si on deplace pixel par pixel on gagne en fluidité non?
+Je ne sais pas si cette solution est bonne, ça fait un peu beaucoup de calcul pour une map 800x600 par exemple.
+
