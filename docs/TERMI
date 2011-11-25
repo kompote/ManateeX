@@ -1,0 +1,9 @@
+Terminologie :
+
+Joueur : Utilisateur du logiciel, son rôle est de construire des éléments défensifs
+Objectif : Objet du jeu que le joueur doit défendre
+PV : Points de Vie, la quantité de dégâts qu'un objet peut encaisser avant d'être détruit
+Ennemi : Objet du jeu qui cherche à atteindre et/ou détruire l'objectif. Il existe plusieurs types d'ennemis en fonctions de leurs caractéristiques propres (Vitesse de déplacement, quantité de PV, force,...)
+Tour : Élément défensif capable d'attaquer les ennemis. Peuvent-êtres de plusieurs types différents en fonctions de leurs caractéristiques propres (cadence de tir, puissance...)
+niveau : Indique le niveau d'évolution des objets. Le passage d'un niveau améliore une ou plusieurs caractéristiques d'un objet.
+Plateau : indique l'espace visuel où se déroule le jeu. Peut contenir certains éléments de décor.
