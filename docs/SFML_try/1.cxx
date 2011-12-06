@@ -1,3 +1,4 @@
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
@@ -31,11 +32,11 @@ int main()
     return EXIT_FAILURE;
   Text text("0000", font, 25);
     /// Load a music to play
-  // Music music;
-  // if (!music.OpenFromFile("toto.ogg"))
-  //   return EXIT_FAILURE;
+   Music music;
+   if (!music.OpenFromFile("toto.ogg"))
+     return EXIT_FAILURE;
    // Play the music
-  //  music.Play();
+    music.Play();
   // Start the game loop
   bool sens=true;
   

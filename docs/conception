@@ -1,0 +1,43 @@
+Cahier de conception
+
+-- PRESENTATION GENERALE --
+
+PROJET
+Dans le cadre du projet ManateeX, nous developperons un jeu de Tower Defense. Il s'agit d'un type émergent de jeu consistant à défendre un objectif en construisant des tourelles défensives. Le jeu devra respecter les exigences suivantes :
+ - Langage : C++
+ - Plate-forme (initiale) : Linux
+ - Modes de jeu : normal et survivor (jusqu'à la défaite du joueur)
+ - TD avec mazing : le joueur construit de manière à gêner la progression des ennemis, sans pouvoir la bloquer
+
+
+EQUIPE
+Benoit Djerigian & Thomas Fourcroy
+
+PLANNING
+???
+
+-- ANALYSE ET CONCEPTION --
+
+CAS ET SCENARIOS D’UTILISATION
+
+Navigation dans le menu :
+- Cas 1-1 : Sur l'écran d'accueil, l'utilisateur clique sur "Jouer". Sur l'écran de sélection du mode qui apparaît, il choisit le mode Normal. Le jeu commence.
+- Cas 1-2 : Sur l'écran d'accueil, l'utilisateur clique sur "Jouer". Sur l'écran de sélection du mode qui apparaît, il choisit le mode Survivor. Le jeu commence.
+- Cas 1-3 : Sur l'écran d'accueil, l'utilisateur clique sur "Scores". L'écran suivant lui présente les 10 meilleurs scores enregistrés en mode Normal, ainsi qu'un bouton permettant d'afficher les scores du mode Survivor, un bouton permettant de réinitialiser le tableau de scores et un bouton permettant de revenir à l'écran d'accueil.
+- Cas 1-4 : Sur l'écran d'accueil, l'utilisateur clique sur "Options". L'écran suivant lui propose de régler les options (à définir), ainsi qu'un bouton lui permettant d'enregistrer ses modifications et revenir a l'accueil et un autre lui permettant de revenir a l'accueil sans enregistrer les modifications.
+
+En jeu :
+- Cas 2-1 : Le joueur clique sur une case vide du plateau. Un menu s'ouvre et liste les défenses que le joueur peut construire. S'il en sélectionne une, elle se construit automatiquement en un temps donné.
+- Cas 2-2 : Le joueur clique sur une case du plateau occupée par un élément défensif. Une fenêtre apparaît, montrant les informations relatives à l'élément et comportant des boutons permettant d'améliorer l'élément.
+- Cas 2-3 : Le joueur clique sur une case du plateau occupée par un ennemi. Une fenêtre apparaît, montrant les informations relatives à l'ennemi.
+- Cas 2-4 : Le joueur clique sur l'objectif. Une fenêtre apparaît, montrant l'état actuel de l'objectif.
+- Cas 2-5 : Le joueur clique sur le bouton menu situé dans un coin de l'écran. Le jeu se met en pause et un menu apparaît, proposant de retourner à l'écran d'accueil, à l'écran des options ou de reprendre le jeu.
+- Cas 2-6 : En mode Normal, le joueur élimine la Nième vague alors que l'objectif n'est pas détruit. Un écran de victoire apparaît, indiquant le score obtenu.
+- Cas 2-7 : En mode Normal, l'objectif est détruit. Un écran de défaite apparaît, indiquant le numéro de la vague ayant détruit l'objectif, et le score obtenu.
+- Cas 2-8 : En mode Survivor, l'objectif est détruit. Un écran de fin de partie apparaît, indiquant le numéro de la vague ayant détruit l'objectif, et le score obtenu.
+
+
+DIAGRAMME DES CLASSES
+
+DIAGRAMMES DYNAMIQUES
+
