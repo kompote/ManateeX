@@ -1,6 +1,15 @@
 To Do List :
 
- - Commencer
- - Cahier des charges
- - UML
- - Coder
+ - Ecrire des algos
+    . T : Calcul de trajectoire (avec obstacle) IDEE : modéliser la carte par un graphe
+	. B : essayer l'implémentation avec matrice 4D
+      . Améliorer pour détruire structure qui bloque le chemin
+    . T : Calcul de trajectoire (tir),
+    . T&B : Proposer une map (800*600, case 10*10)
+    . B : Navigation dans les menus
+    . B : Menu contextuel
+    . B : Gestion d'un fichier de configuration
+    . B : Gestion d'un fichier des high scores
+    . T : Tir sur cible à portée
+
+ - Implémenter ces algos
