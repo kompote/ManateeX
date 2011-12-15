@@ -30,7 +30,7 @@ int main (void) {
 	  std::cout<<"("<<pos.x<<":"<<pos.y<<")"<<endl;
 	  Case* tmp = m.getCasePixel(pos.x,pos.y);
 	  std::cout<<"case n° "<<tmp->number<<endl;
-	  tmp->SetTexturePath("blue.png");
+	  tmp->SetTexturePath("blue.png",true);
 	}
       if (event.Type == Event::KeyPressed) 
 	{
