@@ -31,7 +31,7 @@ public:
   
   int getContent();
   string getTexturePath();
-  void SetTexturePath(string path);
+  void SetTexturePath(string path, bool);
   
 };
 

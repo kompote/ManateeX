@@ -6,12 +6,10 @@ Case::Case(int i) {
   sprite.SetTexture(texture);
   number = i;
   SetConstructible(false);
-  
-  
 }
 
 bool Case::isConstructible() {
-	return constructible;
+  return constructible;
 }
 
 void Case::SetConstructible(bool b) 
@@ -19,22 +17,21 @@ void Case::SetConstructible(bool b)
   constructible = b;
 }
 
-
 int Case::getContent() {
-	return content;
+  return content;
 }
 
 string Case::getTexturePath() {
-	return texturePath;
+  return texturePath;
 }
 
-void Case::SetTexturePath(string path) 
+void Case::SetTexturePath(string path, bool cons) 
 {
-  SetConstructible(true);
-  
-  this->texturePath = path;
-  this->texture.LoadFromFile(texturePath);
-  this->sprite.SetTexture(texture);
-  cout<<"texture changed to "<<this->texturePath<<" for case n° "<<this->number<<endl;
+
+  SetConstructible(cons);
+  texturePath = path;
+  texture.LoadFromFile(texturePath);
+  sprite.SetTexture(texture);
+  cout<<"texture changed to "<<texturePath<<" for case n° "<<number<<endl;
 
 }

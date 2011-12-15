@@ -5,13 +5,13 @@
 
 class Map {
 
-	private:
-		Case* grid[60][80];
+private:
+  Case* grid[60][80];
 		
-	public:
-		Map();
-		Case* getCase(int i, int j);
-		Case* getCasePixel(int x, int y);
+public:
+  Map();
+  Case* getCase(int i, int j);
+  Case* getCasePixel(int x, int y);
 };
 
 #endif
