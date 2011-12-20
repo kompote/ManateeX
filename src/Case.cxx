@@ -4,6 +4,8 @@ Case::Case(int i) {
   texturePath = "src/ressources/images/texture.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
+
+  
   number = i;
   SetConstructible(false);
 }
