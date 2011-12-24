@@ -1,7 +1,7 @@
 #include "Case.hxx"
 
 Case::Case(int i) {
-  texturePath = "src/ressources/images/texture.png";
+  texturePath = "src/ressources/images/blue.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
 
@@ -25,6 +25,17 @@ int Case::getContent() {
 
 string Case::getTexturePath() {
   return texturePath;
+}
+
+void Case::Select()
+{
+  sprite.SetColor(Color(0,255,0,255));
+  cout<<number<<" selected"<<endl;
+}
+
+void Case::UnSelect()
+{
+  sprite.SetColor(Color(255,255,255,255));
 }
 
 

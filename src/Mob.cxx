@@ -47,9 +47,6 @@ void Mob::Move(int x, int y)
   return;
   
 }
-//((sf::priv::ThreadFunctor<void (Mob::*)()>*)this)->sf::priv::ThreadFunctor<void (Mob::*)()>::myFunctor (...)
-//(... ->* ((sf::priv::ThreadFunctor<void (Mob::*)()>*)this)->sf::priv::ThreadFunctor<void (Mob::*)()>::myFunctor) (...)
-
 
 void Mob::MoveTo() 
 {
@@ -82,8 +79,6 @@ void Mob::MoveTo()
   cout<<"Fin thread trajectoire"<<endl; 
   
 }
-
-
 
 int Mob::GetPV() {
   return pv_;

@@ -8,7 +8,6 @@
 
 using namespace sf;
 
-
 Map m;
 Mob enn(1000,234,456);
 bool run = true;
@@ -16,11 +15,9 @@ RenderWindow window;
 
 void disp() 
 {
-
   window.Create(VideoMode(800, 600), "SFML window");
-  cout<<"test"<<endl;  
   window.Display();
-  cout<<"test"<<endl;
+
   while(run)
     {
 
@@ -31,7 +28,6 @@ void disp()
 	}
       }
       window.Draw(enn.SpriteMob);
-      
       // Update the window
       window.Display();
 
@@ -39,20 +35,17 @@ void disp()
     }
 }
 
-
-
 int main (void) {
 
-
   int x,y;
-
 	
   Thread ttt(&disp);
   ttt.Launch();
   usleep(50000);
-  
-  cout<<window.IsOpened()<<endl;
 
+  Case* last = NULL;
+  
+  
   while(window.IsOpened()) {
     Event event;
     while (window.PollEvent(event)) {
@@ -61,22 +54,40 @@ int main (void) {
 
       if (event.Type == Event::MouseButtonReleased) 
 	{
-	  cout<<"catching mouse event"<<endl;
-	  
-	  // change le sprite
+	  // Select case
+	  cout<<"catching mouse event\033[32m"<<endl;
 	  Vector2i pos = Mouse::GetPosition(window);
 	  x = pos.x;
 	  y = pos.y;
-			    
 	  std::cout<<"("<<pos.x<<":"<<pos.y<<")"<<endl;
 	  Case* tmp = m.getCasePixel(pos.x,pos.y);
-	  std::cout<<"case n° "<<tmp->number<<endl;
-	  tmp->SetTexturePath("src/ressources/images/blue.png",true);
-	  enn.Move(x,y);
-	  cout<<"Reprise Event watch"<<endl;
+	  std::cout<<"case n° "<<tmp->number<<" selected"<<endl;
+	  tmp->Select();
+	  if (last)
+	    last->UnSelect();
+	  last = tmp;
+	  
+	  // si click droit
+	  if (event.MouseButton.Button == Mouse::Right) 
+	    {
+	      cout<<"menu contex"<<endl;
+
+	    }
 	  
 	  
+	  //si click gauche
+	  if (event.MouseButton.Button == Mouse::Left)
+	    {
+	      cout<<"information on case n° "<<tmp->number<<endl;
+	      Color cl = tmp->sprite.GetColor();
+	      cout<<(int)cl.r<<" "<<(int)cl.g<<" "<<(int)cl.b<<" "<<(int)cl.a<<endl;
+	  	      // Bonus
+	      //	      enn.Move(x,y);
+	    }
+	  
+	  cout<<"\033[0mReprise event watch"<<endl;
 	}
+
       if (event.Type == Event::KeyPressed) 
 	{
 	  switch(event.Key.Code)
@@ -87,19 +98,13 @@ int main (void) {
 	      std::cout<<tmp2->getTexturePath()<<" for case n° "<<tmp2->number<<" "<<tmp2->isConstructible()<<endl;
 	      if (tmp2->isConstructible()) 
 		std::cout<<"true"<<endl;
-				
 	      break;
 	    }
 	}
-
     }
-
-
     usleep(20000);
-
   }
   run = false;
-  
 }
 
 

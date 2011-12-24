@@ -28,6 +28,8 @@ public:
   Case(int);
   bool isConstructible();
   void SetConstructible(bool);
+  void Select();
+  void UnSelect();
   
   int getContent();
   string getTexturePath();
