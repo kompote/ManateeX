@@ -13,3 +13,6 @@ To Do List :
     . T : Tir sur cible à portée
 
  - Implémenter ces algos
+
+ - Deriver les objets de sf::Sprite
+   - passer en parametre le contexte (RenderWindow) pour pouvoir faire des Draw(this) dans les methodes objets.
