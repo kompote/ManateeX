@@ -9,7 +9,7 @@
 using namespace sf;
 
 Map m;
-Mob enn(1000,234,456);
+Mob* enn[10];
 bool run = true;
 RenderWindow window;
 
@@ -27,13 +27,26 @@ void disp()
 	  window.Draw(tmp->sprite);
 	}
       }
-      window.Draw(enn.SpriteMob);
+      if ((enn[0])&&(!enn[0]->IsDead()))
+	window.Draw(enn[0]->SpriteMob);
       // Update the window
       window.Display();
 
       usleep(10000);
     }
 }
+
+void garbage() 
+{
+  if ((enn[0])&&(enn[0]->IsDead())) {
+    delete enn[0];
+    enn[0]=NULL;
+    
+    std::cout<<"Dead."<<endl;
+  }
+  
+}
+
 
 int main (void) {
 
@@ -44,7 +57,7 @@ int main (void) {
   usleep(50000);
 
   Case* last = NULL;
-  
+  enn[0]= new Mob(1,234,456,1000);
   
   while(window.IsOpened()) {
     Event event;
@@ -66,12 +79,13 @@ int main (void) {
 	  if (last)
 	    last->UnSelect();
 	  last = tmp;
-	  
+	  tmp->SetTexturePath("src/ressources/images/fb.png",false);	  
 	  // si click droit
 	  if (event.MouseButton.Button == Mouse::Right) 
 	    {
 	      cout<<"menu contex"<<endl;
 
+	      
 	    }
 	  
 	  
@@ -94,14 +108,33 @@ int main (void) {
 	    {
 	      // info sur la derniere case selectionnee (debug)
 	    case Keyboard::I:
-	      Case* tmp2 = m.getCasePixel(x,y);
-	      std::cout<<tmp2->getTexturePath()<<" for case n° "<<tmp2->number<<" "<<tmp2->isConstructible()<<endl;
-	      if (tmp2->isConstructible()) 
-		std::cout<<"true"<<endl;
-	      break;
+	      {
+		
+		Case* tmp2 = m.getCasePixel(x,y);
+		std::cout<<tmp2->getTexturePath()<<" for case n° "<<tmp2->number<<" "<<tmp2->isConstructible()<<endl;
+		if (tmp2->isConstructible()) 
+		  std::cout<<"true"<<endl;
+		break;
+	      }
+	      
+	      // kill the star
+	    case Keyboard::K:
+	      if ((enn[0])&&(!enn[0]->IsDead()))	      
+		{
+		  enn[0]->Hit(100);
+		  std::cout<<"Hit! still "<<enn[0]->GetPV()<<"PV"<<endl;
+		  break;
+		}
+	      else 
+		{
+		  std::cout<<"no star no more"<<endl;
+		}
+	      
 	    }
 	}
     }
+    garbage();
+    
     usleep(20000);
   }
   run = false;

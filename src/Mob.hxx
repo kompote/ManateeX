@@ -26,7 +26,7 @@ public:
   Sprite SpriteMob;
   int Number;
   
-  Mob(int,int,int);
+  Mob(int,int,int,int);
 
   bool IsDead();
   void Move(int,int);

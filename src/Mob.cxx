@@ -1,6 +1,6 @@
 #include "Mob.hxx"
 
-Mob::Mob(int i, int x, int y) {
+Mob::Mob(int i, int x, int y, int life) {
   texturePath_ = "src/ressources/images/mob.png";
   texture_.LoadFromFile(texturePath_);
   SpriteMob.SetTexture(texture_);
@@ -9,7 +9,9 @@ Mob::Mob(int i, int x, int y) {
   Number = i;
   posX_ = 50;
   posY_ = 50;
+  pv_ = life;
   
+
   dead_ = false;
   
 }
@@ -23,7 +25,7 @@ bool Mob::IsDead()
 void Mob::Hit(int k) 
 {
   pv_-=k;
-  if (pv_<0) {
+  if (pv_<=0) {
     dead_ = true;
     return;
   }

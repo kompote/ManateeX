@@ -1,13 +1,16 @@
 #include "Case.hxx"
 
 Case::Case(int i) {
-  texturePath = "src/ressources/images/blue.png";
-  texture.LoadFromFile(texturePath);
+  Image im;
+  texture.Create(10,10);
   sprite.SetTexture(texture);
 
-  
+  texturePath = "src/ressources/images/blue.png";
+  im.LoadFromFile(texturePath);
+  texture.Update(im);
+
   number = i;
-  SetConstructible(false);
+  SetConstructible(true);
 }
 
 bool Case::isConstructible() {
@@ -30,7 +33,6 @@ string Case::getTexturePath() {
 void Case::Select()
 {
   sprite.SetColor(Color(0,255,0,255));
-  cout<<number<<" selected"<<endl;
 }
 
 void Case::UnSelect()
@@ -44,10 +46,12 @@ void Case::UnSelect()
 void Case::SetTexturePath(string path, bool cons) 
 {
 
-  SetConstructible(true);
+  SetConstructible(cons);
   texturePath = path;
-  texture.LoadFromFile(texturePath);
-  sprite.SetTexture(texture);
+  Image im;
+  im.LoadFromFile(texturePath);
+  texture.Update(im);
+  //  window.draw(sprite);
+  
   cout<<"texture changed to "<<texturePath<<" for case n° "<<number<<endl;
-
 }
