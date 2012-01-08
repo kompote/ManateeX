@@ -17,9 +17,7 @@ private:
   int content;
   string texturePath;
   Texture texture;
-
-  
-
+  Image im;
 
 public:
   Sprite sprite;

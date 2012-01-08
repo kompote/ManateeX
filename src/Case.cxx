@@ -1,7 +1,7 @@
 #include "Case.hxx"
 
 Case::Case(int i) {
-  Image im;
+  //  Image im;
   texture.Create(10,10);
   sprite.SetTexture(texture);
 
@@ -47,11 +47,12 @@ void Case::SetTexturePath(string path, bool cons)
 {
 
   SetConstructible(cons);
+
   texturePath = path;
-  Image im;
   im.LoadFromFile(texturePath);
+  
+  
   texture.Update(im);
-  //  window.draw(sprite);
   
   cout<<"texture changed to "<<texturePath<<" for case n° "<<number<<endl;
 }

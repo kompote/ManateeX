@@ -7,8 +7,8 @@ Mob::Mob(int i, int x, int y, int life) {
   SpriteMob.SetPosition(x,y);
   
   Number = i;
-  posX_ = 50;
-  posY_ = 50;
+  posX_ = x;
+  posY_ = y;
   pv_ = life;
   
 
@@ -29,6 +29,7 @@ void Mob::Hit(int k)
     dead_ = true;
     return;
   }
+  cout<<"Hit! still "<<pv_<<endl;
   
 }
 
