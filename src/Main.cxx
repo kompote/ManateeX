@@ -91,7 +91,7 @@ int main (void) {
   int x,y;
 	
   Thread ttt(&disp);
-  Thread pp(&fire);
+  //  Thread* pp;
   ttt.Launch();
   usleep(50000);
 
@@ -172,7 +172,7 @@ int main (void) {
 		{
 		  
 		  std::cout<<"Fire"<<endl;
-		  
+		  Thread pp(&fire);	  
 		  pp.Launch();
 		  //	  std::cout<<"Fire"<<endl;
 		}
