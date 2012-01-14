@@ -16,13 +16,15 @@ int main(void) {
 	Menu *currentMenu = &mainMenu;
     
 
-    while(window.IsOpened()) {
+	while(window.IsOpen()) {
 		Event event;
 		while (window.PollEvent(event)) {
 			// Window closed
 			if (event.Type == Event::Closed) window.Close();
 			// Button clicked
 			if (event.Type == Event::MouseButtonPressed) {
+
+			  
 				for(int i=0;i<5;i++) {
 					if(currentMenu->button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
 						if(currentMenu->button[i].GetString()=="Options") currentMenu = &optionMenu;
