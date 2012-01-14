@@ -8,6 +8,18 @@ Case::Case(int i) {
   SetConstructible(false);
 }
 
+void Case::setPosition(int x, int y) 
+{
+  transform.SetPosition(x,y);
+}
+
+void Case::draw(RenderTarget& target) const
+{
+  target.Draw(sprite,transform.GetTransform());
+  
+}
+
+
 bool Case::isConstructible() {
   return constructible;
 }

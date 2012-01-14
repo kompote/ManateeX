@@ -10,6 +10,8 @@ private:
 		
 public:
   Map();
+  void Redraw(RenderTarget& target) const;
+  
   Case* getCase(int i, int j);
   Case* getCasePixel(int x, int y);
 };

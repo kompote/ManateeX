@@ -10,21 +10,25 @@ using namespace sf;
 
 using namespace std;
 
-class Case {
+class Case
+{
   
 private:
   bool constructible;
   int content;
   string texturePath;
   Texture texture;
-
+  Transformable transform;
   
-
 
 public:
   Sprite sprite;
   int number;
+  void setPosition(int,int);
   
+  void draw(RenderTarget& target) const;
+  
+
   Case(int);
   bool isConstructible();
   void SetConstructible(bool);
