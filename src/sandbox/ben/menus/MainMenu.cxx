@@ -2,8 +2,8 @@
 
 MainMenu::MainMenu() {
 
-	font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
-	
+  //	font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
+  font.LoadFromFile("ARCADE_N.TTF");	
 	title.SetString("ManateeX Project");
 	title.SetFont(font);
 	title.SetCharacterSize(60);

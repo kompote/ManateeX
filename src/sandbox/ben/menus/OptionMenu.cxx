@@ -2,7 +2,8 @@
 
 OptionMenu::OptionMenu() {
 	
-	font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
+  //font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
+  font.LoadFromFile("ARCADE_N.TTF");
 	
 	title.SetString("Options");
 	title.SetFont(font);
