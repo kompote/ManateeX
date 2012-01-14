@@ -1,6 +1,6 @@
 SRC=src/
 BIN=bin/
-LFLAGS= -Wall -lsfml-graphics -lsfml-window
+LFLAGS= -Wall -lsfml-graphics -lsfml-window -lsfml-system
 CFLAGS= -Wall -ansi -pedantic
 
 all: ManateeX
