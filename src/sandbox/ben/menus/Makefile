@@ -1,7 +1,7 @@
 all: menus
 
 menus: main menu mainmenu options
-	g++ Main.o Menu.o MainMenu.o OptionMenu.o -lsfml-graphics -lsfml-window
+	g++ Main.o Menu.o MainMenu.o OptionMenu.o -lsfml-graphics -lsfml-window -lsfml-system
 
 main: Main.cxx MainMenu.hxx
 	g++ -c Main.cxx
