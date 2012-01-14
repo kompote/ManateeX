@@ -1,5 +1,5 @@
-#ifndef _MAINMENU_HXX
-#define _MAINMENU_HXX
+#ifndef _OPTIONMENU_HXX
+#define _OPTIONMENU_HXX
 
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
@@ -8,10 +8,10 @@
 
 using namespace sf;
 
-class MainMenu : public Menu {
+class OptionMenu : public Menu {
 
 public :
-    MainMenu();
+    OptionMenu();
     virtual void Affiche(RenderTarget& target) const;
 };
 

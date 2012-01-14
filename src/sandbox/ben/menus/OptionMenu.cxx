@@ -1,17 +1,17 @@
-#include "MainMenu.hxx"
+#include "OptionMenu.hxx"
 
-MainMenu::MainMenu() {
-
+OptionMenu::OptionMenu() {
+	
 	font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
 	
-	title.SetString("ManateeX Project");
+	title.SetString("Options");
 	title.SetFont(font);
 	title.SetCharacterSize(60);
 	title.SetPosition(400-title.GetGlobalBounds().Width/2,20);
 	title.SetColor(Color::Black);
 }
 
-void MainMenu::Affiche(RenderTarget& target) const {
+void OptionMenu::Affiche(RenderTarget& target) const {
     target.Draw(bgSprite);
 	target.Draw(title);
 }
