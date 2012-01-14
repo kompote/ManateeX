@@ -97,11 +97,11 @@ int main (void) {
 
   Case* last = NULL;
   enn[0]= new Mob(1,400,300,1000);
-  
+
   while(window.IsOpened()) {
     Event event;
     while (window.PollEvent(event)) {
-
+  
       if (event.Type == Event::Closed) window.Close();
 
       if (event.Type == Event::MouseButtonReleased) 
@@ -181,7 +181,9 @@ int main (void) {
 	      
 	    }
 	}
+
     }
+	std::cout<<"bite"<<endl;
     garbage();
     
     usleep(20000);

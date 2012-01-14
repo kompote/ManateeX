@@ -15,6 +15,8 @@ protected :
 	Text title;
 
 public :
+	Text button[5];
+
     Menu();
     virtual void Affiche(RenderTarget& target) const=0;
 };
