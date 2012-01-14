@@ -98,7 +98,7 @@ int main (void) {
   Case* last = NULL;
   enn[0]= new Mob(1,400,300,1000);
 
-  while(window.IsOpened()) {
+  while(window.IsOpen()) {
     Event event;
     while (window.PollEvent(event)) {
   
