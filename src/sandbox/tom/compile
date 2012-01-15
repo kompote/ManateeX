@@ -1,0 +1,7 @@
+#!/bin/sh
+g++ -c Main.cxx
+g++ -c Map.cxx
+g++ -c Particle.cxx
+g++ -c Case.cxx
+g++ -o toto Main.o Map.o Case.o Particle.o -lsfml-graphics -lsfml-window -lsfml-system
+

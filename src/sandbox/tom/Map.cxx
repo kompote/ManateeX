@@ -14,6 +14,7 @@ Map::Map() {
   lastSelected = NULL;
   
 }
+
 void Map::Redraw(RenderTarget& target) const 
 {
   for(int i=0;i<60;i++)
@@ -40,6 +41,4 @@ void Map::Select(Case* s)
   
   s->Select();
   lastSelected = s;
-  
-
 }
