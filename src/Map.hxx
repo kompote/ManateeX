@@ -7,11 +7,17 @@ class Map {
 
 private:
   Case* grid[60][80];
+  Case* lastSelected;
+  
 		
 public:
   Map();
+  void Redraw(RenderTarget& target) const;
+  
   Case* getCase(int i, int j);
   Case* getCasePixel(int x, int y);
+  void Select(Case*);
+  
 };
 
 #endif

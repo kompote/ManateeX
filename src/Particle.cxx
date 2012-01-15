@@ -1,6 +1,7 @@
 #include "Particle.hxx"
 
 #include <iostream>
+#include <cmath>
 
 Particle::Particle(sf::RenderWindow& aWindow, Vector2f position, int t) :
 window(aWindow)
