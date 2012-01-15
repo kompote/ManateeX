@@ -11,16 +11,17 @@ int main (void) {
   
   RenderWindow window(VideoMode(800, 600), "SFML window");
   Map m;
-  //  int x,y;
+  int x,y;
   //  c.setPosition(10,10);
   
   //window.Draw(c);
-  m.Redraw(window);
+  
   
 
 
   while(window.IsOpen()) {
     Event event;
+    m.Redraw(window);
     while (window.PollEvent(event)) {
       // Window closed
       if (event.Type == Event::Closed) window.Close();
@@ -28,14 +29,18 @@ int main (void) {
       if (event.Type == Event::MouseButtonReleased) 
 	{
 
-	  // Vector2i pos = Mouse::GetPosition(window);
-	  // x = pos.x;
-	  // y = pos.y;
+	  Vector2i pos = Mouse::GetPosition(window);
+	  x = pos.x;
+	  y = pos.y;
 			    
-	  // std::cout<<"("<<pos.x<<":"<<pos.y<<")"<<endl;
-	  // Case* tmp = m.getCasePixel(pos.x,pos.y);
-	  // std::cout<<"case n° "<<tmp->number<<endl;
+	  std::cout<<"("<<pos.x<<":"<<pos.y<<")"<<endl;
+	  Case* tmp = m.getCasePixel(pos.x,pos.y);
+	  std::cout<<"case n° "<<tmp->number<<endl;
 	  // tmp->SetTexturePath("blue.png",true);
+	  //tmp->Select();
+	  m.Select(tmp);
+	  
+	  
 
 	}
       if (event.Type == Event::KeyPressed) 

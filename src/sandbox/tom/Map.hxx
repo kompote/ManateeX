@@ -7,6 +7,8 @@ class Map {
 
 private:
   Case* grid[60][80];
+  Case* lastSelected;
+  
 		
 public:
   Map();
@@ -14,6 +16,8 @@ public:
   
   Case* getCase(int i, int j);
   Case* getCasePixel(int x, int y);
+  void Select(Case*);
+  
 };
 
 #endif

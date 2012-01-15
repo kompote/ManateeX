@@ -11,7 +11,8 @@ Map::Map() {
 	z++;
 	      
       }
-	
+  lastSelected = NULL;
+  
 }
 void Map::Redraw(RenderTarget& target) const 
 {
@@ -30,4 +31,15 @@ Case* Map::getCase(int i, int j) {
 
 Case* Map::getCasePixel(int x, int y) {
   return grid[(y-y%10)/10][(x-x%10)/10];
+}
+
+void Map::Select(Case* s) 
+{
+  if (lastSelected)
+    lastSelected->UnSelect();
+  
+  s->Select();
+  lastSelected = s;
+  
+
 }

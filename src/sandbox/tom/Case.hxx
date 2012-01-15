@@ -27,6 +27,8 @@ public:
   void setPosition(int,int);
   
   void draw(RenderTarget& target) const;
+  void Select();
+  void UnSelect();
   
 
   Case(int);

@@ -1,7 +1,7 @@
 #include "Case.hxx"
 
 Case::Case(int i) {
-  texturePath = "texture.png";
+  texturePath = "blue.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
   number = i;
@@ -19,6 +19,15 @@ void Case::draw(RenderTarget& target) const
   
 }
 
+void Case::Select()
+{
+  sprite.SetColor(Color(0,255,0,255));
+}
+
+void Case::UnSelect()
+{
+  sprite.SetColor(Color(255,255,255,255));
+}
 
 bool Case::isConstructible() {
   return constructible;
