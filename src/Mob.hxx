@@ -1,5 +1,5 @@
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#ifndef MOB_H
+#define MOB_H
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
@@ -7,13 +7,11 @@
 using namespace sf;
 
 
-class Particle {
+class Mob {
 public:
-  Particle(RenderWindow&,Vector2f,int,Vector2f);
-  ~Particle();
-
-  bool isDone();
-  
+  Mob(RenderWindow&,Vector2f);
+  ~Mob();
+	
   void setPosition(Vector2f pos);
 
   Vector2f getPosition(void);
@@ -32,7 +30,6 @@ private:
   std::vector <Vector2f *>::iterator it;
   int type;
   
-  bool done;
   bool hasPath;
 };
 

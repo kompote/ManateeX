@@ -1,63 +1,42 @@
-#include "Particle.hxx"
+#include "Mob.hxx"
 
 #include <iostream>
 #include <cmath>
 
-Particle::Particle(sf::RenderWindow& aWindow, Vector2f position, int t, Vector2f ci) :
+Mob::Mob(sf::RenderWindow& aWindow, Vector2f position) :
 window(aWindow)
 {
-  pos = position;
-  cible = ci;
-  done = false;
+  pos=position;
   
   hasPath=false;
-  type = t;
-  // Different type de tirs, donc de tours
-  switch(type)
-    {
-    case 1:
-      circle.SetRadius(4);
-      circle.SetFillColor(Color::Blue);
-      circle.SetPosition(pos);
-      break;
-      
-    case 2:
-      circle.SetRadius(2);
-      circle.SetFillColor(Color::Red);
-      circle.SetPosition(pos);
-      break;
-    }
+  circle.SetRadius(6);
+  circle.SetFillColor(Color::Black);
+  circle.SetPosition(pos);
+  Bresenham(400,300);
+  
 
-  Bresenham(cible.x,cible.y);
-  
-  
 }
 
-Particle::~Particle()
+Mob::~Mob()
 {
   // les deletes...
 }
 
-void Particle::setPosition(sf::Vector2f aPos)
+void Mob::setPosition(sf::Vector2f aPos)
 {
   // inutile
 	pos = aPos;
 }
 
 
-sf::Vector2f Particle::getPosition(void)
+sf::Vector2f Mob::getPosition(void)
 {
   // inutile
 	return pos;
 }
 
-bool Particle::isDone()
-{
-  return done;
-}
 
-
-void Particle::Bresenham(int x, int y)
+void Mob::Bresenham(int x, int y)
 {
   // TODO: les deletes a chaque recalcul
   path.clear();
@@ -110,31 +89,21 @@ void Particle::Bresenham(int x, int y)
 }
 
 
-void Particle::render()
+void Mob::render()
 {
   window.Draw(circle);	      
 }
 
-void Particle::update()
+void Mob::update()
 {
   // ne fait rien si pas encore de path
   if (!hasPath) return;
   // boucle le path, on pourrait ajouter un timer entre les boucles
-  if(it==path.end()) done = true;
-  if (!done) 
-    {
-      
-      // vitesse....
-      int x=(*it)->x;
-      int y=(*it)->y;
-      if (type == 2) 
-	{
-	  x+=2;
-	  y+=2;
-	}
-      
-      circle.SetPosition(x,y);
-      it++;
-    }
-  
+  if(it==path.end()) it=path.begin();
+  // vitesse....
+  pos.x=(*it)->x;
+  pos.y=(*it)->y;
+
+  circle.SetPosition(pos);
+  it++;
 }
