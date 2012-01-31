@@ -9,10 +9,12 @@ using namespace sf;
 
 class Particle {
 public:
-  Particle(RenderWindow&,Vector2f,int,Vector2f);
+  Particle(RenderWindow&,Vector2f,int,Vector2f,int);
   ~Particle();
 
   bool isDone();
+  int GetCibleNbr();
+  int GetPower();
   
   void setPosition(Vector2f pos);
 
@@ -31,6 +33,8 @@ private:
   std::vector <Vector2f *> path;
   std::vector <Vector2f *>::iterator it;
   int type;
+  int ncible;
+  int power;
   
   bool done;
   bool hasPath;

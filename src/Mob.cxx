@@ -14,7 +14,9 @@ window(aWindow)
   circle.SetPosition(pos);
   Bresenham(400,300);
   
-
+  dead = false;
+  PV=1000;
+  
 }
 
 Mob::~Mob()
@@ -33,6 +35,11 @@ sf::Vector2f Mob::getPosition(void)
 {
   // inutile
 	return pos;
+}
+
+bool Mob::IsDead() 
+{
+  return dead;
 }
 
 
@@ -86,6 +93,14 @@ void Mob::Bresenham(int x, int y)
     }
   it=path.begin();
   hasPath=true;
+}
+
+void Mob::Hit(int k)
+{
+  PV=PV-k;
+  if (PV<=0) dead = true;
+  std::cout<<"hiit: "<<PV<<std::endl;
+  
 }
 
 

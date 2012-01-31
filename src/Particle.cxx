@@ -3,12 +3,13 @@
 #include <iostream>
 #include <cmath>
 
-Particle::Particle(sf::RenderWindow& aWindow, Vector2f position, int t, Vector2f ci) :
+Particle::Particle(sf::RenderWindow& aWindow, Vector2f position, int t, Vector2f ci, int nci) :
 window(aWindow)
 {
   pos = position;
   cible = ci;
   done = false;
+  ncible = nci;
   
   hasPath=false;
   type = t;
@@ -19,12 +20,16 @@ window(aWindow)
       circle.SetRadius(4);
       circle.SetFillColor(Color::Blue);
       circle.SetPosition(pos);
+      power = 200;
+      
       break;
       
     case 2:
       circle.SetRadius(2);
       circle.SetFillColor(Color::Red);
       circle.SetPosition(pos);
+      power = 100;
+      
       break;
     }
 
@@ -55,6 +60,18 @@ bool Particle::isDone()
 {
   return done;
 }
+
+int Particle::GetCibleNbr()
+{
+  return ncible;
+}
+
+int Particle::GetPower()
+{
+  return power;
+}
+
+
 
 
 void Particle::Bresenham(int x, int y)

@@ -16,6 +16,9 @@ public:
 
   Vector2f getPosition(void);
   
+  void Hit(int);
+  bool IsDead();
+  
   void Bresenham(int,int);
   
   void render();
@@ -29,6 +32,8 @@ private:
   std::vector <Vector2f *> path;
   std::vector <Vector2f *>::iterator it;
   int type;
+  int PV;
+  bool dead;
   
   bool hasPath;
 };

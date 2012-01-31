@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 
 #include "Map.hxx"
@@ -20,12 +21,18 @@ bool play=false;
 std::vector<Particle *> part;
 std::vector<Mob *> mobs;
 
+Music music;
+SoundBuffer sbuffer;
 
 
 
-void init()
+
+
+
+int init()
 {
-
+  if (!sbuffer.LoadFromFile("src/ressources/sounds/laser.ogg"))
+    return EXIT_FAILURE;
   Vector2f p1(200,230);
 
   Vector2f p3(700,500);
@@ -47,12 +54,21 @@ void updateParticles()
       if (!part.empty())
 	{
 	  
-	  for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
+	  for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();) 
 	    {
-	      if ((*partIt)->isDone()){delete *partIt; part.erase(partIt); continue;
+	      if ((*partIt)->isDone()){
+		if(!mobs.empty())
+		  mobs[(*partIt)->GetCibleNbr()]->Hit((*partIt)->GetPower());
+		delete *partIt;
+		part.erase(partIt);
+		continue;
 	      }
-	      (*partIt)->update();
-	  
+	      else 
+		{
+		  (*partIt)->update();
+		  ++partIt;
+		}
+	      
 	    }
 	}
       
@@ -63,20 +79,51 @@ void updateParticles()
 
 void updateMobs() 
 {
+  Sound fire;
+  fire.SetBuffer(sbuffer);
+  int i;
+  
   // Thread update position des mob
-  //  std::cout<<"update"<<std::endl;
+  Vector2f p1(50,30);
   Vector2f p2(450,430);
   while(play) 
     {
-      for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();mobsIt++) 
+      if (!mobs.empty())
 	{
 	  
-	  (*mobsIt)->update();
-	  //std::cout<<(*mobsIt)->getPosition().x<<endl;//(*mobsIt)->getPosition().y);
-	  part.insert(part.end(),new Particle(window,p2,2,(*mobsIt)->getPosition()));
-
+	  i=0;
+      
+	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
+	    {
+	      if ((*mobsIt)->IsDead())
+		{
+		  delete *mobsIt;
+		  mobs.erase(mobsIt);
+		  std::cout<<"died"<<std::endl;
+		  
+		  continue;
+		}
+	      else 
+		{
+		  (*mobsIt)->update();
+		  // TODO:
+		  // for each tower
+		  // if mob in range()
+		  // insert new tower.particle
+		  part.insert(part.end(),new Particle(window,p2,2,(*mobsIt)->getPosition(),i));
+		  
+		  fire.Play();
+		  
+		  i++;
+		  ++mobsIt;
+		  
+		}
+	      
+	    }
 	}
+      
       usleep(250000);
+	
       
     }
 }
@@ -89,7 +136,7 @@ int game (void) {
 
   init();
   
-
+  // threads
   Thread partUpd(&updateParticles);
   partUpd.Launch();
   Thread mobUpd(&updateMobs);
@@ -108,7 +155,8 @@ int game (void) {
     // Desine les mobs
     for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
       {
-	(*MobsIt)->render();
+	if (! (*MobsIt)->IsDead())
+	  (*MobsIt)->render();
 
       }
 
@@ -132,7 +180,7 @@ int game (void) {
 	  if (event.MouseButton.Button == Mouse::Right) 
 	    {
 	      // update cible (pout test)
-	      
+	      mobs.insert(mobs.end(),new Mob(window,(Vector2f) pos));
 	      cout<<"menu contex"<<endl;
 	    }
 	  
@@ -179,7 +227,11 @@ int main(void) {
   MainMenu mainMenu;
   OptionMenu optionMenu;
   Menu *currentMenu = &mainMenu;
-    
+  if (!music.OpenFromFile("src/ressources/sounds/toto.ogg"))
+    return EXIT_FAILURE;
+  music.Play();
+  music.SetLoop(true);
+  
   while(window.IsOpen()) {
     Event event;
     while (window.PollEvent(event)) {
