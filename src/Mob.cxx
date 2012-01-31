@@ -15,7 +15,7 @@ window(aWindow)
   Bresenham(400,300);
   
   dead = false;
-  PV=1000;
+  PV=5000;
   
 }
 

@@ -10,7 +10,8 @@
 #include "OptionMenu.hxx"
 
 #include "Mob.hxx"
-
+#include "Tower.hxx"
+#include "Batiment.hxx"
 
 using namespace sf;
 
@@ -20,13 +21,11 @@ RenderWindow window(VideoMode(800, 600), "SFML window");
 bool play=false;
 std::vector<Particle *> part;
 std::vector<Mob *> mobs;
+std::vector<Batiment *> tows;
+
 
 Music music;
 SoundBuffer sbuffer;
-
-
-
-
 
 
 int init()
@@ -35,12 +34,18 @@ int init()
     return EXIT_FAILURE;
   Vector2f p1(200,230);
 
+  Vector2f p2(450,430);
+
   Vector2f p3(700,500);
   
   //  part.insert(part.end(),new Particle(window,p1,1));
   //part.insert(part.end(),new Particle(window,p2,2));
 
   mobs.insert(mobs.end(),new Mob(window,p3));
+
+  tows.insert(tows.end(), new Tower(window,p1,1,1));
+  tows.insert(tows.end(), new Tower(window,p2,2,2));
+
 }
 
   
@@ -84,8 +89,6 @@ void updateMobs()
   int i;
   
   // Thread update position des mob
-  Vector2f p1(50,30);
-  Vector2f p2(450,430);
   while(play) 
     {
       if (!mobs.empty())
@@ -110,11 +113,23 @@ void updateMobs()
 		  // for each tower
 		  // if mob in range()
 		  // insert new tower.particle
-		  part.insert(part.end(),new Particle(window,p2,2,(*mobsIt)->getPosition(),i));
-		  
-		  fire.Play();
-		  
+		  for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+		    {
+		      if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
+			{
+			  Vector2f p = (*TowsIt)->GetPos();
+			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),(*mobsIt)->getPosition(),i));		      
+			  fire.Play();
+
+			}
+		      
+		    }
 		  i++;
+
+		  
+
+		  
+
 		  ++mobsIt;
 		  
 		}
@@ -157,6 +172,13 @@ int game (void) {
       {
 	if (! (*MobsIt)->IsDead())
 	  (*MobsIt)->render();
+
+      }
+    //dessine les towers
+    for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+      {
+
+	(*TowsIt)->render();
 
       }
 
