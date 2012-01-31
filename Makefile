@@ -5,13 +5,13 @@ CFLAGS= -v -Wall -ansi -pedantic
 
 all: ManateeX
 
-ManateeX: $(BIN)Particle.o $(BIN)Case.o $(BIN)Map.o $(BIN)Main.o
-	g++ -o ManateeX $(BIN)Main.o $(BIN)Map.o $(BIN)Case.o $(BIN)Particle.o $(LFLAGS)
+ManateeX: $(BIN)Particle.o $(BIN)Case.o $(BIN)Map.o $(BIN)Main.o $(BIN)Menu.o $(BIN)MainMenu.o $(BIN)OptionMenu.o
+	g++ -o ManateeX $(BIN)Main.o $(BIN)Map.o $(BIN)Case.o $(BIN)Particle.o $(BIN)Menu.o $(BIN)MainMenu.o $(BIN)OptionMenu.o $(LFLAGS)
 
 $(BIN)Main.o: $(SRC)Main.cxx
 	g++ -o $(BIN)Main.o -c $(SRC)Main.cxx $(CFLAGS)
 
-$(BIN)Map.o: $(SRC)Map.cxx $(SRC)Map.hxx $(BIN)Case.o
+$(BIN)Map.o: $(SRC)Map.cxx $(SRC)Map.hxx
 	g++ -o $(BIN)Map.o -c $(SRC)Map.cxx $(CFLAGS)
 
 $(BIN)Case.o: $(SRC)Case.cxx $(SRC)Case.hxx 
@@ -19,4 +19,13 @@ $(BIN)Case.o: $(SRC)Case.cxx $(SRC)Case.hxx
 
 $(BIN)Particle.o: $(SRC)Particle.cxx $(SRC)Particle.hxx 
 	g++ -o $(BIN)Particle.o -c $(SRC)Particle.cxx $(CFLAGS)
+
+$(BIN)Menu.o: $(SRC)Menu.cxx $(SRC)Menu.hxx 
+	g++ -o $(BIN)Menu.o -c $(SRC)Menu.cxx $(CFLAGS)
+
+$(BIN)MainMenu.o: $(SRC)MainMenu.cxx $(SRC)MainMenu.hxx 
+	g++ -o $(BIN)MainMenu.o -c $(SRC)MainMenu.cxx $(CFLAGS)
+
+$(BIN)OptionMenu.o: $(SRC)OptionMenu.cxx $(SRC)OptionMenu.hxx 
+	g++ -o $(BIN)OptionMenu.o -c $(SRC)OptionMenu.cxx $(CFLAGS)
 

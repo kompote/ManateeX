@@ -4,12 +4,18 @@
 
 #include "Map.hxx"
 #include "Particle.hxx"
+#include "Menu.hxx"
+#include "MainMenu.hxx"
+#include "OptionMenu.hxx"
+
+
 
 using namespace sf;
 
 RenderWindow window(VideoMode(800, 600), "SFML window");
 
 std::vector<Particle *> part;
+bool play=false;
 
 
 
@@ -32,7 +38,7 @@ void updatePos()
 {
   // Thread update position des projectiles
   std::cout<<"update"<<std::endl;
-  while(42) 
+  while(play) 
     {
       for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
 	{
@@ -46,7 +52,7 @@ void updatePos()
 }
 
 
-int main (void) {
+int game (void) {
   
   Map m;
   int x,y;
@@ -59,7 +65,7 @@ int main (void) {
 
   tt.Launch();
   
-  while(window.IsOpen()) {
+  while(window.IsOpen()&&play) {
     Event event;
     m.Redraw(window);
     // dessine les projectiles (a mettre en fcontion peut etre)
@@ -110,9 +116,20 @@ int main (void) {
 	{
 	  switch(event.Key.Code)
 	    {
-	    case Keyboard::I:
-
-	      break;
+	    case Keyboard::Q:
+	      play=false;
+	      for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
+		{
+		  
+		  delete *partIt;
+		}
+	      part.clear();
+	      
+	      std::cout<<"return to main menu"<<endl;
+	      
+	      return 1;
+	      
+	      
 	     
 	    case Keyboard::M:
 
@@ -128,4 +145,47 @@ int main (void) {
 
     window.Display();
   }
+}
+
+int main(void) {
+
+  //    RenderWindow window(VideoMode(800, 600), "ManateeX Project");
+
+    MainMenu mainMenu;
+    OptionMenu optionMenu;
+    Menu *currentMenu = &mainMenu;
+    
+
+	while(window.IsOpen()) {
+		Event event;
+		while (window.PollEvent(event)) {
+			// Window closed
+			if (event.Type == Event::Closed) window.Close();
+			// Button clicked
+			if (event.Type == Event::MouseButtonPressed) {
+
+			  
+				for(int i=0;i<5;i++) {
+					if(currentMenu->button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
+						if(currentMenu->button[i].GetString()=="Options") currentMenu = &optionMenu;
+						if(currentMenu->button[i].GetString()=="PLAY") {play=true;game();
+						}
+						
+						if(currentMenu->button[i].GetString()=="Retour") currentMenu = &mainMenu;
+						if(currentMenu->button[i].GetString()=="Quitter") window.Close();
+					}
+				}
+			}
+		}
+		usleep(10000);
+		// Update the window
+		window.Clear();
+		currentMenu->Affiche(window);
+       	window.Display();
+	}
+
+	window.Clear();
+	window.Close();
+
+    return (EXIT_SUCCESS);
 }
