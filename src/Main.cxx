@@ -82,65 +82,98 @@ void updateParticles()
     }
 }
 
-void updateMobs() 
+
+
+
+void UpdateTows()
 {
+  /*
+parcourir les tours
+
+   parcourir les mob
+    update(mobit)
+    si tower.InRange(mobit)
+     si !tour.hasTarget
+      tour.target = mobit
+
+ si tour.hastarget
+  si tour.mobt.isDead()
+   delete mobit
+   erase mobit
+   tour.releaseTarget()
+
+ 
+
+  tour.shoot
+
+ 
+*/
   Sound fire;
   fire.SetBuffer(sbuffer);
   int i;
-  
-  // Thread update position des mob
+  std::cout<<"watch"<<std::endl;
+  // Thread update tours/mobs
+
   while(play) 
     {
       if (!mobs.empty())
 	{
 	  
-	  i=0;
-      
-	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
+
+	  for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
-	      if ((*mobsIt)->IsDead())
+	      int i = 0;
+	      // doit compter les mob pour que les particules les retrouve
+	      for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
 		{
-		  delete *mobsIt;
-		  mobs.erase(mobsIt);
-		  std::cout<<"died"<<std::endl;
-		  
-		  continue;
-		}
-	      else 
-		{
-		  (*mobsIt)->update();
-		  // TODO:
-		  // for each tower
-		  // if mob in range()
-		  // insert new tower.particle
-		  for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+		  (*mobsIt)->update(i);
+		  // std::cout<<"Tower: "<<(*TowsIt)->GetPos().x
+		  // 	   <<":"<<(*TowsIt)->GetPos().y
+		  // 	   <<" Mob: "<<(*mobsIt)->getPosition().x
+		  // 	   <<":"<<(*mobsIt)->getPosition().y
+		  // 	   <<std::endl;
+
+		  if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
 		    {
-		      if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
-			{
-			  Vector2f p = (*TowsIt)->GetPos();
-			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),(*mobsIt)->getPosition(),i));		      
-			  fire.Play();
-
-			}
-		      
+		      //		      std::cout<<"in range"<<std::endl;
+		      if (!(*TowsIt)->HasTarget())
+			(*TowsIt)->SetTarget(*mobsIt);
 		    }
-		  i++;
-
 		  
-
-		  
-
 		  ++mobsIt;
+		  i++;
 		  
 		}
+	
+
+	      if ((*TowsIt)->HasTarget())
+		{
+		  //std::cout<<"hastarget"<<std::endl;
+		  Mob* target=(*TowsIt)->GetTarget();
 	      
+		  if (target->IsDead())
+		    {
+
+		      delete target;
+		      mobs.erase(mobs.begin()+target->GetID());
+
+		      (*TowsIt)->ReleaseTarget();
+		    }
+		  else 
+		    {
+		      Vector2f p = (*TowsIt)->GetPos();
+		      part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
+		      fire.Play();	
+		    }
+		  
+		}
 	    }
 	}
       
+	  
       usleep(250000);
-	
-      
     }
+
 }
 
 
@@ -154,7 +187,7 @@ int game (void) {
   // threads
   Thread partUpd(&updateParticles);
   partUpd.Launch();
-  Thread mobUpd(&updateMobs);
+  Thread mobUpd(&UpdateTows);
   mobUpd.Launch();
   
   while(window.IsOpen()&&play) {
@@ -231,7 +264,9 @@ int game (void) {
 	      std::cout<<"return to main menu"<<endl;
 	      
 	      return 1;
-
+	    case Keyboard::I:
+	      std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
+	      
 	     }
 
 	}

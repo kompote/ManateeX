@@ -11,6 +11,15 @@ Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
   position.y=pos.y+5;
   number = i;
   type = t;
-  range=100;
+
+  std::cout<<"tour cree : "<<position.x<<":"<<position.y<<std::endl;
+  switch(type  )
+    {
+    case 1:
+      range=200;
+      break;
+    case 2:
+      range=100;
+    }
   
 }

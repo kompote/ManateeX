@@ -4,7 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
-#include <string>
+
+#include "Mob.hxx"
 
 using namespace sf;
 using namespace std;
@@ -21,6 +22,8 @@ public:
   int number;
   int type;
   int range;
+  bool htarget;
+  Mob *target;
   
   Vector2f position;
   
@@ -35,6 +38,12 @@ public:
   void Select();
   void UnSelect();
   void render();  
+
+  Mob* GetTarget();
+  void SetTarget(Mob*);
+  bool HasTarget();
+  void ReleaseTarget();
+  
   
 };
 

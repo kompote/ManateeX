@@ -13,9 +13,9 @@ window(aWindow)
   circle.SetFillColor(Color::Black);
   circle.SetPosition(pos);
   Bresenham(400,300);
-  
   dead = false;
   PV=5000;
+  ID = 0;
   
 }
 
@@ -40,6 +40,11 @@ sf::Vector2f Mob::getPosition(void)
 bool Mob::IsDead() 
 {
   return dead;
+}
+
+int Mob::GetID()
+{
+  return ID;
 }
 
 
@@ -109,8 +114,10 @@ void Mob::render()
   window.Draw(circle);	      
 }
 
-void Mob::update()
+void Mob::update(int i)
 {
+  ID = i;
+  
   // ne fait rien si pas encore de path
   if (!hasPath) return;
   // boucle le path, on pourrait ajouter un timer entre les boucles

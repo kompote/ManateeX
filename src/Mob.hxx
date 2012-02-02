@@ -18,11 +18,12 @@ public:
   
   void Hit(int);
   bool IsDead();
+  int GetID();
   
   void Bresenham(int,int);
   
   void render();
-  void update();
+  void update(int);
   
 private:
   RenderWindow& window;
@@ -34,8 +35,9 @@ private:
   int type;
   int PV;
   bool dead;
-  
   bool hasPath;
+  int ID;
+  
 };
 
 #endif

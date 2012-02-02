@@ -1,9 +1,11 @@
 #include "Batiment.hxx"
-#include <cmath>
+
 
 Batiment::Batiment(RenderWindow& aWindow):
   window(aWindow)
  {
+   htarget=false;
+   
  }
 
 Vector2f Batiment::GetPos()
@@ -37,4 +39,25 @@ bool Batiment::InRange(Vector2f p)
 int Batiment::GetType()
 {
   return type;
+}
+
+bool Batiment::HasTarget()
+{
+  return htarget;
+}
+
+Mob* Batiment::GetTarget()
+{
+  return target;
+}
+
+void Batiment::SetTarget(Mob* t)
+{
+  target = t;
+  htarget=true;
+  
+}
+void Batiment::ReleaseTarget()
+{
+  htarget=false;
 }
