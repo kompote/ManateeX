@@ -17,9 +17,12 @@ Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
     {
     case 1:
       range=200;
+      reloadtime=8;
+      
       break;
     case 2:
       range=100;
+      reloadtime=2;
     }
   
 }

@@ -4,7 +4,8 @@
 Batiment::Batiment(RenderWindow& aWindow):
   window(aWindow)
  {
-   htarget=false;
+   htarget = false;
+   canshoot = false;
    
  }
 
@@ -61,3 +62,17 @@ void Batiment::ReleaseTarget()
 {
   htarget=false;
 }
+
+bool Batiment::CanShoot()
+{
+  if (tries>=reloadtime)
+    {
+      tries = 0;
+      return true;
+    }
+  
+  tries++;
+  return false;
+  
+}
+

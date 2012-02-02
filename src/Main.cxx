@@ -32,14 +32,11 @@ int init()
 {
   if (!sbuffer.LoadFromFile("src/ressources/sounds/laser.ogg"))
     return EXIT_FAILURE;
+
+  // Tests
   Vector2f p1(200,230);
-
   Vector2f p2(450,430);
-
   Vector2f p3(700,500);
-  
-  //  part.insert(part.end(),new Particle(window,p1,1));
-  //part.insert(part.end(),new Particle(window,p2,2));
 
   mobs.insert(mobs.end(),new Mob(window,p3));
 
@@ -61,6 +58,9 @@ void updateParticles()
 	  
 	  for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();) 
 	    {
+
+	      // TODO:
+	      // pb double free si mm cible
 	      if ((*partIt)->isDone()){
 		if(!mobs.empty())
 		  mobs[(*partIt)->GetCibleNbr()]->Hit((*partIt)->GetPower());
@@ -76,7 +76,7 @@ void updateParticles()
 	      
 	    }
 	}
-      
+      // environ 200 pixels/s
       usleep(5000);
       
     }
@@ -101,12 +101,8 @@ parcourir les tours
    delete mobit
    erase mobit
    tour.releaseTarget()
-
- 
-
+  
   tour.shoot
-
- 
 */
   Sound fire;
   fire.SetBuffer(sbuffer);
@@ -118,8 +114,6 @@ parcourir les tours
     {
       if (!mobs.empty())
 	{
-	  
-
 	  for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
 	      int i = 0;
@@ -127,53 +121,45 @@ parcourir les tours
 	      for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
 		{
 		  (*mobsIt)->update(i);
-		  // std::cout<<"Tower: "<<(*TowsIt)->GetPos().x
-		  // 	   <<":"<<(*TowsIt)->GetPos().y
-		  // 	   <<" Mob: "<<(*mobsIt)->getPosition().x
-		  // 	   <<":"<<(*mobsIt)->getPosition().y
-		  // 	   <<std::endl;
-
 		  if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
 		    {
-		      //		      std::cout<<"in range"<<std::endl;
 		      if (!(*TowsIt)->HasTarget())
 			(*TowsIt)->SetTarget(*mobsIt);
 		    }
-		  
 		  ++mobsIt;
 		  i++;
-		  
 		}
-	
 
 	      if ((*TowsIt)->HasTarget())
 		{
-		  //std::cout<<"hastarget"<<std::endl;
 		  Mob* target=(*TowsIt)->GetTarget();
 	      
 		  if (target->IsDead())
 		    {
-
 		      delete target;
 		      mobs.erase(mobs.begin()+target->GetID());
-
 		      (*TowsIt)->ReleaseTarget();
 		    }
 		  else 
 		    {
 		      Vector2f p = (*TowsIt)->GetPos();
-		      part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
-		      fire.Play();	
+		      if ((*TowsIt)->CanShoot()) 
+			{
+			  // TOFIX:
+			  // rate sa cible,
+			  // recuperer quelques cases d'avance
+			part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
+			fire.Play();	
+			}
+		      
 		    }
 		  
 		}
 	    }
 	}
-      
-	  
-      usleep(250000);
+      // environ 6 pixels/s
+      usleep(150000);
     }
-
 }
 
 
@@ -234,15 +220,16 @@ int game (void) {
 	  // si click droit
 	  if (event.MouseButton.Button == Mouse::Right) 
 	    {
-	      // update cible (pout test)
+	      // ajout cible (pout test)
 	      mobs.insert(mobs.end(),new Mob(window,(Vector2f) pos));
-	      cout<<"menu contex"<<endl;
+	      //cout<<"menu contex"<<endl;
 	    }
 	  
 	  //si click gauche
 	  if (event.MouseButton.Button == Mouse::Left)
 	    {
-	      cout<<"information on case n° "<<tmp->number<<endl;
+	      //	      cout<<"information on case n° "<<tmp->number<<endl;
+	      //	      tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
 
 	    }
 	}
@@ -260,7 +247,8 @@ int game (void) {
 		  delete *partIt;
 		}
 	      part.clear();
-	      
+	      // TODO:
+	      // Faire pareil avec les tows et mobs
 	      std::cout<<"return to main menu"<<endl;
 	      
 	      return 1;

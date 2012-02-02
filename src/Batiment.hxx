@@ -24,6 +24,10 @@ public:
   int range;
   bool htarget;
   Mob *target;
+  bool canshoot;
+  int reloadtime;
+  int tries;
+  
   
   Vector2f position;
   
@@ -43,6 +47,7 @@ public:
   void SetTarget(Mob*);
   bool HasTarget();
   void ReleaseTarget();
+  bool CanShoot();
   
   
 };
