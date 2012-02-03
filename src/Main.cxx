@@ -38,7 +38,7 @@ int init()
   Vector2f p2(450,430);
   Vector2f p3(700,500);
 
-  mobs.insert(mobs.end(),new Mob(window,p3));
+  //  mobs.insert(mobs.end(),new Mob(window,p3));
 
   tows.insert(tows.end(), new Tower(window,p1,1,1));
   tows.insert(tows.end(), new Tower(window,p2,2,2));
@@ -58,21 +58,32 @@ void updateParticles()
 	  
 	  for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();) 
 	    {
-
-	      // TODO:
-	      // pb double free si mm cible
-	      if ((*partIt)->isDone()){
-		if(!mobs.empty())
-		  mobs[(*partIt)->GetCibleNbr()]->Hit((*partIt)->GetPower());
-		delete *partIt;
-		part.erase(partIt);
-		continue;
-	      }
-	      else 
+	      int mobNbTmp;
+	      if (!mobs.empty())
 		{
-		  (*partIt)->update();
-		  ++partIt;
+		  
+		  mobNbTmp = (*partIt)->GetCibleNbr();
+		  
+		  if(mobs[mobNbTmp]->IsDead()) 
+		    {
+		      part.erase(partIt);	
+		      continue;
+		    }
+		  
+		  else if ((*partIt)->isDone()) 
+		    {
+		      mobs[mobNbTmp]->Hit((*partIt)->GetPower());
+		      part.erase(partIt);
+		      continue;
+		    }
+		  else 
+		    {
+		      (*partIt)->update();
+		      ++partIt;
+		    }
+	     
 		}
+	      
 	      
 	    }
 	}
@@ -87,57 +98,29 @@ void updateParticles()
 
 void UpdateTows()
 {
-  /*
-parcourir les tours
-
-   parcourir les mob
-    update(mobit)
-    si tower.InRange(mobit)
-     si !tour.hasTarget
-      tour.target = mobit
-
- si tour.hastarget
-  si tour.mobt.isDead()
-   delete mobit
-   erase mobit
-   tour.releaseTarget()
-  
-  tour.shoot
-*/
   Sound fire;
   fire.SetBuffer(sbuffer);
   int i;
-  std::cout<<"watch"<<std::endl;
+
   // Thread update tours/mobs
 
   while(play) 
     {
       if (!mobs.empty())
 	{
+
 	  for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
-	      int i = 0;
-	      // doit compter les mob pour que les particules les retrouve
-	      for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
-		{
-		  (*mobsIt)->update(i);
-		  if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
-		    {
-		      if (!(*TowsIt)->HasTarget())
-			(*TowsIt)->SetTarget(*mobsIt);
-		    }
-		  ++mobsIt;
-		  i++;
-		}
 
+	      // doit compter les mob pour que les particules les retrouve
 	      if ((*TowsIt)->HasTarget())
 		{
+
 		  Mob* target=(*TowsIt)->GetTarget();
-	      
+	
 		  if (target->IsDead())
 		    {
-		      delete target;
-		      mobs.erase(mobs.begin()+target->GetID());
+		      std::cout<<"release target"<<std::endl;
 		      (*TowsIt)->ReleaseTarget();
 		    }
 		  else 
@@ -148,13 +131,50 @@ parcourir les tours
 			  // TOFIX:
 			  // rate sa cible,
 			  // recuperer quelques cases d'avance
-			part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
-			fire.Play();	
+			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
+			  fire.Play();	
 			}
 		      
 		    }
 		  
 		}
+	      else 
+		{
+
+		  int i = 0;
+		  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
+		    {
+
+		  
+		      if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
+			{
+			  if (!(*mobsIt)->IsDead())
+			    {
+			      std::cout<<"aquire target"<<std::endl;
+			      (*TowsIt)->SetTarget(*mobsIt);
+			    }
+			  
+			}
+		      ++mobsIt;
+		      i++;
+		    }
+		}
+	      
+	    }
+	  
+	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
+	    {
+	      (*mobsIt)->update(i);
+	      if ((*mobsIt)->IsDead())
+		{
+		  std::cout<<"erase"<<std::endl;
+		  mobs.erase(mobsIt);
+		  continue;
+		  
+		}
+		  
+	      ++mobsIt;
+
 	    }
 	}
       // environ 6 pixels/s
@@ -254,6 +274,7 @@ int game (void) {
 	      return 1;
 	    case Keyboard::I:
 	      std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
+	      //	      std::cout<<"Test "<<mobs.max_size()<<std::endl;
 	      
 	     }
 
