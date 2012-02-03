@@ -132,7 +132,8 @@ void UpdateTows()
 			  // rate sa cible,
 			  // recuperer quelques cases d'avance
 			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
-			  fire.Play();	
+			  // Le son d'un shoot
+			  //		  fire.Play();	
 			}
 		      
 		    }
@@ -249,7 +250,7 @@ int game (void) {
 	  if (event.MouseButton.Button == Mouse::Left)
 	    {
 	      //	      cout<<"information on case n° "<<tmp->number<<endl;
-	      //	      tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
+	      tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
 
 	    }
 	}
