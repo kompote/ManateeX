@@ -37,6 +37,12 @@ int score;
 int init()
 {
   score = 5000;
+  music.Stop();
+  
+  if (!music.OpenFromFile("src/ressources/sounds/DP_Tron_Derezzed_chiptune.ogg"))
+    return EXIT_FAILURE;
+  music.Play();
+  music.SetLoop(true);
   
   
   if (!sbuffer.LoadFromFile("src/ressources/sounds/laser.ogg"))
@@ -340,6 +346,13 @@ int game (void) {
 	    case Keyboard::I:
 	      std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
 	      //	      std::cout<<"Test "<<mobs.max_size()<<std::endl;
+	      break;
+	    case Keyboard::Subtract:
+	      music.SetVolume(music.GetVolume()-10);
+	      break;
+	    case Keyboard::Add:
+	      music.SetVolume(music.GetVolume()+10);
+	      break;
 	      
 	     }
 
@@ -365,7 +378,7 @@ int main(void) {
   MainMenu mainMenu;
   OptionMenu optionMenu;
   Menu *currentMenu = &mainMenu;
-  if (!music.OpenFromFile("src/ressources/sounds/toto.ogg"))
+  if (!music.OpenFromFile("src/ressources/sounds/Tron1.ogg"))
     return EXIT_FAILURE;
   music.Play();
   music.SetLoop(true);
