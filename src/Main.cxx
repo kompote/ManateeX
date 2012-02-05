@@ -262,7 +262,7 @@ int game (void) {
       // Window closed
       if (event.Type == Event::Closed) window.Close();
 
-      if (event.Type == Event::MouseButtonReleased) 
+      if (event.Type == Event::MouseButtonPressed) 
 	{
 
 	  Vector2i pos = Mouse::GetPosition(window);
@@ -363,6 +363,24 @@ int main(void) {
 	  }
 	}
       }
+
+      if (event.Type == Event::KeyPressed) 
+	{
+	  switch(event.Key.Code)
+	    {
+	    case Keyboard::Q:
+	      window.Close();
+	      break;
+	    case Keyboard::O:
+	      currentMenu = &optionMenu;
+	      break;
+	    case Keyboard::P:
+	      play = true;
+	      game();
+	     }
+
+	}
+
     }
     usleep(30000);
     // Update the window
