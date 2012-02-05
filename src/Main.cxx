@@ -2,6 +2,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
+#include <sstream>
 
 #include "Map.hxx"
 #include "Particle.hxx"
@@ -27,9 +28,14 @@ std::vector<Batiment *> tows;
 Music music;
 SoundBuffer sbuffer;
 
+int score;
+
 
 int init()
 {
+  score = 5000;
+  
+  
   if (!sbuffer.LoadFromFile("src/ressources/sounds/laser.ogg"))
     return EXIT_FAILURE;
 
@@ -40,8 +46,8 @@ int init()
 
   //  mobs.insert(mobs.end(),new Mob(window,p3));
 
-  tows.insert(tows.end(), new Tower(window,p1,1,1));
-  tows.insert(tows.end(), new Tower(window,p2,2,2));
+  //  tows.insert(tows.end(), new Tower(window,p1,1,1));
+  //tows.insert(tows.end(), new Tower(window,p2,2,2));
 
 }
 
@@ -170,6 +176,10 @@ void UpdateTows()
 		{
 		  std::cout<<"erase"<<std::endl;
 		  mobs.erase(mobsIt);
+		  // score ++
+		  score = score + 5000;
+		  
+
 		  continue;
 		  
 		}
@@ -196,7 +206,14 @@ int game (void) {
   partUpd.Launch();
   Thread mobUpd(&UpdateTows);
   mobUpd.Launch();
+  Font font;
   
+  if (!font.LoadFromFile("src/ressources/ARCADE_I.TTF"))
+    return EXIT_FAILURE;
+  Text text("0000", font, 20);
+  text.SetPosition(10,10);
+  
+
   while(window.IsOpen()&&play) {
     Event event;
     m.Redraw(window);
@@ -222,6 +239,24 @@ int game (void) {
 
       }
 
+
+    // affiche le score    
+    if (score>=0) 
+      {
+	
+	ostringstream oss;
+	oss << "Score : ";
+	
+	if (score < 10)
+	  oss << 0 << 0 << 0 <<score ;
+	else if (score<100)
+	  oss << 0 << 0 << score;
+	else if (score<1000)
+	  oss << 0 << score;
+	else oss << score;
+	text.SetString( oss.str());
+      }
+    
     
     while (window.PollEvent(event)) {
       // Window closed
@@ -250,8 +285,15 @@ int game (void) {
 	  if (event.MouseButton.Button == Mouse::Left)
 	    {
 	      //	      cout<<"information on case n° "<<tmp->number<<endl;
-	      tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
-
+	      if (score >= 2000) 
+		{
+		  
+		  tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
+		  score = score - 2000;
+		}
+	      else
+		cout<<"not enough money!"<<tmp->number<<endl;
+	      
 	    }
 	}
 
@@ -284,8 +326,10 @@ int game (void) {
     }
 
     usleep(20000);
-
+    window.Draw(text);
     window.Display();
+
+    
   }
 }
 

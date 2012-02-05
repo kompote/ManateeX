@@ -31,7 +31,10 @@ int main()
   if (!font.LoadFromFile("ARCADE_I.TTF"))
     return EXIT_FAILURE;
   Text text("0000", font, 25);
-    /// Load a music to play
+  text.SetPosition(10,10);
+  
+  /// Load a music to play
+  
    Music music;
    if (!music.OpenFromFile("toto.ogg"))
      return EXIT_FAILURE;
@@ -41,7 +44,7 @@ int main()
   bool sens=true;
   
   
-  while (window.IsOpened())
+  while (window.IsOpen())
     {
 
 
