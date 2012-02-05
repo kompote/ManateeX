@@ -9,6 +9,7 @@
 #include "Menu.hxx"
 #include "MainMenu.hxx"
 #include "OptionMenu.hxx"
+#include "PopupMenu.hxx"
 
 #include "Mob.hxx"
 #include "Tower.hxx"
@@ -24,6 +25,8 @@ std::vector<Particle *> part;
 std::vector<Mob *> mobs;
 std::vector<Batiment *> tows;
 
+bool isPopped=false;
+PopupMenu popup(0,0);
 
 Music music;
 SoundBuffer sbuffer;
@@ -276,24 +279,43 @@ int game (void) {
 	  // si click droit
 	  if (event.MouseButton.Button == Mouse::Right) 
 	    {
+			popup.setPosition(x,y);
+			isPopped=true;
+			
 	      // ajout cible (pout test)
-	      mobs.insert(mobs.end(),new Mob(window,(Vector2f) pos));
+	      //mobs.insert(mobs.end(),new Mob(window,(Vector2f) pos));
 	      //cout<<"menu contex"<<endl;
 	    }
 	  
 	  //si click gauche
 	  if (event.MouseButton.Button == Mouse::Left)
 	    {
-	      //	      cout<<"information on case n° "<<tmp->number<<endl;
-	      if (score >= 2000) 
-		{
+			// test clic sur bouton du menu popup s'il existe
+			if(isPopped) {
+				for(int i=0;i<5;i++) {
+					if(popup.button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
+					  if(popup.button[i].GetString()=="Tour")
+					    { 
+					      if (score >= 2000) 
+						{
 		  
-		  tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
-		  score = score - 2000;
-		}
-	      else
-		cout<<"not enough money!"<<tmp->number<<endl;
-	      
+						  tows.insert(tows.end(), new Tower(window,popup.getPosition(),2,2));
+						  score = score - 2000;
+						}
+					      else
+						cout<<"not enough money!"<<tmp->number<<endl;
+					    }
+					  
+					  if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.getPosition()));
+					}
+				}
+			}
+			
+			isPopped=false;
+
+	      //	      cout<<"information on case n° "<<tmp->number<<endl;
+	      //tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
+
 	    }
 	}
 
@@ -326,7 +348,12 @@ int game (void) {
     }
 
     usleep(20000);
+    
     window.Draw(text);
+    
+    
+    if(isPopped) popup.Affiche(window);
+
     window.Display();
 
     
