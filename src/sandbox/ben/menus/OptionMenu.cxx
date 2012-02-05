@@ -1,9 +1,14 @@
 #include "OptionMenu.hxx"
 
 OptionMenu::OptionMenu() {
+
+	bgTexture.LoadFromFile("fondmenu.png");
+
+    bgSprite.SetTexture(bgTexture);
+    bgSprite.SetPosition(0,0);
 	
-  //font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
-  font.LoadFromFile("ARCADE_N.TTF");
+    font.LoadFromFile("/usr/share/fonts/truetype/freefont/FreeMonoBold.ttf");
+  	//font.LoadFromFile("ARCADE_N.TTF");
 	
 	title.SetString("Options");
 	title.SetFont(font);
