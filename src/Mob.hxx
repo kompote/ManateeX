@@ -9,8 +9,9 @@ using namespace sf;
 
 class Mob {
 public:
-  Mob(RenderWindow&,Vector2f);
+  Mob(RenderWindow&,Vector2f,int);
   ~Mob();
+
 	
   void setPosition(Vector2f pos);
 

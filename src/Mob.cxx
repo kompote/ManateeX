@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cmath>
 
-Mob::Mob(sf::RenderWindow& aWindow, Vector2f position) :
+Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero) :
 window(aWindow)
 {
   pos=position;
@@ -15,7 +15,7 @@ window(aWindow)
   Bresenham(400,300);
   dead = false;
   PV=5000;
-  ID = 0;
+  ID = numero;
   
 }
 
@@ -104,7 +104,7 @@ void Mob::Hit(int k)
 {
   PV=PV-k;
   if (PV<=0) dead = true;
-  std::cout<<"hiit: "<<PV<<std::endl;
+  //  std::cout<<"hiit: "<<PV<<std::endl;
   
 }
 

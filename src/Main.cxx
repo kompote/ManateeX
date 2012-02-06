@@ -3,7 +3,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <sstream>
-
+#include <time.h>
 #include "Map.hxx"
 #include "Particle.hxx"
 #include "Menu.hxx"
@@ -32,11 +32,56 @@ Music music;
 SoundBuffer sbuffer;
 
 int score;
+int waveNbr;
+
+void GenWave()
+{
+  int mobNbr = (waveNbr+1) * 1.30;
+  std::cout<<"nb :"<<mobNbr<<endl;
+  
+  waveNbr++;
+  
+  for (int i=1; i<=mobNbr;i++)
+    {
+      int zone = rand()%4;
+      int x,y;
+      
+      switch(zone)
+	{
+	case 0:
+	  x = rand()%790+5;
+	  y = rand()%20+5;
+	  break;
+	  
+	case 1:
+	  x = rand()%20+770;
+	  y = rand()%590+5;
+	  break;
+	  
+	case 2:
+	  x = rand()%790+5;
+	  y = rand()%590+5;
+	  break;
+	  
+	case 3:
+	  x = rand()%20+5;
+	  y = rand()%590+5;
+	}
+      
+      Vector2f v(x,y);
+      mobs.insert(mobs.end(),new Mob(window,v,i));
+    }
+  
+}
 
 
 int init()
 {
   score = 5000;
+  waveNbr = 0;
+  GenWave();
+  srand(time(NULL));
+  
   music.Stop();
   
   if (!music.OpenFromFile("src/ressources/sounds/DP_Tron_Derezzed_chiptune.ogg"))
@@ -52,7 +97,8 @@ int init()
   Vector2f p1(200,230);
   Vector2f p2(450,430);
   Vector2f p3(700,500);
-
+  play =true;
+  
   //  mobs.insert(mobs.end(),new Mob(window,p3));
 
   //  tows.insert(tows.end(), new Tower(window,p1,1,1));
@@ -66,6 +112,8 @@ void updateParticles()
 {
   // Thread update position des projectiles
   std::cout<<"update"<<std::endl;
+  while(!play);
+
   while(play) 
     {
       if (!part.empty())
@@ -76,10 +124,20 @@ void updateParticles()
 	      int mobNbTmp;
 	      if (!mobs.empty())
 		{
+		  std::vector<Mob *>::iterator mobsIt=mobs.begin();
 		  
 		  mobNbTmp = (*partIt)->GetCibleNbr();
+
+		  for (; mobsIt != mobs.end();) 
+		    {
+		      if ((*mobsIt)->GetID()==mobNbTmp)
+			break;
+		      
+		      ++mobsIt;
+		    }
 		  
-		  if(mobs[mobNbTmp]->IsDead()) 
+		  
+		  if((*mobsIt)->IsDead()) 
 		    {
 		      part.erase(partIt);	
 		      continue;
@@ -87,7 +145,9 @@ void updateParticles()
 		  
 		  else if ((*partIt)->isDone()) 
 		    {
-		      mobs[mobNbTmp]->Hit((*partIt)->GetPower());
+		      (*mobsIt)->Hit((*partIt)->GetPower());
+		      std::cout<<"hit mob nb: "<<mobNbTmp<<endl;
+		      
 		      part.erase(partIt);
 		      continue;
 		    }
@@ -117,6 +177,8 @@ void UpdateTows()
   fire.SetBuffer(sbuffer);
   int i;
 
+  while(!play);
+  
   // Thread update tours/mobs
 
   while(play) 
@@ -148,7 +210,7 @@ void UpdateTows()
 			  // recuperer quelques cases d'avance
 			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
 			  // Le son d'un shoot
-			  //		  fire.Play();	
+			  fire.Play();	
 			}
 		      
 		    }
@@ -166,7 +228,7 @@ void UpdateTows()
 			{
 			  if (!(*mobsIt)->IsDead())
 			    {
-			      std::cout<<"aquire target"<<std::endl;
+			      std::cout<<"aquire target :"<<(*mobsIt)->GetID()<<std::endl;
 			      (*TowsIt)->SetTarget(*mobsIt);
 			    }
 			  
@@ -197,10 +259,18 @@ void UpdateTows()
 
 	    }
 	}
+      else 
+	{
+	  sleep(10);
+	  GenWave();
+	}
+      
       // environ 6 pixels/s
       usleep(150000);
     }
 }
+
+
 
 
 int game (void) {
@@ -305,14 +375,14 @@ int game (void) {
 					      if (score >= 2000) 
 						{
 		  
-						  tows.insert(tows.end(), new Tower(window,popup.getPosition(),2,2));
+						  tows.insert(tows.end(), new Tower(window,popup.getPosition(),1,1));
 						  score = score - 2000;
 						}
 					      else
 						cout<<"not enough money!"<<tmp->number<<endl;
 					    }
 					  
-					  if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.getPosition()));
+					  //if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.getPosition()));
 					}
 				}
 			}
@@ -395,7 +465,7 @@ int main(void) {
 	for(int i=0;i<5;i++) {
 	  if(currentMenu->button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
 	    if(currentMenu->button[i].GetString()=="Options") currentMenu = &optionMenu;
-	    if(currentMenu->button[i].GetString()=="PLAY") {play=true;game();
+	    if(currentMenu->button[i].GetString()=="PLAY") {game();
 	    }
 						
 	    if(currentMenu->button[i].GetString()=="Retour") currentMenu = &mainMenu;

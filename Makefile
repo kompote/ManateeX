@@ -26,8 +26,8 @@ $(BIN)Menu.o: $(SRC)Menu.cxx $(SRC)Menu.hxx
 $(BIN)Mob.o: $(SRC)Mob.cxx $(SRC)Mob.hxx 
 	g++ -o $(BIN)Mob.o -c $(SRC)Mob.cxx $(CFLAGS)
 
-$(BIN)Batiment.o: $(SRC)Batiment.cxx $(SRC)Batiment.hxx $(BIN)Mob.o
-	g++ -o $(BIN)Batiment.o -c $(SRC)Batiment.cxx $(BIN)Mob.o $(CFLAGS)
+$(BIN)Batiment.o: $(SRC)Batiment.cxx $(SRC)Batiment.hxx
+	g++ -o $(BIN)Batiment.o -c $(SRC)Batiment.cxx $(CFLAGS)
 
 $(BIN)Tower.o: $(SRC)Tower.cxx $(SRC)Tower.hxx 
 	g++ -o $(BIN)Tower.o -c $(SRC)Tower.cxx $(CFLAGS)
