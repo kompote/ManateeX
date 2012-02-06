@@ -31,8 +31,8 @@ MainMenu::MainMenu() {
 	button[2].SetColor(Color::Black);
 }
 
-void MainMenu::Affiche(RenderTarget& target) const {
-    target.Draw(bgSprite);
+void MainMenu::Render(RenderTarget& target) const {
+  target.Draw(bgSprite);
 	target.Draw(title);
 	for(int i=0;i<5;i++) target.Draw(button[i]);
 }

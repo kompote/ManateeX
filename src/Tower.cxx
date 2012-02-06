@@ -1,7 +1,7 @@
 #include "Tower.hxx"
 
 Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
-  Batiment(aWindow)
+  Building(aWindow)
 {
   texturePath = "src/ressources/images/tower1.png";
   texture.LoadFromFile(texturePath);
@@ -16,13 +16,13 @@ Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
   switch(type  )
     {
     case 1:
-      range=200;
-      reloadtime=8;
+      range=100;
+      reloadtime=2;
       
       break;
     case 2:
-      range=100;
-      reloadtime=2;
+      range=400;
+      reloadtime=12;
     }
   
 }

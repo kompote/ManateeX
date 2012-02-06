@@ -1,22 +1,22 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "Case.hxx"
+#include "Square.hxx"
 
 class Map {
 
 private:
-  Case* grid[60][80];
-  Case* lastSelected;
+  Square* _grid[60][80];
+  Square* _lastSelected;
   
 		
 public:
   Map();
   void Redraw(RenderTarget& target) const;
   
-  Case* getCase(int i, int j);
-  Case* getCasePixel(int x, int y);
-  void Select(Case*);
+  Square* GetSquare(int i, int j);
+  Square* GetSquarePixel(int x, int y);
+  void Select(Square*);
   
 };
 

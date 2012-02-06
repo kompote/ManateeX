@@ -4,8 +4,8 @@ OptionMenu::OptionMenu() {
 
 	bgTexture.LoadFromFile("src/ressources/images/fondmenu.png");
 
-    bgSprite.SetTexture(bgTexture);
-    bgSprite.SetPosition(0,0);
+  bgSprite.SetTexture(bgTexture);
+  bgSprite.SetPosition(0,0);
 	
 
 
@@ -24,8 +24,8 @@ OptionMenu::OptionMenu() {
 	button[0].SetColor(Color::Black);
 }
 
-void OptionMenu::Affiche(RenderTarget& target) const {
-    target.Draw(bgSprite);
+void OptionMenu::Render(RenderTarget& target) const {
+  target.Draw(bgSprite);
 	target.Draw(title);
 	for(int i=0;i<5;i++) target.Draw(button[i]);
 }

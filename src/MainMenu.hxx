@@ -12,7 +12,7 @@ class MainMenu : public Menu {
 
 public :
     MainMenu();
-    virtual void Affiche(RenderTarget& target) const;
+    virtual void Render(RenderTarget& target) const;
 };
 
 #endif

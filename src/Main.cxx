@@ -13,7 +13,7 @@
 
 #include "Mob.hxx"
 #include "Tower.hxx"
-#include "Batiment.hxx"
+#include "Building.hxx"
 
 using namespace sf;
 
@@ -23,7 +23,7 @@ RenderWindow window(VideoMode(800, 600), "SFML window");
 bool play=false;
 std::vector<Particle *> part;
 std::vector<Mob *> mobs;
-std::vector<Batiment *> tows;
+std::vector<Building *> tows;
 
 bool isPopped=false;
 PopupMenu popup(0,0);
@@ -110,8 +110,8 @@ int init()
 
 void updateParticles() 
 {
-  // Thread update position des projectiles
-  std::cout<<"update"<<std::endl;
+  // Thread Update position des projectiles
+  std::cout<<"Update"<<std::endl;
   while(!play);
 
   while(play) 
@@ -126,7 +126,7 @@ void updateParticles()
 		{
 		  std::vector<Mob *>::iterator mobsIt=mobs.begin();
 		  
-		  mobNbTmp = (*partIt)->GetCibleNbr();
+		  mobNbTmp = (*partIt)->GetTargetNbr();
 
 		  for (; mobsIt != mobs.end();) 
 		    {
@@ -143,7 +143,7 @@ void updateParticles()
 		      continue;
 		    }
 		  
-		  else if ((*partIt)->isDone()) 
+		  else if ((*partIt)->IsDone()) 
 		    {
 		      (*mobsIt)->Hit((*partIt)->GetPower());
 		      std::cout<<"hit mob nb: "<<mobNbTmp<<endl;
@@ -153,7 +153,7 @@ void updateParticles()
 		    }
 		  else 
 		    {
-		      (*partIt)->update();
+		      (*partIt)->Update();
 		      ++partIt;
 		    }
 	     
@@ -179,14 +179,14 @@ void UpdateTows()
 
   while(!play);
   
-  // Thread update tours/mobs
+  // Thread Update tours/mobs
 
   while(play) 
     {
       if (!mobs.empty())
 	{
 
-	  for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
 
 	      // doit compter les mob pour que les particules les retrouve
@@ -208,7 +208,7 @@ void UpdateTows()
 			  // TOFIX:
 			  // rate sa cible,
 			  // recuperer quelques cases d'avance
-			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->getPosition(),target->GetID()));		      
+			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->GetPosition(),target->GetID()));		      
 			  // Le son d'un shoot
 			  fire.Play();	
 			}
@@ -224,7 +224,7 @@ void UpdateTows()
 		    {
 
 		  
-		      if ((*TowsIt)->InRange((*mobsIt)->getPosition()))
+		      if ((*TowsIt)->InRange((*mobsIt)->GetPosition()))
 			{
 			  if (!(*mobsIt)->IsDead())
 			    {
@@ -242,7 +242,7 @@ void UpdateTows()
 	  
 	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
 	    {
-	      (*mobsIt)->update(i);
+	      (*mobsIt)->Update(i);
 	      if ((*mobsIt)->IsDead())
 		{
 		  std::cout<<"erase"<<std::endl;
@@ -299,22 +299,22 @@ int game (void) {
     // dessine les projectiles (a mettre en fcontion peut etre)
     for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
       {
-    	if (!(*partIt)->isDone())
-    	  (*partIt)->render();
+    	if (!(*partIt)->IsDone())
+    	  (*partIt)->Render();
 
       }
     // Desine les mobs
     for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
       {
 	if (! (*MobsIt)->IsDead())
-	  (*MobsIt)->render();
+	  (*MobsIt)->Render();
 
       }
     //dessine les towers
-    for (std::vector<Batiment *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+    for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
       {
 
-	(*TowsIt)->render();
+	(*TowsIt)->Render();
 
       }
 
@@ -349,13 +349,13 @@ int game (void) {
 	  y = pos.y;
 
 	  // selection case
-	  Case* tmp = m.getCasePixel(pos.x,pos.y);
+	  Square* tmp = m.GetSquarePixel(pos.x,pos.y);
 	  m.Select(tmp);
 
 	  // si click droit
 	  if (event.MouseButton.Button == Mouse::Right) 
 	    {
-			popup.setPosition(x,y);
+			popup.SetPosition(x,y);
 			isPopped=true;
 			
 	      // ajout cible (pout test)
@@ -370,19 +370,28 @@ int game (void) {
 			if(isPopped) {
 				for(int i=0;i<5;i++) {
 					if(popup.button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
-					  if(popup.button[i].GetString()=="Tour")
+					  if(popup.button[i].GetString()=="Tour1")
 					    { 
 					      if (score >= 2000) 
-						{
-		  
-						  tows.insert(tows.end(), new Tower(window,popup.getPosition(),1,1));
-						  score = score - 2000;
-						}
+									{
+								  tows.insert(tows.end(), new Tower(window,popup.GetPosition(),1,1));
+						  		score = score - 2000;
+									}
+					      else
+						cout<<"not enough money!"<<tmp->number<<endl;
+					    }
+					  if(popup.button[i].GetString()=="Tour2")
+					    { 
+					      if (score >= 2000) 
+									{
+								  tows.insert(tows.end(), new Tower(window,popup.GetPosition(),1,2));
+						  		score = score - 2000;
+									}
 					      else
 						cout<<"not enough money!"<<tmp->number<<endl;
 					    }
 					  
-					  //if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.getPosition()));
+					  //if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.GetPosition()));
 					}
 				}
 			}
@@ -435,7 +444,7 @@ int game (void) {
     window.Draw(text);
     
     
-    if(isPopped) popup.Affiche(window);
+    if(isPopped) popup.Render(window);
 
     window.Display();
 
@@ -495,7 +504,7 @@ int main(void) {
     usleep(30000);
     // Update the window
     window.Clear();
-    currentMenu->Affiche(window);
+    currentMenu->Render(window);
     window.Display();
   }
 

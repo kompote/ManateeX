@@ -2,13 +2,13 @@
 #define TOW_H
 
 #include <SFML/Graphics.hpp>
-#include "Batiment.hxx"
+#include "Building.hxx"
 
 using namespace sf;
 
 using namespace std;
 
-class Tower : public Batiment
+class Tower : public Building
 {
 
 public:

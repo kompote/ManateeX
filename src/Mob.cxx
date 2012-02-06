@@ -4,18 +4,18 @@
 #include <cmath>
 
 Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero) :
-window(aWindow)
+_window(aWindow)
 {
-  pos=position;
+  _pos=position;
   
-  hasPath=false;
-  circle.SetRadius(6);
-  circle.SetFillColor(Color::Black);
-  circle.SetPosition(pos);
+  _hasPath=false;
+  _circle.SetRadius(6);
+  _circle.SetFillColor(Color::Black);
+  _circle.SetPosition(_pos);
   Bresenham(400,300);
-  dead = false;
-  PV=5000;
-  ID = numero;
+  _dead = false;
+  _hp=5000;
+  _id = numero;
   
 }
 
@@ -24,36 +24,36 @@ Mob::~Mob()
   // les deletes...
 }
 
-void Mob::setPosition(sf::Vector2f aPos)
+void Mob::SetPosition(sf::Vector2f aPos)
 {
   // inutile
-	pos = aPos;
+	_pos = aPos;
 }
 
 
-sf::Vector2f Mob::getPosition(void)
+sf::Vector2f Mob::GetPosition(void)
 {
   // inutile
-	return pos;
+	return _pos;
 }
 
 bool Mob::IsDead() 
 {
-  return dead;
+  return _dead;
 }
 
 int Mob::GetID()
 {
-  return ID;
+  return _id;
 }
 
 
 void Mob::Bresenham(int x, int y)
 {
   // TODO: les deletes a chaque recalcul
-  path.clear();
-  hasPath=false;
-  int x1 = pos.x, y1 = pos.y, x2=x, y2=y;
+  _path.clear();
+  _hasPath=false;
+  int x1 = _pos.x, y1 = _pos.y, x2=x, y2=y;
   int delta_x(x2 - x1);
   signed char ix((delta_x > 0) - (delta_x < 0));
   delta_x = std::abs(delta_x) << 1;
@@ -75,7 +75,7 @@ void Mob::Bresenham(int x, int y)
             }
 	  x1 += ix;
 	  error += delta_y;
-	  path.insert(path.end(),new Vector2f((float)x1,(float)y1));
+	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
         }
     }
   else
@@ -93,39 +93,39 @@ void Mob::Bresenham(int x, int y)
             }
 	  y1 += iy;
 	  error += delta_x;
-	  path.insert(path.end(),new Vector2f((float)x1,(float)y1));
+	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
         }
     }
-  it=path.begin();
-  hasPath=true;
+  _it=_path.begin();
+  _hasPath=true;
 }
 
 void Mob::Hit(int k)
 {
-  PV=PV-k;
-  if (PV<=0) dead = true;
-  //  std::cout<<"hiit: "<<PV<<std::endl;
+  _hp=_hp-k;
+  if (_hp<=0) _dead = true;
+  //  std::cout<<"hiit: "<<_hp<<std::endl;
   
 }
 
 
-void Mob::render()
+void Mob::Render()
 {
-  window.Draw(circle);	      
+  _window.Draw(_circle);	      
 }
 
-void Mob::update(int i)
+void Mob::Update(int i)
 {
-  ID = i;
+  _id = i;
   
-  // ne fait rien si pas encore de path
-  if (!hasPath) return;
-  // boucle le path, on pourrait ajouter un timer entre les boucles
-  if(it==path.end()) it=path.begin();
+  // ne fait rien si pas encore de _path
+  if (!_hasPath) return;
+  // boucle le _path, on pourrait ajouter un timer entre les boucles
+  if(_it==_path.end()) _it=_path.begin();
   // vitesse....
-  pos.x=(*it)->x;
-  pos.y=(*it)->y;
+  _pos.x=(*_it)->x;
+  _pos.y=(*_it)->y;
 
-  circle.SetPosition(pos);
-  it++;
+  _circle.SetPosition(_pos);
+  _it++;
 }

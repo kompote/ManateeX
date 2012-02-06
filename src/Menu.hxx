@@ -9,16 +9,16 @@ using namespace sf;
 class Menu {
 
 protected :
-    Sprite bgSprite;
-    Texture bgTexture;
+  Sprite bgSprite;
+  Texture bgTexture;
 	Font font;
 	Text title;
 
 public :
 	Text button[5];
 
-    Menu();
-    virtual void Affiche(RenderTarget& target) const=0;
+  Menu();
+  virtual void Render(RenderTarget& target) const=0;
 };
 
 #endif

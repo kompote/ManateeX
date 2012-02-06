@@ -6,12 +6,12 @@ Map::Map() {
   for(int i=0;i<60;i++)
     for(int j=0;j<80;j++) 
       {
-	grid[i][j] = new Case(z);	
-	grid[i][j]->setPosition(j*10,i*10);
+	_grid[i][j] = new Square(z);	
+	_grid[i][j]->SetPosition(j*10,i*10);
 	z++;
 	      
       }
-  lastSelected = NULL;
+  _lastSelected = NULL;
   
 }
 
@@ -20,25 +20,25 @@ void Map::Redraw(RenderTarget& target) const
   for(int i=0;i<60;i++)
     for(int j=0;j<80;j++) 
       {
-	grid[i][j]->draw(target);
+	_grid[i][j]->Draw(target);
       }
 
 }
 
 
-Case* Map::getCase(int i, int j) {
-  return grid[j][i];
+Square* Map::GetSquare(int i, int j) {
+  return _grid[j][i];
 }
 
-Case* Map::getCasePixel(int x, int y) {
-  return grid[(y-y%10)/10][(x-x%10)/10];
+Square* Map::GetSquarePixel(int x, int y) {
+  return _grid[(y-y%10)/10][(x-x%10)/10];
 }
 
-void Map::Select(Case* s) 
+void Map::Select(Square* s) 
 {
-  if (lastSelected)
-    lastSelected->UnSelect();
+  if (_lastSelected)
+    _lastSelected->UnSelect();
   
   s->Select();
-  lastSelected = s;
+  _lastSelected = s;
 }

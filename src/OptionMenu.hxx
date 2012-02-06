@@ -12,7 +12,7 @@ class OptionMenu : public Menu {
 
 public :
     OptionMenu();
-    virtual void Affiche(RenderTarget& target) const;
+    virtual void Render(RenderTarget& target) const;
 };
 
 #endif

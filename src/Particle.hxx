@@ -12,32 +12,32 @@ public:
   Particle(RenderWindow&,Vector2f,int,Vector2f,int);
   ~Particle();
 
-  bool isDone();
-  int GetCibleNbr();
+  bool IsDone();
+  int GetTargetNbr();
   int GetPower();
   
-  void setPosition(Vector2f pos);
+  void SetPosition(Vector2f pos);
 
-  Vector2f getPosition(void);
+  Vector2f GetPosition(void);
   
   void Bresenham(int,int);
   
-  void render();
-  void update();
+  void Render();
+  void Update();
   
 private:
-  RenderWindow& window;
-  Vector2f pos;
-  Vector2f cible;
-  CircleShape circle;
-  std::vector <Vector2f *> path;
-  std::vector <Vector2f *>::iterator it;
-  int type;
-  int ncible;
-  int power;
+  RenderWindow& _window;
+  Vector2f _pos;
+  Vector2f _target;
+  CircleShape _circle;
+  std::vector <Vector2f *> _path;
+  std::vector <Vector2f *>::iterator _it;
+  int _type;
+  int _tarNbr;
+  int _power;
   
-  bool done;
-  bool hasPath;
+  bool _done;
+  bool _hasPath;
 };
 
 #endif

@@ -13,9 +13,9 @@ public:
   ~Mob();
 
 	
-  void setPosition(Vector2f pos);
+  void SetPosition(Vector2f pos);
 
-  Vector2f getPosition(void);
+  Vector2f GetPosition(void);
   
   void Hit(int);
   bool IsDead();
@@ -23,21 +23,21 @@ public:
   
   void Bresenham(int,int);
   
-  void render();
-  void update(int);
+  void Render();
+  void Update(int);
   
 private:
-  RenderWindow& window;
-  Vector2f pos;
-  Vector2f cible;
-  CircleShape circle;
-  std::vector <Vector2f *> path;
-  std::vector <Vector2f *>::iterator it;
-  int type;
-  int PV;
-  bool dead;
-  bool hasPath;
-  int ID;
+  RenderWindow& _window;
+  Vector2f _pos;
+  Vector2f _target;
+  CircleShape _circle;
+  std::vector <Vector2f *> _path;
+  std::vector <Vector2f *>::iterator _it;
+  int _type;
+  int _hp;
+  bool _dead;
+  bool _hasPath;
+  int _id;
   
 };
 

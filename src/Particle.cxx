@@ -4,36 +4,36 @@
 #include <cmath>
 
 Particle::Particle(sf::RenderWindow& aWindow, Vector2f position, int t, Vector2f ci, int nci) :
-window(aWindow)
+_window(aWindow)
 {
-  pos = position;
-  cible = ci;
-  done = false;
-  ncible = nci;
+  _pos = position;
+  _target = ci;
+  _done = false;
+  _tarNbr = nci;
   
-  hasPath=false;
-  type = t;
-  // Different type de tirs, donc de tours
-  switch(type)
+  _hasPath=false;
+  _type = t;
+  // Different _type de tirs, donc de tours
+  switch(_type)
     {
     case 1:
-      circle.SetRadius(4);
-      circle.SetFillColor(Color::Blue);
-      circle.SetPosition(pos);
-      power = 200;
+      _circle.SetRadius(4);
+      _circle.SetFillColor(Color::Blue);
+      _circle.SetPosition(_pos);
+      _power = 200;
       
       break;
       
     case 2:
-      circle.SetRadius(2);
-      circle.SetFillColor(Color::Red);
-      circle.SetPosition(pos);
-      power = 100;
+      _circle.SetRadius(2);
+      _circle.SetFillColor(Color::Red);
+      _circle.SetPosition(_pos);
+      _power = 100;
       
       break;
     }
 
-  Bresenham(cible.x,cible.y);
+  Bresenham(_target.x,_target.y);
   
   
 }
@@ -43,32 +43,32 @@ Particle::~Particle()
   // les deletes...
 }
 
-void Particle::setPosition(sf::Vector2f aPos)
+void Particle::SetPosition(sf::Vector2f aPos)
 {
   // inutile
-	pos = aPos;
+	_pos = aPos;
 }
 
 
-sf::Vector2f Particle::getPosition(void)
+sf::Vector2f Particle::GetPosition(void)
 {
   // inutile
-	return pos;
+	return _pos;
 }
 
-bool Particle::isDone()
+bool Particle::IsDone()
 {
-  return done;
+  return _done;
 }
 
-int Particle::GetCibleNbr()
+int Particle::GetTargetNbr()
 {
-  return ncible;
+  return _tarNbr;
 }
 
 int Particle::GetPower()
 {
-  return power;
+  return _power;
 }
 
 
@@ -77,9 +77,9 @@ int Particle::GetPower()
 void Particle::Bresenham(int x, int y)
 {
   // TODO: les deletes a chaque recalcul
-  path.clear();
-  hasPath=false;
-  int x1 = pos.x, y1 = pos.y, x2=x, y2=y;
+  _path.clear();
+  _hasPath=false;
+  int x1 = _pos.x, y1 = _pos.y, x2=x, y2=y;
   int delta_x(x2 - x1);
   signed char ix((delta_x > 0) - (delta_x < 0));
   delta_x = std::abs(delta_x) << 1;
@@ -101,7 +101,7 @@ void Particle::Bresenham(int x, int y)
             }
 	  x1 += ix;
 	  error += delta_y;
-	  path.insert(path.end(),new Vector2f((float)x1,(float)y1));
+	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
         }
     }
   else
@@ -119,39 +119,39 @@ void Particle::Bresenham(int x, int y)
             }
 	  y1 += iy;
 	  error += delta_x;
-	  path.insert(path.end(),new Vector2f((float)x1,(float)y1));
+	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
         }
     }
-  it=path.begin();
-  hasPath=true;
+  _it=_path.begin();
+  _hasPath=true;
 }
 
 
-void Particle::render()
+void Particle::Render()
 {
-  window.Draw(circle);	      
+  _window.Draw(_circle);	      
 }
 
-void Particle::update()
+void Particle::Update()
 {
-  // ne fait rien si pas encore de path
-  if (!hasPath) return;
-  // boucle le path, on pourrait ajouter un timer entre les boucles
-  if(it==path.end()) done = true;
-  if (!done) 
+  // ne fait rien si pas encore de _path
+  if (!_hasPath) return;
+  // boucle le _path, on pourrait ajouter un timer entre les boucles
+  if(_it==_path.end()) _done = true;
+  if (!_done) 
     {
       
       // vitesse....
-      int x=(*it)->x;
-      int y=(*it)->y;
-      if (type == 2) 
+      int x=(*_it)->x;
+      int y=(*_it)->y;
+      if (_type == 2) 
 	{
 	  x+=2;
 	  y+=2;
 	}
       
-      circle.SetPosition(x,y);
-      it++;
+      _circle.SetPosition(x,y);
+      _it++;
     }
   
 }
