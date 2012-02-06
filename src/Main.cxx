@@ -139,6 +139,8 @@ void updateParticles()
 		  
 		  if((*mobsIt)->IsDead()) 
 		    {
+		      delete *partIt;
+		      
 		      part.erase(partIt);	
 		      continue;
 		    }
@@ -146,8 +148,7 @@ void updateParticles()
 		  else if ((*partIt)->IsDone()) 
 		    {
 		      (*mobsIt)->Hit((*partIt)->GetPower());
-		      std::cout<<"hit mob nb: "<<mobNbTmp<<endl;
-		      
+		      delete *partIt;
 		      part.erase(partIt);
 		      continue;
 		    }
@@ -203,7 +204,7 @@ void UpdateTows()
 			  // recuperer quelques cases d'avance
 			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->GetPosition(),target->GetID()));		      
 			  // Le son d'un shoot
-			  fire.Play();	
+			  //			  fire.Play();	
 			}
 		      
 		    }
@@ -239,6 +240,8 @@ void UpdateTows()
 	      if ((*mobsIt)->IsDead())
 		{
 		  std::cout<<"erase"<<std::endl;
+		  delete *mobsIt;
+		  
 		  mobs.erase(mobsIt);
 		  // score ++
 		  score = score + 5000;
@@ -254,6 +257,8 @@ void UpdateTows()
 	}
       else 
 	{
+	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+		      (*TowsIt)->ReleaseTarget();
 	  sleep(10);
 	  GenWave();
 	}

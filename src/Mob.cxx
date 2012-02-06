@@ -16,7 +16,7 @@ _window(aWindow)
   _dead = false;
   _hp=5000;
   _id = numero;
-  std::cout<<"create: "<<_id<<std::endl;  
+  //  std::cout<<"create: "<<_id<<std::endl;  
 }
 
 Mob::~Mob()
@@ -105,7 +105,7 @@ void Mob::Hit(int k)
   _hp=_hp-k;
   if (_hp<=0) {
     _dead = true;
-    std::cout<<"dead: "<<_id<<std::endl;
+    //    std::cout<<"dead: "<<_id<<std::endl;
   }
   
   
