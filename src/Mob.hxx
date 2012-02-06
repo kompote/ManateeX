@@ -24,7 +24,7 @@ public:
   void Bresenham(int,int);
   
   void Render();
-  void Update(int);
+  void Update();
   
 private:
   RenderWindow& _window;

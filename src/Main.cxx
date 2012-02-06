@@ -156,19 +156,13 @@ void updateParticles()
 		      (*partIt)->Update();
 		      ++partIt;
 		    }
-	     
 		}
-	      
-	      
 	    }
 	}
       // environ 200 pixels/s
       usleep(5000);
-      
     }
 }
-
-
 
 
 void UpdateTows()
@@ -189,7 +183,6 @@ void UpdateTows()
 	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
 
-	      // doit compter les mob pour que les particules les retrouve
 	      if ((*TowsIt)->HasTarget())
 		{
 
@@ -242,7 +235,7 @@ void UpdateTows()
 	  
 	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
 	    {
-	      (*mobsIt)->Update(i);
+	      (*mobsIt)->Update();
 	      if ((*mobsIt)->IsDead())
 		{
 		  std::cout<<"erase"<<std::endl;

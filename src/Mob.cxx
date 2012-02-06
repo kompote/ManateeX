@@ -9,14 +9,14 @@ _window(aWindow)
   _pos=position;
   
   _hasPath=false;
-  _circle.SetRadius(6);
+  _circle.SetRadius(2*numero);
   _circle.SetFillColor(Color::Black);
   _circle.SetPosition(_pos);
   Bresenham(400,300);
   _dead = false;
   _hp=5000;
   _id = numero;
-  
+  std::cout<<"create: "<<_id<<std::endl;  
 }
 
 Mob::~Mob()
@@ -103,8 +103,11 @@ void Mob::Bresenham(int x, int y)
 void Mob::Hit(int k)
 {
   _hp=_hp-k;
-  if (_hp<=0) _dead = true;
-  //  std::cout<<"hiit: "<<_hp<<std::endl;
+  if (_hp<=0) {
+    _dead = true;
+    std::cout<<"dead: "<<_id<<std::endl;
+  }
+  
   
 }
 
@@ -114,9 +117,8 @@ void Mob::Render()
   _window.Draw(_circle);	      
 }
 
-void Mob::Update(int i)
+void Mob::Update()
 {
-  _id = i;
   
   // ne fait rien si pas encore de _path
   if (!_hasPath) return;
