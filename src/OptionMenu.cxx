@@ -9,7 +9,7 @@ OptionMenu::OptionMenu() {
 	
 
 
-  font.LoadFromFile("src/ressources/ARCADE_I.TTF");
+  font.LoadFromFile("src/ressources/Computerfont.ttf");
 
 	
 	title.SetString("Options");

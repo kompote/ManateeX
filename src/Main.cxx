@@ -33,11 +33,13 @@ SoundBuffer sbuffer;
 
 int score;
 int waveNbr;
+int maxWave;
 
 void GenWave()
 {
   int mobNbr = (waveNbr+1) * 1.30;
-  std::cout<<"nb :"<<mobNbr<<endl;
+  std::cout<<"init mobs... ";
+
   
   waveNbr++;
   
@@ -71,14 +73,18 @@ void GenWave()
       Vector2f v(x,y);
       mobs.insert(mobs.end(),new Mob(window,v,i));
     }
-  
+    std::cout<<"done. nb ="<<mobNbr<<endl;
 }
 
 
 int init()
 {
+  std::cout<<"init game... "<<endl;
+
   score = 5000;
   waveNbr = 0;
+  maxWave = 20;
+  
   GenWave();
   srand(time(NULL));
   
@@ -98,7 +104,7 @@ int init()
   Vector2f p2(450,430);
   Vector2f p3(700,500);
   play =true;
-  
+  std::cout<<"done."<<endl;
   //  mobs.insert(mobs.end(),new Mob(window,p3));
 
   //  tows.insert(tows.end(), new Tower(window,p1,1,1));
@@ -111,7 +117,7 @@ int init()
 void updateParticles() 
 {
   // Thread Update position des projectiles
-  std::cout<<"Update"<<std::endl;
+  std::cout<<endl<<"Fire Controller Started."<<std::endl;
   while(!play);
 
   while(play) 
@@ -168,12 +174,13 @@ void updateParticles()
 
 void UpdateTows()
 {
+  std::cout<<endl<<"Tower Controller Started."<<std::endl;
   Sound fire;
   fire.SetBuffer(sbuffer);
   int i;
 
   while(!play);
-  
+  sleep(10);
   // Thread Update tours/mobs
 
   while(play) 
@@ -275,24 +282,29 @@ int game (void) {
   
   Map m;
   int x,y;
+  Font font;
 
   init();
-  
+
+  std::cout<<"Launching Threads... ";
   // threads
   Thread partUpd(&updateParticles);
   partUpd.Launch();
   Thread mobUpd(&UpdateTows);
   mobUpd.Launch();
-  Font font;
-  
-  if (!font.LoadFromFile("src/ressources/ARCADE_I.TTF"))
+
+
+  std::cout<<"Threads Launched."<<endl;
+
+  if (!font.LoadFromFile("src/ressources/Computerfont.ttf"))
     return EXIT_FAILURE;
   Text text("0000", font, 20);
-  text.SetPosition(10,10);
+  text.SetPosition(10,5);
   
 
   while(window.IsOpen()&&play) {
     Event event;
+    window.Clear();
     m.Redraw(window);
     // dessine les projectiles (a mettre en fcontion peut etre)
     for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
@@ -331,6 +343,8 @@ int game (void) {
 	else if (score<1000)
 	  oss << 0 << score;
 	else oss << score;
+	oss<<"      Wave: "<<waveNbr<<"/"<<maxWave;
+	
 	text.SetString( oss.str());
       }
     
@@ -439,6 +453,7 @@ int game (void) {
 
     usleep(20000);
     
+    
     window.Draw(text);
     
     
@@ -472,7 +487,7 @@ int main(void) {
 	for(int i=0;i<5;i++) {
 	  if(currentMenu->button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
 	    if(currentMenu->button[i].GetString()=="Options") currentMenu = &optionMenu;
-	    if(currentMenu->button[i].GetString()=="PLAY") {game();
+	    if(currentMenu->button[i].GetString()=="PLAY") {window.Clear();game();
 	    }
 						
 	    if(currentMenu->button[i].GetString()=="Retour") currentMenu = &mainMenu;

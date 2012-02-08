@@ -6,6 +6,7 @@ Square::Square(int i) {
   sprite.SetTexture(_texture);
   number = i;
   SetConstructible(false);
+  sprite.SetColor(Color(100,100,100,255));
 }
 
 void Square::SetPosition(int x, int y) 
@@ -26,7 +27,8 @@ void Square::Select()
 
 void Square::UnSelect()
 {
-  sprite.SetColor(Color(255,255,255,255));
+  sprite.SetColor(Color(100,100,100,255));
+  //  sprite.SetColor(Color(255,255,255,255));
 }
 
 bool Square::IsConstructible() {

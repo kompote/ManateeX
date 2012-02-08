@@ -14,7 +14,7 @@ _window(aWindow)
   _circle.SetPosition(_pos);
   Bresenham(400,300);
   _dead = false;
-  _hp=5000;
+  _hp=2000;
   _id = numero;
   //  std::cout<<"create: "<<_id<<std::endl;  
 }

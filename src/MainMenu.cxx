@@ -5,7 +5,7 @@ MainMenu::MainMenu() {
 
 	bgSprite.SetTexture(bgTexture);
 	bgSprite.SetPosition(0,0);
-	font.LoadFromFile("src/ressources/ARCADE_I.TTF");	
+	font.LoadFromFile("src/ressources/Computerfont.ttf");	
 
 
 	title.SetString("ManateeX Project");
