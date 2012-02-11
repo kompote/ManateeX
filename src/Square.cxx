@@ -5,13 +5,18 @@ Square::Square(int i) {
   _texture.LoadFromFile(_texturePath);
   sprite.SetTexture(_texture);
   number = i;
-  SetConstructible(false);
+  SetConstructible(true);
   sprite.SetColor(Color(100,100,100,255));
 }
 
 void Square::SetPosition(int x, int y) 
 {
   _transform.SetPosition(x,y);
+}
+
+Vector2f Square::GetPosition() const
+{
+  return _transform.GetPosition();
 }
 
 void Square::Draw(RenderTarget& target) const

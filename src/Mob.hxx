@@ -3,8 +3,20 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-
+#include "Map.hxx"
 using namespace sf;
+
+typedef struct 
+  {
+    int x;
+    int y;
+    
+    int costtodest;
+    int costfromorg;
+    int totalcost;
+    
+    Square* current;
+  } _node;
 
 
 class Mob {
@@ -20,6 +32,10 @@ public:
   void Hit(int);
   bool IsDead();
   int GetID();
+  int FindPath (int startingX, int startingY, int targetX, int targetY, bool stepByStep);
+  
+
+  void AStar(Map&,int,int);
   
   void Bresenham(int,int);
   
@@ -27,6 +43,7 @@ public:
   void Update();
   
 private:
+  
   RenderWindow& _window;
   Vector2f _pos;
   Vector2f _target;

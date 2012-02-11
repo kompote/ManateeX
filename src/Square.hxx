@@ -25,6 +25,7 @@ public:
   Sprite sprite;
   int number;
   void SetPosition(int,int);
+  Vector2f GetPosition() const;
   
   void Draw(RenderTarget& target) const;
   void Select();

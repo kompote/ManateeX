@@ -24,7 +24,7 @@ bool play=false;
 std::vector<Particle *> part;
 std::vector<Mob *> mobs;
 std::vector<Building *> tows;
-
+Map m;
 bool isPopped=false;
 PopupMenu popup(0,0);
 
@@ -42,38 +42,47 @@ void GenWave()
 
   
   waveNbr++;
-  
+  srand(time(NULL));  
   for (int i=1; i<=mobNbr;i++)
     {
+
       int zone = rand()%4;
+      std::cout<<"Zone = "<<zone<<" ";
       int x,y;
       
       switch(zone)
 	{
 	case 0:
 	  x = rand()%790+5;
-	  y = rand()%20+5;
+	  y = rand()%20+35;
 	  break;
 	  
 	case 1:
 	  x = rand()%20+770;
-	  y = rand()%590+5;
+	  y = rand()%560+5;
 	  break;
 	  
 	case 2:
 	  x = rand()%790+5;
-	  y = rand()%590+5;
+	  y = rand()%560+35;
 	  break;
 	  
 	case 3:
 	  x = rand()%20+5;
-	  y = rand()%590+5;
+	  y = rand()%560+35;
 	}
       
       Vector2f v(x,y);
       mobs.insert(mobs.end(),new Mob(window,v,i));
     }
     std::cout<<"done. nb ="<<mobNbr<<endl;
+    for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+      {
+	// TEST
+	std::cout<<"ASTAR test:"<<std::endl;
+	(*MobsIt)->AStar(m,40,30);
+      }
+
 }
 
 
@@ -131,6 +140,7 @@ void updateParticles()
 	      if (!mobs.empty())
 		{
 		  std::vector<Mob *>::iterator mobsIt=mobs.begin();
+		  
 		  
 		  mobNbTmp = (*partIt)->GetTargetNbr();
 
@@ -280,7 +290,7 @@ void UpdateTows()
 
 int game (void) {
   
-  Map m;
+
   int x,y;
   Font font;
 
@@ -318,6 +328,14 @@ int game (void) {
       {
 	if (! (*MobsIt)->IsDead())
 	  (*MobsIt)->Render();
+	// TEST
+	//	std::cout<<"ASTAR test:"<<std::endl;
+	//(*MobsIt)->AStar(m,20,20);
+	//	play=false;
+	//window.Close();
+	
+	
+	
 
       }
     //dessine les towers
@@ -361,7 +379,11 @@ int game (void) {
 	  y = pos.y;
 
 	  // selection case
+
 	  Square* tmp = m.GetSquarePixel(pos.x,pos.y);
+	  Square* tmp2;
+	  
+	  
 	  m.Select(tmp);
 
 	  // si click droit
@@ -369,7 +391,7 @@ int game (void) {
 	    {
 			popup.SetPosition(x,y);
 			isPopped=true;
-			
+			tmp2 = tmp;			
 	      // ajout cible (pout test)
 	      //mobs.insert(mobs.end(),new Mob(window,(Vector2f) pos));
 	      //cout<<"menu contex"<<endl;
@@ -380,14 +402,19 @@ int game (void) {
 	    {
 			// test clic sur bouton du menu popup s'il existe
 			if(isPopped) {
+
 				for(int i=0;i<5;i++) {
 					if(popup.button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
 					  if(popup.button[i].GetString()=="Tour1")
 					    { 
 					      if (score >= 2000) 
 									{
-								  tows.insert(tows.end(), new Tower(window,popup.GetPosition(),1,1));
-						  		score = score - 2000;
+									  tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,1));
+								  //				
+									  // TODO : 9x9 non constructible
+								  tmp2->SetConstructible(false);
+								  
+								  score = score - 2000;
 									}
 					      else
 						cout<<"not enough money!"<<tmp->number<<endl;
@@ -396,7 +423,8 @@ int game (void) {
 					    { 
 					      if (score >= 2000) 
 									{
-								  tows.insert(tows.end(), new Tower(window,popup.GetPosition(),1,2));
+								  tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,2));
+								  tmp2->SetConstructible(false);
 						  		score = score - 2000;
 									}
 					      else
@@ -435,7 +463,14 @@ int game (void) {
 	      
 	      return 1;
 	    case Keyboard::I:
-	      std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
+	      // std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
+	      for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+		{
+		  // TEST
+		  std::cout<<"ASTAR test:"<<std::endl;
+		  (*MobsIt)->AStar(m,40,30);
+		}
+
 	      //	      std::cout<<"Test "<<mobs.max_size()<<std::endl;
 	      break;
 	    case Keyboard::Subtract:

@@ -6,13 +6,16 @@ Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
   texturePath = "src/ressources/images/tower1.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
-  sprite.SetPosition(pos);
-  position.x=pos.x+5;
-  position.y=pos.y+5;
+
+  position.x=((int)((pos.x/10)*10)+5)-10;
+  position.y=((int)((pos.y/10)*10)+5)-10;
   number = i;
   type = t;
+  sprite.SetPosition(position);
 
-  std::cout<<"tour cree : "<<position.x<<":"<<position.y<<std::endl;
+
+
+  std::cout<<"tour cree : "<<position.x+10<<":"<<position.y+10<<std::endl;
   switch(type  )
     {
     case 1:
