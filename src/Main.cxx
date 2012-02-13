@@ -37,7 +37,7 @@ int maxWave;
 
 void GenWave()
 {
-  int mobNbr = (waveNbr+1) * 1.30;
+  int mobNbr = (waveNbr+5) * 1.30;
   std::cout<<"init mobs... ";
 
   
@@ -79,7 +79,7 @@ void GenWave()
     for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
       {
 	// TEST
-	std::cout<<"ASTAR test:"<<std::endl;
+	//	std::cout<<"ASTAR test:"<<std::endl;
 	(*MobsIt)->AStar(m,40,30);
       }
 
@@ -90,11 +90,11 @@ int init()
 {
   std::cout<<"init game... "<<endl;
 
-  score = 5000;
+  score = 15000;
   waveNbr = 0;
   maxWave = 20;
   
-  GenWave();
+
   srand(time(NULL));
   
   music.Stop();
@@ -190,7 +190,7 @@ void UpdateTows()
   int i;
 
   while(!play);
-  sleep(10);
+  //sleep(10);
   // Thread Update tours/mobs
 
   while(play) 
@@ -208,7 +208,7 @@ void UpdateTows()
 	
 		  if (target->IsDead())
 		    {
-		      std::cout<<"release target"<<std::endl;
+		      //		      std::cout<<"release target"<<std::endl;
 		      (*TowsIt)->ReleaseTarget();
 		    }
 		  else 
@@ -239,7 +239,8 @@ void UpdateTows()
 			{
 			  if (!(*mobsIt)->IsDead())
 			    {
-			      std::cout<<"aquire target :"<<(*mobsIt)->GetID()<<std::endl;
+			      //			      std::cout<<"aquire target :"<<(*mobsIt)->GetID()<<std::endl;
+
 			      (*TowsIt)->SetTarget(*mobsIt);
 			    }
 			  
@@ -276,6 +277,8 @@ void UpdateTows()
 	{
 	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 		      (*TowsIt)->ReleaseTarget();
+	  std::cout<<"blp"<<endl;
+	  
 	  sleep(10);
 	  GenWave();
 	}
