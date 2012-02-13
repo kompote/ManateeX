@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <cmath>
-
+#include <list>
 
 
 Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero) :
@@ -11,8 +11,8 @@ _window(aWindow)
   _pos=position;
   
   _hasPath=false;
-  _circle.SetRadius(2*numero);
-  _circle.SetFillColor(Color::Black);
+  _circle.SetRadius(3);
+  _circle.SetFillColor(Color::Blue);
   _circle.SetPosition(_pos);
   
   //Bresenham(400,300);
@@ -49,126 +49,205 @@ int Mob::GetID()
 {
   return _id;
 }
-		
 
-void Mob::AStar(Map& map,int x, int y)
-{
-  _path.clear();
-  _hasPath=false;
 
-  //  int self_x = map.GetSquarePixel(_pos.x , _pos.y).GetPosition().x;
-  //  int self_y = map.GetSquarePixel(_pos.x , _pos.y).GetPosition().y;
-  //Vector2f toto = map.GetSquarePixel(_pos.x,_pos.y).GetPosition();
+void Mob::AStar(Map& map, int x, int y) {
+    _path.clear();
+  //_hasPath=false;
+
   int self_x = (_pos.x-(int)_pos.x%10)/10;
   int self_y = ((_pos.y-30)-(int)_pos.y%10)/10;
-
   std::cout<<"org: "<<self_x<<":"<<self_y<<"  dest: "<<x<<":"<<y<<endl<<endl;
-  
-
-  //std::vector<int> node;
-  std::vector<_node> open;
-  std::vector<Square*> close;
-  std::vector<_node> successor;
-  _node test[80][57];
-  
-  //  std::vector<Square*> close;
+  //  _node open[80][57];
+  list<_node*> open;
+  list<_node*> close;
+  _node* node_tmp;
   Square* tmp;
-  _node tmp_node;
-
-  // on rempli la liste ouverte avec toutes les cases possible et les couts  
-  for(int i=0;i<80;i++) 
-    for(int j=0;j<57;j++)
-
-      {
-	tmp = map.GetSquare(i,j);
-	if (tmp->IsConstructible())
-	  {
-	    test[i][j].x=i;
-	    test[i][j].y=j;
-	    // On travaille au carre de la distance (plus rapide)
-	    test[i][j].costtodest = (x-i)*(x-i) + (y-j)*(y-j);
-	    // attention! x et y = numero des cases!!
-	    test[i][j].costfromorg = (i-self_x)*(i-self_x) + (j-self_y)*(j-self_y);
-	    test[i][j].totalcost = test[i][j].costtodest + test[i][j].costfromorg;
-	    test[i][j].current=tmp;
-	  }
-	else
-	  {
-	    std::cout<<i<<":"<<j<<" not constructible"<<endl;
-	    
-	    test[i][j].costtodest=0xFFFFFFFF;
-	  }
-	
-	
-      }
-  int kk = 0;
+  bool flag=false;
   
-  while (kk<200)
-    {
-      
-      unsigned int low = 0xFFFFFFF0;  
-      int cost_tmp;
-      _node node_tmp;
-      // int k=-1;
-      // int z=-1;
-      // if (self_x==0)      
-      // 	k=0;
-      // if (self_y==0)
-      // 	z=0;
-      
+  int i,j,xtmp,ytmp,limit=0;
 
-      for (int k=-1;k<=1;k++)
-	for (int z=-1;z<=1;z++)
-	  {
-	    if ((self_x==0)&&(k==-1)) continue;
-	    if ((self_y==0)&&(z==-1)) continue;
-
-	    if (!k&&!z) continue;
-	    cost_tmp = test[self_x+k][self_y+z].costtodest;
-	    std::cout<<"choice : "<<cost_tmp<<"  ";
-	    if (cost_tmp<low)
-	      {
-		low = cost_tmp;
-		node_tmp = test[self_x+k][self_y+z];
-		
-		//	std::cout<<low<<" ! ";
-	      }
-	    
-	  }
-      std::cout<<"selected: "<<node_tmp.x<<":"<<node_tmp.y<<"  ctd: "<<node_tmp.costtodest<<"  cfo: "<<node_tmp.costfromorg<<endl;
-      close.insert(close.end(),node_tmp.current);
-      _path.insert(_path.end(),new Vector2f((float)node_tmp.x*10+5,(float)node_tmp.y*10+35));
+  int coutorg,coutdest,coutot;
+  //remplissage de ouverts initial
+  // for(i=self_x-1;i<=self_x+1;i++){
+  //   for(j=self_y-1;j<=self_y+1;j++) {
+  //     if ((j<0)||(i<0)) continue;
+  //     tmp = map.GetSquare(i,j);
+  //     if (!(tmp->IsConstructible())||((i==self_x)&&(j==self_y))) continue;
+  node_tmp=new _node();
       
-      self_x = node_tmp.x;
-      self_y = node_tmp.y;
-      kk++;
-      if ((self_x==x)&&(self_y==y)) {
-	break;
+  node_tmp->x=self_x;
+  node_tmp->y=self_y;
+  //     node_tmp->parent_x=self_x;
+  //     node_tmp->parent_y=self_y;
 	
-      }
-      
-    }
+  //     //      coutdest= (x-i)*(x-i) + (y-j)*(y-j);
+  //     //coutorg=(i-self_x)*(i-self_x) + (j-self_y)*(j-self_y);
+  //     coutdest = 16*sqrt((i-x)*(i-x)+(j-y)*(j-y));
+  //     coutorg = 16*sqrt((i-self_x)*(i-self_x)+(j-self_y)*(j-self_y));
+  //     coutot=coutdest+coutorg;
+	
+  node_tmp->costtodest = 16*sqrt((self_x-x)*(self_x-x)+(self_y-y)*(self_y-y));
+  node_tmp->costfromorg = 0;
+  node_tmp->totalcost = node_tmp->costtodest ;
+  //     node_tmp->voisin=tmp;
+  open.insert(open.end(),node_tmp);
+  //   }
+  // }
+  _node* parent_node;
 
-  for(std::vector<Square*>::iterator SqIt = close.begin();SqIt!=close.end();SqIt++)
+  while((!open.empty())&&(!flag)&&(limit<100))
     {
-      (*SqIt)->Select();
+      limit ++;
+      
+      unsigned int low = 0xFFFFFFF0;
+      int cost_tmp;
+      for (list<_node*>::iterator it = open.begin();it!=open.end();it++)
+	{
+	  cost_tmp = (*it)->costtodest;
+	  //	  std::cout<<"choice : "<<cost_tmp<<"  ";
+	  if (cost_tmp<low)
+	    {
+	      low = cost_tmp;
+	      parent_node = *it;
+	      //  std::cout<<low<<" ! ";
+	    }
+	}
+      std::cout<<endl<<"Select: "<<parent_node->x<<":"<<parent_node->y<<endl;
+      if ((parent_node->x==x)&&(parent_node->y==y)) flag=true;
+
+    
+
+      else {
+	xtmp=parent_node->x;
+	ytmp=parent_node->y;
+	open.remove(parent_node);
+	close.insert(close.begin(),parent_node);
+	_node* voisin_node;
+	bool find_close = false, find_open = false;
+	for(i=xtmp-1;i<=xtmp+1;i++) {
+	  for(j=ytmp-1;j<=ytmp+1;j++) {
+
+	    if ((j<0)||(i<0)) continue;
+	    if ((j>57)||(i>80)) continue;
+	    if ((j==ytmp)&&(i==xtmp)) continue;
+	    tmp = map.GetSquare(i,j);
+	    if (!tmp->IsConstructible()) continue;
+
+	    // euclide
+	    coutorg = 16*sqrt((i-xtmp)*(i-xtmp)+(j-ytmp)*(j-ytmp))+parent_node->costfromorg;;
+	    coutdest = 16*sqrt((i-x)*(i-x)+(j-y)*(j-y));
+	    std::cout<<endl<<"voisins : "<<i<<":"<<j<<" cfo: "<<coutorg<<" ctd: "<<coutdest<<"  ";
+	    find_close=false;	  
+	    find_open=false;			  
+
+	    coutot=coutdest+coutorg;
+
+	    for (list<_node*>::iterator it = open.begin();it!=open.end();it++)
+	      {
+		if (((*it)->x==i)&&((*it)->y==j)) 
+		  {
+		    find_open = true;
+		    voisin_node = *it;
+		  }
+	      }
+	    if(find_open) {
+
+	      if(voisin_node->totalcost > coutot) {
+		 voisin_node->parent_x=xtmp;
+		 voisin_node->parent_y=ytmp;
+		 voisin_node->costfromorg = coutorg;
+		 voisin_node->totalcost = coutot;
+		 voisin_node->costtodest = coutdest;
+		 //std::cout<<" remove open "<<endl;
+
+		 //open.remove(voisin_node);
+		continue;
+		
+	      }
+	      else continue;
+	    }
+	    for (list<_node*>::iterator it = close.begin();it!=close.end();it++)
+	      {
+		if (((*it)->x==i)&&((*it)->y==j)) 
+		  {
+		    find_close = true;
+		    voisin_node = *it;
+		  }
+	      }
+
+	    if (find_close)
+
+	      {
+		if (voisin_node->costfromorg > coutorg)
+		  {
+		     voisin_node->parent_x = xtmp;
+		     voisin_node->parent_y = ytmp;
+		     voisin_node->costfromorg = coutorg;
+		     voisin_node->totalcost = coutot;
+		     voisin_node->costtodest = coutdest;
+		    std::cout<<" remove close "<<endl;
+		    close.remove(voisin_node);
+		    open.insert(open.end(),voisin_node);
+		    continue;
+		    
+		  }
+		continue;
+	      }
+	    if(!find_open&&!find_close) {
+	      voisin_node = new _node();
+	      voisin_node->x=i;
+	      voisin_node->y=j;
+	      voisin_node->parent_x=xtmp;
+	      voisin_node->parent_y=ytmp;
+	      voisin_node->costtodest = coutdest;
+	      voisin_node->costfromorg = coutorg;
+	      voisin_node->totalcost = coutot;
+	      std::cout<<" add open "<<endl;
+	      open.insert(open.end(),voisin_node);
+	      continue;
+	    }
+	    else {
+	    }
+	  }
+	}
+      }
+    
+    }
+  close.reverse();
+  _xtmp = _pos.x;
+  _ytmp = _pos.y;
+  
+  for (list<_node*>::iterator it = close.begin();it!=close.end();it++)
+    {
+      //    std::cout<<(*it)->x<<":"<<(*it)->y<<"  cost: "<<(*it)->costtodest<<"  ";
+      Bresenham((*it)->x*10+5,(*it)->y*10+35);
+      _xtmp = (*it)->x*10+5;
+      _ytmp = (*it)->y*10+35;
+      
+      //_path.insert(_path.end(),new Vector2f((float)(*it)->x*10+5,(float)(*it)->y*10+35));
+      //map.Select((*it)->voisin);
       
     }
+  
+  std::cout<<endl;
   _it=_path.begin();
   _hasPath=true;
-
+  //  std::exit(1);
+   
 }
-
-
 
 
 
 void Mob::Bresenham(int x, int y)
 {
   // TODO: les deletes a chaque recalcul
-  _path.clear();
-  _hasPath=false;
-  int x1 = _pos.x, y1 = _pos.y, x2=x, y2=y;
+  //  _path.clear();
+  //_hasPath=false;
+  //int x1 = _pos.x, y1 = _pos.y, x2=x, y2=y;
+  int x1 = _xtmp, y1 = _ytmp, x2=x, y2=y;
+  std::cout<<"bresen from "<<x1<<":"<<y1<<" to "<<x2<<":"<<y2<<endl;
+  
   int delta_x(x2 - x1);
   signed char ix((delta_x > 0) - (delta_x < 0));
   delta_x = std::abs(delta_x) << 1;
@@ -211,8 +290,8 @@ void Mob::Bresenham(int x, int y)
 	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
         }
     }
-  _it=_path.begin();
-  _hasPath=true;
+  //_it=_path.begin();
+  //_hasPath=true;
 }
 
 void Mob::Hit(int k)

@@ -109,9 +109,9 @@ int init()
     return EXIT_FAILURE;
 
   // Tests
-  Vector2f p1(200,230);
-  Vector2f p2(450,430);
-  Vector2f p3(700,500);
+  // Vector2f p1(200,230);
+  // Vector2f p2(450,430);
+  // Vector2f p3(700,500);
   play =true;
   std::cout<<"done."<<endl;
   //  mobs.insert(mobs.end(),new Mob(window,p3));
@@ -261,7 +261,7 @@ void UpdateTows()
 		  
 		  mobs.erase(mobsIt);
 		  // score ++
-		  score = score + 5000;
+		  score = score + 1000;
 		  
 
 		  continue;
@@ -328,15 +328,6 @@ int game (void) {
       {
 	if (! (*MobsIt)->IsDead())
 	  (*MobsIt)->Render();
-	// TEST
-	//	std::cout<<"ASTAR test:"<<std::endl;
-	//(*MobsIt)->AStar(m,20,20);
-	//	play=false;
-	//window.Close();
-	
-	
-	
-
       }
     //dessine les towers
     for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
@@ -400,71 +391,71 @@ int game (void) {
 	  //si click gauche
 	  if (event.MouseButton.Button == Mouse::Left)
 	    {
-			// test clic sur bouton du menu popup s'il existe
-			if(isPopped) {
+	      // test clic sur bouton du menu popup s'il existe
+	      if(isPopped) {
 
-				for(int i=0;i<5;i++) {
-					if(popup.button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
-					  if(popup.button[i].GetString()=="Tour1")
-					    { 
-								if(tmp2->IsConstructible())
-									{
-					      		if (score >= 2000) 
-											{
-											  tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,1));
+		for(int i=0;i<5;i++) {
+		  if(popup.button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
+		    if(popup.button[i].GetString()=="Tour1")
+		      { 
+			if(tmp2->IsConstructible())
+			  {
+			    if (score >= 2000) 
+			      {
+				tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,1));
 	
-									 			// 9x9 non constructible
+				// 9x9 non constructible
 
-												for(int j=-1;j<=1;j++)
-												{
-													for(int k=-1;k<=1;k++)
-													{
-														m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
-														cout<<"blocage des cases"<<endl;
-													}
-												}
+				for(int j=-1;j<=1;j++)
+				  {
+				    for(int k=-1;k<=1;k++)
+				      {
+					m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
+					//					cout<<"blocage des cases"<<endl;
+				      }
+				  }
 								  
-									  score = score - 2000;
-										}
-					    	  else
-										cout<<"not enough money!"<<tmp->number<<endl;
-									}
-								else 
-									cout<<"Cannot build here !"<<endl;	
-					    }
-					  if(popup.button[i].GetString()=="Tour2")
-					  { 
-							if(tmp2->IsConstructible())
-							{
-					    	if (score >= 2000) 
-								{
-								  tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,2));
+				score = score - 5000;
+			      }
+			    else
+			      cout<<"not enough money!"<<tmp->number<<endl;
+			  }
+			else 
+			  cout<<"Cannot build here !"<<endl;	
+		      }
+		    if(popup.button[i].GetString()=="Tour2")
+		      { 
+			if(tmp2->IsConstructible())
+			  {
+			    if (score >= 2000) 
+			      {
+				tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,2));
 
-									// 9x9 non constructible
+				// 9x9 non constructible
 
-									for(int j=-1;j<=1;j++)
-									{
-										for(int k=-1;k<=1;k++)
-										{
-											m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
-											cout<<"blocage des cases"<<endl;
-										}
-									}
-						  		score = score - 2000;
-								}
-					      else
-									cout<<"not enough money!"<<tmp->number<<endl;
-							}
-							else
-								cout<<"Cannot build here !"<<endl;
-					  }
+				for(int j=-1;j<=1;j++)
+				  {
+				    for(int k=-1;k<=1;k++)
+				      {
+					m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
+					//cout<<"blocage des cases"<<endl;
+				      }
+				  }
+				score = score - 5000;
+			      }
+			    else
+			      cout<<"not enough money!"<<tmp->number<<endl;
+			  }
+			else
+			  cout<<"Cannot build here !"<<endl;
+		      }
 					  
-					  //if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.GetPosition()));
-					}
-				}
-			}
+		    //if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.GetPosition()));
+		  }
+		}
+	      }
 			
-			isPopped=false;
+	      isPopped=false;
 
 	      //	      cout<<"information on case n° "<<tmp->number<<endl;
 	      //tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
@@ -495,8 +486,8 @@ int game (void) {
 	      for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
 		{
 		  // TEST
-		  std::cout<<"ASTAR test:"<<std::endl;
-		  (*MobsIt)->AStar(m,40,30);
+		  // std::cout<<"ASTAR test:"<<std::endl;
+		  // (*MobsIt)->AStar(m,40,30);
 		}
 
 	      //	      std::cout<<"Test "<<mobs.max_size()<<std::endl;
@@ -570,7 +561,7 @@ int main(void) {
 	      currentMenu = &optionMenu;
 	      break;
 	    case Keyboard::P:
-	      play = true;
+	      window.Clear();
 	      game();
 	     }
 

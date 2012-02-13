@@ -10,6 +10,8 @@ typedef struct
   {
     int x;
     int y;
+    int parent_x;
+    int parent_y;
     
     int costtodest;
     int costfromorg;
@@ -55,6 +57,8 @@ private:
   bool _dead;
   bool _hasPath;
   int _id;
+  int _xtmp;
+  int _ytmp;
   
 };
 

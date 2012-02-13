@@ -28,7 +28,7 @@ _window(aWindow)
       _circle.SetRadius(2);
       _circle.SetFillColor(Color::Red);
       _circle.SetPosition(_pos);
-      _power = 100;
+      _power = 400;
       
       break;
     }
