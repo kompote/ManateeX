@@ -12,7 +12,7 @@ _window(aWindow)
   
   _hasPath=false;
   _circle.SetRadius(3);
-  _circle.SetFillColor(Color::Blue);
+  _circle.SetFillColor(Color::Black);
   _circle.SetPosition(_pos);
   _dead = false;
   _hp=2000;
@@ -210,7 +210,7 @@ void Mob::Bresenham(int x, int y)
 {
   // TODO: les deletes a chaque recalcul
   int x1 = _xtmp, y1 = _ytmp, x2=x, y2=y;
-  std::cout<<"bresen from "<<x1<<":"<<y1<<" to "<<x2<<":"<<y2<<endl;
+  //  std::cout<<"bresen from "<<x1<<":"<<y1<<" to "<<x2<<":"<<y2<<endl;
   
   int delta_x(x2 - x1);
   signed char ix((delta_x > 0) - (delta_x < 0));
