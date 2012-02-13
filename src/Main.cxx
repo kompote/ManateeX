@@ -13,6 +13,7 @@
 
 #include "Mob.hxx"
 #include "Tower.hxx"
+#include "Target.hxx"
 #include "Building.hxx"
 
 using namespace sf;
@@ -34,6 +35,7 @@ SoundBuffer sbuffer;
 int score;
 int waveNbr;
 int maxWave;
+Target* manatee;
 
 void GenWave()
 {
@@ -93,10 +95,7 @@ int init()
   score = 15000;
   waveNbr = 0;
   maxWave = 20;
-  
-
   srand(time(NULL));
-  
   music.Stop();
   
   if (!music.OpenFromFile("src/ressources/sounds/DP_Tron_Derezzed_chiptune.ogg"))
@@ -104,21 +103,11 @@ int init()
   music.Play();
   music.SetLoop(true);
   
-  
   if (!sbuffer.LoadFromFile("src/ressources/sounds/laser.ogg"))
     return EXIT_FAILURE;
-
-  // Tests
-  // Vector2f p1(200,230);
-  // Vector2f p2(450,430);
-  // Vector2f p3(700,500);
+  manatee = new Target(window);
   play =true;
   std::cout<<"done."<<endl;
-  //  mobs.insert(mobs.end(),new Mob(window,p3));
-
-  //  tows.insert(tows.end(), new Tower(window,p1,1,1));
-  //tows.insert(tows.end(), new Tower(window,p2,2,2));
-
 }
 
   
@@ -128,7 +117,8 @@ void updateParticles()
   // Thread Update position des projectiles
   std::cout<<endl<<"Fire Controller Started."<<std::endl;
   while(!play);
-
+  
+  
   while(play) 
     {
       if (!part.empty())
@@ -190,7 +180,7 @@ void UpdateTows()
   int i;
 
   while(!play);
-  //sleep(10);
+  
   // Thread Update tours/mobs
 
   while(play) 
@@ -208,12 +198,14 @@ void UpdateTows()
 	
 		  if (target->IsDead())
 		    {
-		      //		      std::cout<<"release target"<<std::endl;
+		      //     std::cout<<"release target"<<std::endl;
 		      (*TowsIt)->ReleaseTarget();
 		    }
 		  else 
 		    {
 		      Vector2f p = (*TowsIt)->GetPos();
+		      //		      std::cout<<"tow : "<<p.x<<":"<<p.y<<endl;
+		      
 		      if ((*TowsIt)->CanShoot()) 
 			{
 			  // TOFIX:
@@ -239,17 +231,15 @@ void UpdateTows()
 			{
 			  if (!(*mobsIt)->IsDead())
 			    {
-			      //			      std::cout<<"aquire target :"<<(*mobsIt)->GetID()<<std::endl;
+			      //      std::cout<<"aquire target :"<<(*mobsIt)->GetID()<<std::endl;
 
 			      (*TowsIt)->SetTarget(*mobsIt);
 			    }
-			  
 			}
 		      ++mobsIt;
 		      i++;
 		    }
 		}
-	      
 	    }
 	  
 	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
@@ -259,26 +249,18 @@ void UpdateTows()
 		{
 		  std::cout<<"erase"<<std::endl;
 		  delete *mobsIt;
-		  
 		  mobs.erase(mobsIt);
 		  // score ++
 		  score = score + 1000;
-		  
-
 		  continue;
-		  
 		}
-		  
 	      ++mobsIt;
-
 	    }
 	}
       else 
 	{
 	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
-		      (*TowsIt)->ReleaseTarget();
-	  std::cout<<"blp"<<endl;
-	  
+	    (*TowsIt)->ReleaseTarget();
 	  sleep(10);
 	  GenWave();
 	}
@@ -315,7 +297,7 @@ int game (void) {
   text.SetPosition(10,5);
   
 
-  while(window.IsOpen()&&play) {
+  while(window.IsOpen()&&play&&!manatee->IsDead()) {
     Event event;
     window.Clear();
     m.Redraw(window);
@@ -339,7 +321,8 @@ int game (void) {
 	(*TowsIt)->Render();
 
       }
-
+    manatee->Render();
+    
 
     // affiche le score    
     if (score>=0) 
@@ -486,10 +469,11 @@ int game (void) {
 	      return 1;
 	    case Keyboard::I:
 	      // std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
-	      for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+
+	      for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 		{
 		  // TEST
-		  // std::cout<<"ASTAR test:"<<std::endl;
+		  std::cout<<"Tows : "<<(*TowsIt)->GetPos().x<<":"<<(*TowsIt)->GetPos().y<<"  "<<std::endl;
 		  // (*MobsIt)->AStar(m,40,30);
 		}
 
@@ -520,6 +504,8 @@ int game (void) {
 
     
   }
+  play = false;
+  
 }
 
 int main(void) {

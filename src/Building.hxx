@@ -27,6 +27,8 @@ public:
   bool canshoot;
   int reloadtime;
   int tries;
+  int hp;
+  bool dead;
   
   
   Vector2f position;

@@ -6,7 +6,7 @@ Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
   texturePath = "src/ressources/images/tower1.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
-
+  
   position.x=((int)((pos.x/10)*10)+5)-10;
   position.y=((int)((pos.y/10)*10)+5)-10;
   number = i;

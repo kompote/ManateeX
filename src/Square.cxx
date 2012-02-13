@@ -1,12 +1,12 @@
 #include "Square.hxx"
 
 Square::Square(int i) {
-  _texturePath = "src/ressources/images/blue.png";
+  _texturePath = "src/ressources/images/water.png";
   _texture.LoadFromFile(_texturePath);
   sprite.SetTexture(_texture);
   number = i;
   SetConstructible(true);
-  sprite.SetColor(Color(100,100,100,255));
+  //  sprite.SetColor(Color(100,100,100,255));
 }
 
 void Square::SetPosition(int x, int y) 
