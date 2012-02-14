@@ -5,16 +5,16 @@ Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
 {
 	htarget = false;
   canshoot = false;
-  texturePath = "src/ressources/images/tower1.png";
+  texturePath = "src/ressources/images/turret.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
+	sprite.SetOrigin(12.5,12.5);
   
-  position.x=((int)((pos.x/10)*10)+5)-10;
-  position.y=((int)((pos.y/10)*10)+5)-10;
+  position.x=((int)((pos.x/10)*10)+5);
+  position.y=((int)((pos.y/10)*10)+5);
   number = i;
   type = t;
   sprite.SetPosition(position);
-
 
 
   std::cout<<"tour cree : "<<position.x+10<<":"<<position.y+10<<std::endl;
@@ -76,4 +76,15 @@ bool Tower::CanShoot()
   tries++;
   return false;
   
+}
+
+void Tower::FaceTarget()
+{
+	//sprite.SetOrigin(15,15);
+	if(this->HasTarget())
+	{
+		Vector2f tpos = target->GetPosition();
+		sprite.SetRotation(90);
+	}
+	else sprite.SetRotation(0);
 }

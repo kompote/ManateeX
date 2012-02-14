@@ -28,6 +28,7 @@ class Tower : public Building
 		bool HasTarget();
 		void ReleaseTarget();
 		bool CanShoot();
+		void FaceTarget();
 };
 
 #endif

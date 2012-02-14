@@ -303,6 +303,7 @@ int Game (void)
     //dessine les towers
     for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
       {
+	(*TowsIt)->FaceTarget();
 	(*TowsIt)->Render();
       }
     // Dessine l'objectif
