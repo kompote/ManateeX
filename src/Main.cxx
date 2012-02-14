@@ -1,4 +1,17 @@
-#include <SFML/Graphics.hpp>
+/*
+ * \file Main.cxx
+ * \brief ManateeX Game Core
+ * \author Thomas FOURCROY
+ * \author Benoit Djerigian
+ * \version 0.9
+ * \date 14 fevrier 2012
+ *
+ * Programme pricipal de ManateeX
+ * Gere les l'affichage et les deplacements
+ *
+ */
+
+#Include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
@@ -10,17 +23,16 @@
 #include "MainMenu.hxx"
 #include "OptionMenu.hxx"
 #include "PopupMenu.hxx"
-
 #include "Mob.hxx"
 #include "Tower.hxx"
 #include "Target.hxx"
 #include "Building.hxx"
 
+// Espace de nom SFML
 using namespace sf;
 
+// Variables globales
 RenderWindow window(VideoMode(800, 600), "SFML window");
-
-
 bool play=false;
 std::vector<Particle *> part;
 std::vector<Mob *> mobs;
@@ -28,70 +40,67 @@ std::vector<Building *> tows;
 Map m;
 bool isPopped=false;
 PopupMenu popup(0,0);
-
 Music music;
 SoundBuffer sbuffer;
-
 int score;
 int waveNbr;
 int maxWave;
 Target* manatee;
 
-void GenWave()
+/**
+ * \fn void GenerateWave()
+ * \brief Genere et initialise les differentes vagues
+ *  Genere un certain nombre d'ennemis a des positions aleatoires
+ * de plus en plus d'ennemie au fur et a mesure des generations
+ */
+void GenerateWave()
 {
   int mobNbr = (waveNbr+5) * 1.30;
   std::cout<<"init mobs... ";
-
-  
   waveNbr++;
   srand(time(NULL));  
   for (int i=1; i<=mobNbr;i++)
     {
-
       int zone = rand()%4;
       std::cout<<"Zone = "<<zone<<" ";
       int x,y;
-      
       switch(zone)
 	{
 	case 0:
 	  x = rand()%790+5;
 	  y = rand()%20+35;
 	  break;
-	  
 	case 1:
 	  x = rand()%20+770;
 	  y = rand()%560+5;
 	  break;
-	  
 	case 2:
 	  x = rand()%790+5;
 	  y = rand()%560+35;
 	  break;
-	  
 	case 3:
 	  x = rand()%20+5;
 	  y = rand()%560+35;
 	}
-      
       Vector2f v(x,y);
       mobs.insert(mobs.end(),new Mob(window,v,i));
     }
-    std::cout<<"done. nb ="<<mobNbr<<endl;
     for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
       {
-	// TEST
-	//	std::cout<<"ASTAR test:"<<std::endl;
 	(*MobsIt)->AStar(m,40,30);
       }
-
+    std::cout<<"done. nb ="<<mobNbr<<endl;
 }
 
-
-int init()
+/**
+ * \fn int Initiate()
+ * \brief initialise les parametre de jeux
+ * Initialise le score, le nombre de vagues, la musique et l'objectif  
+ * 
+ */
+int Initiate()
 {
-  std::cout<<"init game... "<<endl;
-
+  std::cout<<"Initiate game... "<<endl;
   score = 15000;
   waveNbr = 0;
   maxWave = 20;
@@ -110,47 +119,39 @@ int init()
   std::cout<<"done."<<endl;
 }
 
-  
-
-void updateParticles() 
+/**
+ * \fn void UpdateParticles()
+ * \brief Thread de controle les particules (missiles)
+ * controle le deplacement des particules et gere la mort des mob.
+ * 
+ */
+void UpdateParticles() 
 {
-  // Thread Update position des projectiles
   std::cout<<endl<<"Fire Controller Started."<<std::endl;
   while(!play);
-  
-  
   while(play) 
     {
       if (!part.empty())
 	{
-	  
 	  for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();) 
 	    {
 	      int mobNbTmp;
 	      if (!mobs.empty())
 		{
 		  std::vector<Mob *>::iterator mobsIt=mobs.begin();
-		  
-		  
 		  mobNbTmp = (*partIt)->GetTargetNbr();
-
 		  for (; mobsIt != mobs.end();) 
 		    {
 		      if ((*mobsIt)->GetID()==mobNbTmp)
 			break;
-		      
 		      ++mobsIt;
 		    }
-		  
-		  
 		  if((*mobsIt)->IsDead()) 
 		    {
 		      delete *partIt;
-		      
 		      part.erase(partIt);	
 		      continue;
 		    }
-		  
 		  else if ((*partIt)->IsDone()) 
 		    {
 		      (*mobsIt)->Hit((*partIt)->GetPower());
@@ -171,68 +172,54 @@ void updateParticles()
     }
 }
 
-
-void UpdateTows()
+/**
+ * \fn void UpdateTowsAndMobs()
+ * \brief Thread de controle les Tours et des Mobs
+ * Gere l'acquisition de cible et la mise a feu 
+ * 
+ */
+void UpdateTowsAndMobs()
 {
   std::cout<<endl<<"Tower Controller Started."<<std::endl;
   Sound fire;
   fire.SetBuffer(sbuffer);
   int i;
-
   while(!play);
-  
-  // Thread Update tours/mobs
-
   while(play) 
     {
       if (!mobs.empty())
 	{
-
 	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
-
 	      if ((*TowsIt)->HasTarget())
 		{
-
 		  Mob* target=(*TowsIt)->GetTarget();
-	
 		  if (target->IsDead())
 		    {
-		      //     std::cout<<"release target"<<std::endl;
 		      (*TowsIt)->ReleaseTarget();
 		    }
 		  else 
 		    {
 		      Vector2f p = (*TowsIt)->GetPos();
-		      //		      std::cout<<"tow : "<<p.x<<":"<<p.y<<endl;
-		      
 		      if ((*TowsIt)->CanShoot()) 
 			{
 			  // TOFIX:
 			  // rate sa cible,
 			  // recuperer quelques cases d'avance
 			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->GetPosition(),target->GetID()));		      
-			  // Le son d'un shoot
 			  //			  fire.Play();	
 			}
-		      
 		    }
-		  
 		}
 	      else 
 		{
-
 		  int i = 0;
 		  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
 		    {
-
-		  
 		      if ((*TowsIt)->InRange((*mobsIt)->GetPosition()))
 			{
 			  if (!(*mobsIt)->IsDead())
 			    {
-			      //      std::cout<<"aquire target :"<<(*mobsIt)->GetID()<<std::endl;
-
 			      (*TowsIt)->SetTarget(*mobsIt);
 			    }
 			}
@@ -241,13 +228,11 @@ void UpdateTows()
 		    }
 		}
 	    }
-	  
 	  for (std::vector<Mob *>::iterator mobsIt = mobs.begin(); mobsIt != mobs.end();) 
 	    {
 	      (*mobsIt)->Update();
 	      if ((*mobsIt)->IsDead())
 		{
-		  std::cout<<"erase"<<std::endl;
 		  delete *mobsIt;
 		  mobs.erase(mobsIt);
 		  score = score + 1000;
@@ -261,7 +246,6 @@ void UpdateTows()
 		  mobs.erase(mobsIt);
 		  continue;
 		}
-	      
 	      ++mobsIt;
 	    }
 	}
@@ -270,40 +254,35 @@ void UpdateTows()
 	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    (*TowsIt)->ReleaseTarget();
 	  sleep(10);
-	  GenWave();
+	  GenerateWave();
 	}
-      
       // environ 6 pixels/s
       usleep(150000);
     }
 }
 
-
-
-
-int game (void) {
-  
-
+/**
+ * \fn int Game (void)
+ * \brief Thread Principal
+ * Gere l'affichage, les evenements, la construction de tours 
+ * 
+ */
+int Game (void)
+{
   int x,y;
   Font font;
-
-  init();
-
+  Initiate();
   std::cout<<"Launching Threads... ";
   // threads
-  Thread partUpd(&updateParticles);
+  Thread partUpd(&UpdateParticles);
   partUpd.Launch();
-  Thread mobUpd(&UpdateTows);
+  Thread mobUpd(&UpdateTowsAndMobs);
   mobUpd.Launch();
-
-
   std::cout<<"Threads Launched."<<endl;
-
   if (!font.LoadFromFile("src/ressources/Computerfont.ttf"))
     return EXIT_FAILURE;
   Text text("0000", font, 20);
   text.SetPosition(10,5);
-  
 
   while(window.IsOpen()&&play&&!manatee->IsDead()) {
     Event event;
@@ -314,7 +293,6 @@ int game (void) {
       {
     	if (!(*partIt)->IsDone())
     	  (*partIt)->Render();
-
       }
     // Desine les mobs
     for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
@@ -325,20 +303,15 @@ int game (void) {
     //dessine les towers
     for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
       {
-
 	(*TowsIt)->Render();
-
       }
+    // Dessine l'objectif
     manatee->Render();
-    
-
     // affiche le score    
     if (score>=0) 
       {
-	
 	ostringstream oss;
 	oss << "Score : ";
-	
 	if (score < 10)
 	  oss << 0 << 0 << 0 <<score ;
 	else if (score<100)
@@ -348,47 +321,31 @@ int game (void) {
 	else oss << score;
 	oss<<"      Wave: "<<waveNbr<<"/"<<maxWave;
 	oss<<"      Manatee's Life : "<<manatee->GetHP();
-	
 	text.SetString( oss.str());
       }
-    
-    
     while (window.PollEvent(event)) {
-      // Window closed
       if (event.Type == Event::Closed) window.Close();
-
       if (event.Type == Event::MouseButtonPressed) 
 	{
-
 	  Vector2i pos = Mouse::GetPosition(window);
 	  x = pos.x;
 	  y = pos.y;
-
 	  // selection case
-
 	  Square* tmp = m.GetSquarePixel(pos.x,pos.y);
 	  Square* tmp2;
-	  
-	  
 	  if(!isPopped) m.Select(tmp);
-
 	  // si click droit
 	  if (event.MouseButton.Button == Mouse::Right) 
 	    {
-			popup.SetPosition(x,y);
-			isPopped=true;
-			tmp2 = tmp;			
-	      // ajout cible (pout test)
-	      //mobs.insert(mobs.end(),new Mob(window,(Vector2f) pos));
-	      //cout<<"menu contex"<<endl;
+	      popup.SetPosition(x,y);
+	      isPopped=true;
+	      tmp2 = tmp;			
 	    }
-	  
 	  //si click gauche
 	  if (event.MouseButton.Button == Mouse::Left)
 	    {
 	      // test clic sur bouton du menu popup s'il existe
 	      if(isPopped) {
-
 		for(int i=0;i<5;i++) {
 		  if(popup.button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
 		    if(popup.button[i].GetString()=="Tour1")
@@ -398,22 +355,18 @@ int game (void) {
 			    if (score >= 2000) 
 			      {
 				tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,1));
-	
 				// 9x9 non constructible
-
 				for(int j=-1;j<=1;j++)
 				  {
 				    for(int k=-1;k<=1;k++)
 				      {
 					m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
-					//					cout<<"blocage des cases"<<endl;
 				      }
 				  }
-								  
 				score = score - 5000;
 			      }
 			    else
-			      cout<<"not enough money!"<<tmp->number<<endl;
+			      cout<<"Not enough money!"<<tmp->number<<endl;
 			  }
 			else 
 			  cout<<"Cannot build here !"<<endl;	
@@ -425,15 +378,12 @@ int game (void) {
 			    if (score >= 2000) 
 			      {
 				tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,2));
-
 				// 9x9 non constructible
-
 				for(int j=-1;j<=1;j++)
 				  {
 				    for(int k=-1;k<=1;k++)
 				      {
 					m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
-					//cout<<"blocage des cases"<<endl;
 				      }
 				  }
 				score = score - 5000;
@@ -444,20 +394,12 @@ int game (void) {
 			else
 			  cout<<"Cannot build here !"<<endl;
 		      }
-					  
-		    //if(popup.button[i].GetString()=="Mob") mobs.insert(mobs.end(),new Mob(window,popup.GetPosition()));
 		  }
 		}
 	      }
-			
 	      isPopped=false;
-
-	      //	      cout<<"information on case n° "<<tmp->number<<endl;
-	      //tows.insert(tows.end(), new Tower(window,(Vector2f) pos,2,2));
-
 	    }
 	}
-
       if (event.Type == Event::KeyPressed) 
 	{
 	  switch(event.Key.Code)
@@ -467,58 +409,46 @@ int game (void) {
 	      play=false;
 	      for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
 		{
-		  
 		  delete *partIt;
 		}
 	      part.clear();
 	      // TODO:
 	      // Faire pareil avec les tows et mobs
 	      std::cout<<"return to main menu"<<endl;
-	      
 	      return 1;
+	      // Touche debug
 	    case Keyboard::I:
-	      // std::cout<<"Tower: "<<tows[0]->GetPos().x<<std::endl;
-
 	      for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 		{
-		  // TEST
 		  std::cout<<"Tows : "<<(*TowsIt)->GetPos().x<<":"<<(*TowsIt)->GetPos().y<<"  "<<std::endl;
-		  // (*MobsIt)->AStar(m,40,30);
 		}
-
-	      //	      std::cout<<"Test "<<mobs.max_size()<<std::endl;
 	      break;
+	      // Volume de la musique (keypad)
 	    case Keyboard::Subtract:
 	      music.SetVolume(music.GetVolume()-10);
 	      break;
 	    case Keyboard::Add:
 	      music.SetVolume(music.GetVolume()+10);
 	      break;
-	      
 	     }
-
 	}
-
     }
-
     usleep(20000);
-    
-    
     window.Draw(text);
-    
-    
     if(isPopped) popup.Render(window);
-
     window.Display();
-
-    
   }
   play = false;
-  
 }
 
-int main(void) {
-
+/**
+ * \fn int main(void)
+ * \brief Thread Principal (menus)
+ * Gere l'affichage des menus
+ * 
+ */
+int main(void)
+{
   MainMenu mainMenu;
   OptionMenu optionMenu;
   Menu *currentMenu = &mainMenu;
@@ -526,28 +456,21 @@ int main(void) {
     return EXIT_FAILURE;
   music.Play();
   music.SetLoop(true);
-  
   while(window.IsOpen()) {
     Event event;
     while (window.PollEvent(event)) {
-      // Window closed
       if (event.Type == Event::Closed) window.Close();
-      // Button clicked
       if (event.Type == Event::MouseButtonPressed) {
-
-			  
 	for(int i=0;i<5;i++) {
 	  if(currentMenu->button[i].GetGlobalBounds().Contains(event.MouseButton.X,event.MouseButton.Y)) {
 	    if(currentMenu->button[i].GetString()=="Options") currentMenu = &optionMenu;
-	    if(currentMenu->button[i].GetString()=="PLAY") {window.Clear();game();
+	    if(currentMenu->button[i].GetString()=="PLAY") {window.Clear();Game();
 	    }
-						
 	    if(currentMenu->button[i].GetString()=="Retour") currentMenu = &mainMenu;
 	    if(currentMenu->button[i].GetString()=="Quitter") window.Close();
 	  }
 	}
       }
-
       if (event.Type == Event::KeyPressed) 
 	{
 	  switch(event.Key.Code)
@@ -560,21 +483,16 @@ int main(void) {
 	      break;
 	    case Keyboard::P:
 	      window.Clear();
-	      game();
+	      Game();
 	     }
-
 	}
-
     }
     usleep(30000);
-    // Update the window
     window.Clear();
     currentMenu->Render(window);
     window.Display();
   }
-
   window.Clear();
   window.Close();
-
   return (EXIT_SUCCESS);
 }
