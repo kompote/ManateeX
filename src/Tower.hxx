@@ -10,9 +10,24 @@ using namespace std;
 
 class Tower : public Building
 {
+	public:
+	  int type;
+		int range;
+		bool htarget;
+		Mob *target;
+		bool canshoot;
+		int reloadtime;
+		int tries;
 
-public:
-  Tower(RenderWindow&,Vector2f,int,int);  
+		Tower(RenderWindow&,Vector2f,int,int);  
+
+		bool InRange(Vector2f);
+		int GetType();
+		Mob* GetTarget();
+		void SetTarget(Mob*);
+		bool HasTarget();
+		void ReleaseTarget();
+		bool CanShoot();
 };
 
 #endif

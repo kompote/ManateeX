@@ -11,11 +11,7 @@ Target::Target(sf::RenderWindow& aWindow):
   position.y=320;
   sprite.SetPosition(position);
 
-  range = 0;
   number = 0;
-  type = 0;
-  reloadtime = 0;
-  tries = 0;
   dead = false;
   hp = 50000;
 }

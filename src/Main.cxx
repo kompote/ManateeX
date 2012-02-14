@@ -11,7 +11,7 @@
  *
  */
 
-#Include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
@@ -36,7 +36,7 @@ RenderWindow window(VideoMode(800, 600), "SFML window");
 bool play=false;
 std::vector<Particle *> part;
 std::vector<Mob *> mobs;
-std::vector<Building *> tows;
+std::vector<Tower *> tows;
 Map m;
 bool isPopped=false;
 PopupMenu popup(0,0);
@@ -189,7 +189,7 @@ void UpdateTowsAndMobs()
     {
       if (!mobs.empty())
 	{
-	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+	  for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    {
 	      if ((*TowsIt)->HasTarget())
 		{
@@ -251,7 +251,7 @@ void UpdateTowsAndMobs()
 	}
       else 
 	{
-	  for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+	  for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    (*TowsIt)->ReleaseTarget();
 	  sleep(10);
 	  GenerateWave();
@@ -301,7 +301,7 @@ int Game (void)
 	  (*MobsIt)->Render();
       }
     //dessine les towers
-    for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+    for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
       {
 	(*TowsIt)->Render();
       }
@@ -418,7 +418,7 @@ int Game (void)
 	      return 1;
 	      // Touche debug
 	    case Keyboard::I:
-	      for (std::vector<Building *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+	      for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 		{
 		  std::cout<<"Tows : "<<(*TowsIt)->GetPos().x<<":"<<(*TowsIt)->GetPos().y<<"  "<<std::endl;
 		}

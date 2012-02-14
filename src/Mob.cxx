@@ -10,6 +10,7 @@ _window(aWindow)
 {
   _pos=position;
   
+	_arrived=false;
   _hasPath=false;
   _circle.SetRadius(3);
   _circle.SetFillColor(Color::Black);
