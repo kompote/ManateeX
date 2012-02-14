@@ -32,8 +32,8 @@ void Square::Select()
 
 void Square::UnSelect()
 {
-  sprite.SetColor(Color(100,100,100,255));
-  //  sprite.SetColor(Color(255,255,255,255));
+  //  sprite.SetColor(Color(100,100,100,255));
+  sprite.SetColor(Color(255,255,255,255));
 }
 
 bool Square::IsConstructible() {

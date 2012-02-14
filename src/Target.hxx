@@ -15,6 +15,8 @@ public:
   Target(RenderWindow&);  
   void Hit(int);
   bool IsDead();
+  int GetHP();
+  
 };
 
 #endif

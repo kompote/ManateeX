@@ -250,10 +250,18 @@ void UpdateTows()
 		  std::cout<<"erase"<<std::endl;
 		  delete *mobsIt;
 		  mobs.erase(mobsIt);
-		  // score ++
 		  score = score + 1000;
 		  continue;
 		}
+	      if((*mobsIt)->HasArrived())
+		{
+		  std::cout<<"Oh nooo! Manatee a été mordu!"<<std::endl;
+		  manatee->Hit((*mobsIt)->GetHP());
+		  delete *mobsIt;
+		  mobs.erase(mobsIt);
+		  continue;
+		}
+	      
 	      ++mobsIt;
 	    }
 	}
@@ -339,6 +347,7 @@ int game (void) {
 	  oss << 0 << score;
 	else oss << score;
 	oss<<"      Wave: "<<waveNbr<<"/"<<maxWave;
+	oss<<"      Manatee's Life : "<<manatee->GetHP();
 	
 	text.SetString( oss.str());
       }

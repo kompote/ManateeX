@@ -12,11 +12,9 @@ typedef struct
     int y;
     int parent_x;
     int parent_y;
-    
     int costtodest;
     int costfromorg;
     int totalcost;
-    
     Square* current;
   } _node;
 
@@ -25,22 +23,16 @@ class Mob {
 public:
   Mob(RenderWindow&,Vector2f,int);
   ~Mob();
-
-	
   void SetPosition(Vector2f pos);
-
   Vector2f GetPosition(void);
-  
   void Hit(int);
   bool IsDead();
   int GetID();
+  int GetHP();
   int FindPath (int startingX, int startingY, int targetX, int targetY, bool stepByStep);
-  
-
+  bool HasArrived();
   void AStar(Map&,int,int);
-  
   void Bresenham(int,int);
-  
   void Render();
   void Update();
   
@@ -59,7 +51,8 @@ private:
   int _id;
   int _xtmp;
   int _ytmp;
-  
+  bool _arrived;
+  //  pair<int,int>   
 };
 
 #endif

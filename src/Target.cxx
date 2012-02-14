@@ -33,3 +33,8 @@ bool Target::IsDead()
 {
   return dead;
 }
+
+int Target::GetHP()
+{
+  return hp;
+}

@@ -42,18 +42,31 @@ bool Mob::IsDead()
   return _dead;
 }
 
+int Mob::GetHP()
+{
+  return _hp;
+}
+
+
 int Mob::GetID()
 {
   return _id;
 }
 
+bool Mob::HasArrived()
+{
+  return _arrived;
+}
+
 
 void Mob::AStar(Map& map, int x, int y) {
   _path.clear();
-
+  _target.x = x*10+5;
+  _target.y = y*10+35;
+  
   int self_x = (_pos.x+3-(int)_pos.x%10)/10;
   int self_y = ((_pos.y+3-30)-(int)_pos.y%10)/10;
-  //  std::cout<<"org: "<<self_x<<":"<<self_y<<"  dest: "<<x<<":"<<y<<endl<<endl;
+  std::cout<<"org: "<<self_x<<":"<<self_y<<"  dest: "<<x<<":"<<y<<endl<<endl;
   list<_node*> open;
   list<_node*> close;
   _node* node_tmp;
@@ -187,6 +200,8 @@ void Mob::AStar(Map& map, int x, int y) {
       }
     
     }
+  std::cout<<"limit: "<<limit<<endl;
+  
   // inverse la liste
   close.reverse();
   _xtmp = _pos.x+3;
@@ -194,12 +209,12 @@ void Mob::AStar(Map& map, int x, int y) {
   // smooth path
   for (list<_node*>::iterator it = close.begin();it!=close.end();it++)
     {
-      //    std::cout<<(*it)->x<<":"<<(*it)->y<<"  cost: "<<(*it)->costtodest<<"  ";
+      //  std::cout<<(*it)->x<<":"<<(*it)->y<<"  cost: "<<(*it)->costtodest<<"  ";
       Bresenham((*it)->x*10+5,(*it)->y*10+35);
       _xtmp = (*it)->x*10+5;
       _ytmp = (*it)->y*10+35;
     }
-  
+  _path.insert(_path.end(),&_target);  
   _it=_path.begin();
   _hasPath=true;
 }
@@ -234,6 +249,7 @@ void Mob::Bresenham(int x, int y)
 	  x1 += ix;
 	  error += delta_y;
 	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
+	  //std::cout<<"  "<<x1<<":"<<y1<<"  ";
         }
     }
   else
@@ -252,8 +268,12 @@ void Mob::Bresenham(int x, int y)
 	  y1 += iy;
 	  error += delta_x;
 	  _path.insert(_path.end(),new Vector2f((float)x1,(float)y1));
+	  //	  std::cout<<"  "<<x1<<":"<<y1<<"  ";
         }
     }
+  
+  
+
 }
 
 void Mob::Hit(int k)
@@ -277,7 +297,13 @@ void Mob::Update()
   // ne fait rien si pas encore de _path
   if (!_hasPath) return;
   // boucle le _path, on pourrait ajouter un timer entre les boucles
-  if(_it==_path.end()) _it=_path.begin();
+  //  if(_it==_path.end()) _arrived = true;
+  if (_pos == _target ) {
+    _arrived = true;
+    //    _dead = true;
+    return;
+  }
+  
   // vitesse....
   _pos.x=(*_it)->x;
   _pos.y=(*_it)->y;
