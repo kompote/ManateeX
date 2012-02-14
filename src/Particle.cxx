@@ -76,7 +76,7 @@ void Particle::Bresenham(int x, int y)
   // TODO: les deletes a chaque recalcul
   _path.clear();
   _hasPath=false;
-  int x1 = _pos.x+8, y1 = _pos.y+8, x2=x, y2=y;
+  int x1 = _pos.x, y1 = _pos.y, x2=x, y2=y;
   int delta_x(x2 - x1);
   signed char ix((delta_x > 0) - (delta_x < 0));
   delta_x = std::abs(delta_x) << 1;

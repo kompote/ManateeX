@@ -1,4 +1,5 @@
 #include "Tower.hxx"
+#include <cmath>
 
 Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
   Building(aWindow)
@@ -84,7 +85,19 @@ void Tower::FaceTarget()
 	if(this->HasTarget())
 	{
 		Vector2f tpos = target->GetPosition();
-		sprite.SetRotation(90);
+		if(tpos.x==position.x)
+		{
+			if(tpos.y<position.y) sprite.SetRotation(180);
+			else sprite.SetRotation(0);
+		}
+		if(tpos.x>position.x)
+		{
+			sprite.SetRotation(270-(atan((position.y-tpos.y)/(tpos.x-position.x))*180/3.14159));
+		}
+		if(tpos.x<position.x)
+		{
+			sprite.SetRotation(90+(atan((position.y-tpos.y)/(position.x-tpos.x))*180/3.14159));
+		}
 	}
 	else sprite.SetRotation(0);
 }
