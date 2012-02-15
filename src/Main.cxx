@@ -45,6 +45,7 @@ SoundBuffer sbuffer;
 int score;
 int waveNbr;
 int maxWave;
+int mobNbr=6;
 Target* manatee;
 
 /**
@@ -55,14 +56,21 @@ Target* manatee;
  */
 void GenerateWave()
 {
-  int mobNbr = (waveNbr+5) * 1.30;
+  mobNbr = (int)((mobNbr+3.0) * 1.30);
   std::cout<<"init mobs... ";
+  if (waveNbr>=maxWave) 
+    {
+      play = false;
+      return;
+    }
+  
   waveNbr++;
+
   srand(time(NULL));  
   for (int i=1; i<=mobNbr;i++)
     {
       int zone = rand()%4;
-      std::cout<<"Zone = "<<zone<<" ";
+      //      std::cout<<"Zone = "<<zone<<" ";
       int x,y;
       switch(zone)
 	{
@@ -82,6 +90,12 @@ void GenerateWave()
 	  x = rand()%20+5;
 	  y = rand()%560+35;
 	}
+      if ((x<5)||(x>795)||(y<35)||(y>595)||(!m.GetSquarePixel(x,y)->IsConstructible()))
+	{
+	  i--;
+	  continue;
+	}
+      
       Vector2f v(x,y);
       mobs.insert(mobs.end(),new Mob(window,v,i));
     }
@@ -359,7 +373,7 @@ int Game (void)
 		      { 
 			if(tmp2->IsConstructible())
 			  {
-			    if (score >= 2000) 
+			    if (score >= 5000) 
 			      {
 				tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,1));
 				// 9x9 non constructible
@@ -388,7 +402,7 @@ int Game (void)
 		      { 
 			if(tmp2->IsConstructible())
 			  {
-			    if (score >= 2000) 
+			    if (score >= 7000) 
 			      {
 				tows.insert(tows.end(), new Tower(window,tmp2->GetPosition(),1,2));
 				// 9x9 non constructible
@@ -405,7 +419,7 @@ int Game (void)
 				    (*MobsIt)->AStar(m,40,30);
 				  }
 
-				score = score - 5000;
+				score = score - 7000;
 			      }
 			    else
 			      cout<<"not enough money!"<<tmp->number<<endl;
@@ -463,6 +477,19 @@ int Game (void)
     window.Display();
   }
   play = false;
+  for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
+    delete *partIt;
+	
+  for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+    delete *TowsIt;
+
+  for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+    delete *MobsIt;
+	      
+  part.clear();
+  tows.clear();
+  mobs.clear();
+  std::cout<<"return to main menu"<<endl;
 }
 
 /**

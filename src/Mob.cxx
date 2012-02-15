@@ -73,7 +73,7 @@ void Mob::AStar(Map& map, int x, int y) {
   
   int self_x = (_pos.x+3-(int)_pos.x%10)/10;
   int self_y = ((_pos.y+3-30)-(int)_pos.y%10)/10;
-  std::cout<<"org: "<<self_x<<":"<<self_y<<"  dest: "<<x<<":"<<y<<endl<<endl;
+  //  std::cout<<"org: "<<self_x<<":"<<self_y<<"  dest: "<<x<<":"<<y<<endl<<endl;
   list<_node*> open;
   list<_node*> close;
   _node* node_tmp;
@@ -207,7 +207,7 @@ void Mob::AStar(Map& map, int x, int y) {
       }
     
     }
-  std::cout<<"limit: "<<limit<<endl;
+  //  std::cout<<"limit: "<<limit<<endl;
   
   // inverse la liste
   close.reverse();
