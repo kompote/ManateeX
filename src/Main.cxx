@@ -207,7 +207,7 @@ void UpdateTowsAndMobs()
 			  // rate sa cible,
 			  // recuperer quelques cases d'avance
 			  part.insert(part.end(),new Particle(window,p,(*TowsIt)->GetType(),target->GetPosition(),target->GetID()));		      
-			  //			  fire.Play();	
+			  fire.Play();	
 			}
 		    }
 		}
@@ -263,7 +263,7 @@ void UpdateTowsAndMobs()
 	  GenerateWave();
 	}
       // environ 6 pixels/s
-      usleep(150000);
+      usleep(70000);
     }
 }
 
@@ -370,6 +370,12 @@ int Game (void)
 					m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
 				      }
 				  }
+				// recalcul des trajectoires
+				for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+				  {
+				    (*MobsIt)->AStar(m,40,30);
+				  }
+
 				score = score - 5000;
 			      }
 			    else
@@ -393,6 +399,12 @@ int Game (void)
 					m.GetSquarePixel(tmp2->GetPosition().x + 10*j, tmp2->GetPosition().y + 10*k)->SetConstructible(false);
 				      }
 				  }
+				// recalcul des trajectoires
+				for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+				  {
+				    (*MobsIt)->AStar(m,40,30);
+				  }
+
 				score = score - 5000;
 			      }
 			    else
