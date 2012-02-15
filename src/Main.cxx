@@ -253,7 +253,13 @@ void UpdateTowsAndMobs()
 	{
 	  for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
 	    (*TowsIt)->ReleaseTarget();
-	  sleep(10);
+	  // Solution crade
+	  for (int sec = 0;sec<=10;sec++) 
+	    {
+	    sleep(1);
+	    if (!play) return;
+	    }
+	  
 	  GenerateWave();
 	}
       // environ 6 pixels/s
@@ -409,12 +415,17 @@ int Game (void)
 	      // q pour retourner au menu
 	      play=false;
 	      for (std::vector<Particle *>::iterator partIt = part.begin(); partIt != part.end();partIt++) 
-		{
-		  delete *partIt;
-		}
+		delete *partIt;
+	
+	      for (std::vector<Tower *>::iterator TowsIt = tows.begin(); TowsIt != tows.end();TowsIt++) 
+		delete *TowsIt;
+
+	      for (std::vector<Mob *>::iterator MobsIt = mobs.begin(); MobsIt != mobs.end();MobsIt++) 
+		delete *MobsIt;
+	      
 	      part.clear();
-	      // TODO:
-	      // Faire pareil avec les tows et mobs
+	      tows.clear();
+	      mobs.clear();
 	      std::cout<<"return to main menu"<<endl;
 	      return 1;
 	      // Touche debug
