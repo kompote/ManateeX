@@ -4,7 +4,13 @@
 #include <cmath>
 #include <list>
 
-
+/**
+ * \fn  Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero)
+ * \brief Constructeur
+ * \param aWindow le contexte graphique
+ * \param position la position initiale
+ * \param numero un id
+ */
 Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero) :
 _window(aWindow)
 {
@@ -294,11 +300,8 @@ void Mob::Render()
 
 void Mob::Update()
 {
-  
   // ne fait rien si pas encore de _path
   if (!_hasPath) return;
-  // boucle le _path, on pourrait ajouter un timer entre les boucles
-  //  if(_it==_path.end()) _arrived = true;
   if (_pos == _target ) {
     _arrived = true;
     //    _dead = true;
