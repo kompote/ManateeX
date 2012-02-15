@@ -4,12 +4,12 @@
 Tower::Tower(sf::RenderWindow& aWindow, Vector2f pos, int i, int t):
   Building(aWindow)
 {
-	htarget = false;
+  htarget = false;
   canshoot = false;
   texturePath = "src/ressources/images/turret.png";
   texture.LoadFromFile(texturePath);
   sprite.SetTexture(texture);
-	sprite.SetOrigin(12.5,12.5);
+  sprite.SetOrigin(12.5,12.5);
   
   position.x=((int)((pos.x/10)*10)+5);
   position.y=((int)((pos.y/10)*10)+5);
@@ -99,5 +99,5 @@ void Tower::FaceTarget()
 			sprite.SetRotation(90+(atan((position.y-tpos.y)/(position.x-tpos.x))*180/3.14159));
 		}
 	}
-	else sprite.SetRotation(0);
+	//	else sprite.SetRotation(0);
 }
