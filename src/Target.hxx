@@ -13,7 +13,7 @@ class Target : public Building
 
 public:
   Target(RenderWindow&);  
-  void Hit(int);
+  void Hit(int damage);
   bool IsDead();
   int GetHP();
   

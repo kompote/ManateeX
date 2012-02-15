@@ -17,9 +17,9 @@ Target::Target(sf::RenderWindow& aWindow):
 }
 
 
-void Target::Hit(int k)
+void Target::Hit(int damage)
 {
-  hp=hp-k;
+  hp=hp-damage;
   if (hp<=0) {
     dead = true;
   }
