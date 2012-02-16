@@ -103,47 +103,239 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Tower" --><!-- doxytag: inherits="Building" -->
+<p>La classe des Tours.  
+ <a href="class_tower.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_tower_8hxx_source.html">Tower.hxx</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_building.html">Building</a>.</p>
 
 <p><a href="class_tower-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d838aefae1674054b4b630531125a2d"></a><!-- doxytag: member="Tower::Tower" ref="a1d838aefae1674054b4b630531125a2d" args="(RenderWindow &amp;, Vector2f, int, int)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>Tower</b> (RenderWindow &amp;, Vector2f, int, int)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9c850b38d887eb0def3e22ee9167c41"></a><!-- doxytag: member="Tower::InRange" ref="ac9c850b38d887eb0def3e22ee9167c41" args="(Vector2f)" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>InRange</b> (Vector2f)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2270b04338b17cae4064ad1970e3347a"></a><!-- doxytag: member="Tower::GetType" ref="a2270b04338b17cae4064ad1970e3347a" args="()" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetType</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab04798528f86581f0b00bbb9f2f71f3e"></a><!-- doxytag: member="Tower::GetTarget" ref="ab04798528f86581f0b00bbb9f2f71f3e" args="()" -->
-<a class="el" href="class_mob.html">Mob</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetTarget</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8aa4f6c00c01f407f5add9948c773a3"></a><!-- doxytag: member="Tower::SetTarget" ref="ae8aa4f6c00c01f407f5add9948c773a3" args="(Mob *)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTarget</b> (<a class="el" href="class_mob.html">Mob</a> *)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f553bf8883b3c9b4e80b57b4112797a"></a><!-- doxytag: member="Tower::HasTarget" ref="a4f553bf8883b3c9b4e80b57b4112797a" args="()" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>HasTarget</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a3dccf5b0b848112ab9d74aa4404a0b11">Tower</a> (RenderWindow &amp;aWindow, Vector2f pos, int i, int t)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le constructeur.  <a href="#a3dccf5b0b848112ab9d74aa4404a0b11"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#acf550e0bc06e463c40e3e9e98c90141f">InRange</a> (Vector2f p)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si un point est a portee.  <a href="#acf550e0bc06e463c40e3e9e98c90141f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a2270b04338b17cae4064ad1970e3347a">GetType</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir le type de la tour.  <a href="#a2270b04338b17cae4064ad1970e3347a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mob.html">Mob</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#ab04798528f86581f0b00bbb9f2f71f3e">GetTarget</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir la cible visée.  <a href="#ab04798528f86581f0b00bbb9f2f71f3e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#ab3ed10b29b71742e1f29d4bd933e196f">SetTarget</a> (<a class="el" href="class_mob.html">Mob</a> *t)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de definir une cible.  <a href="#ab3ed10b29b71742e1f29d4bd933e196f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a4f553bf8883b3c9b4e80b57b4112797a">HasTarget</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si une cible est acquise.  <a href="#a4f553bf8883b3c9b4e80b57b4112797a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5596db6527940180f36c40cd171450db"></a><!-- doxytag: member="Tower::ReleaseTarget" ref="a5596db6527940180f36c40cd171450db" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReleaseTarget</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0e5c22f1cc0cdc8d5ac3a771046b1eb"></a><!-- doxytag: member="Tower::CanShoot" ref="af0e5c22f1cc0cdc8d5ac3a771046b1eb" args="()" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>CanShoot</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a5596db6527940180f36c40cd171450db">ReleaseTarget</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'indiquer a la tour qu'il faut relacher la cible. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#af0e5c22f1cc0cdc8d5ac3a771046b1eb">CanShoot</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si la tour peut tirer.  <a href="#af0e5c22f1cc0cdc8d5ac3a771046b1eb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a939fda3fc1284b4aa8edddabd40bd929"></a><!-- doxytag: member="Tower::FaceTarget" ref="a939fda3fc1284b4aa8edddabd40bd929" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>FaceTarget</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a939fda3fc1284b4aa8edddabd40bd929">FaceTarget</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ordonner a la tour de s'orienter vers la cible. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fea2a9224a275cda965a2a8d590e015"></a><!-- doxytag: member="Tower::type" ref="a9fea2a9224a275cda965a2a8d590e015" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a9fea2a9224a275cda965a2a8d590e015">type</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le type de tour. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c1dd7a852029643bd6246af21b2d52b"></a><!-- doxytag: member="Tower::range" ref="a8c1dd7a852029643bd6246af21b2d52b" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>range</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a8c1dd7a852029643bd6246af21b2d52b">range</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">La portee de la tour. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac7c882cbf5e3a7ebeff53531c119049"></a><!-- doxytag: member="Tower::htarget" ref="aac7c882cbf5e3a7ebeff53531c119049" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>htarget</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#aac7c882cbf5e3a7ebeff53531c119049">htarget</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Drapeau d'indication de cible acquise. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a289021ea4f1403f123a3877180245083"></a><!-- doxytag: member="Tower::target" ref="a289021ea4f1403f123a3877180245083" args="" -->
-<a class="el" href="class_mob.html">Mob</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>target</b></td></tr>
+<a class="el" href="class_mob.html">Mob</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a289021ea4f1403f123a3877180245083">target</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointeur vers la cible. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a011454e79d6998d8e7f29a5b6cde6569"></a><!-- doxytag: member="Tower::canshoot" ref="a011454e79d6998d8e7f29a5b6cde6569" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>canshoot</b></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#a011454e79d6998d8e7f29a5b6cde6569">canshoot</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Drapeau d'indication de la possiblilité de tirer. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae94eb4ae0cac2fa11e25509abe7ec48e"></a><!-- doxytag: member="Tower::reloadtime" ref="ae94eb4ae0cac2fa11e25509abe7ec48e" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>reloadtime</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a0f7ffbeefd158b813ecdc4e1fcf77c"></a><!-- doxytag: member="Tower::tries" ref="a8a0f7ffbeefd158b813ecdc4e1fcf77c" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>tries</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower.html#ae94eb4ae0cac2fa11e25509abe7ec48e">reloadtime</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le temps de rechargement entre 2 tirs. <br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>La classe des Tours. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a3dccf5b0b848112ab9d74aa4404a0b11"></a><!-- doxytag: member="Tower::Tower" ref="a3dccf5b0b848112ab9d74aa4404a0b11" args="(RenderWindow &amp;aWindow, Vector2f pos, int i, int t)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_tower.html#a3dccf5b0b848112ab9d74aa4404a0b11">Tower::Tower</a> </td>
+          <td>(</td>
+          <td class="paramtype">RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>aWindow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Le constructeur. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aWindow</td><td>Le contexte graphique </td></tr>
+    <tr><td class="paramname">pos</td><td>La postition </td></tr>
+    <tr><td class="paramname">i</td><td>Le numero de la tour </td></tr>
+    <tr><td class="paramname">t</td><td>Le type de tour </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="af0e5c22f1cc0cdc8d5ac3a771046b1eb"></a><!-- doxytag: member="Tower::CanShoot" ref="af0e5c22f1cc0cdc8d5ac3a771046b1eb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_tower.html#af0e5c22f1cc0cdc8d5ac3a771046b1eb">Tower::CanShoot</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de savoir si la tour peut tirer. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Vrai ou faux </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab04798528f86581f0b00bbb9f2f71f3e"></a><!-- doxytag: member="Tower::GetTarget" ref="ab04798528f86581f0b00bbb9f2f71f3e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mob.html">Mob</a> * <a class="el" href="class_tower.html#ab04798528f86581f0b00bbb9f2f71f3e">Tower::GetTarget</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir la cible visée. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Un pointeur vers la cible </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2270b04338b17cae4064ad1970e3347a"></a><!-- doxytag: member="Tower::GetType" ref="a2270b04338b17cae4064ad1970e3347a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_tower.html#a2270b04338b17cae4064ad1970e3347a">Tower::GetType</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir le type de la tour. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Le numero du type </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4f553bf8883b3c9b4e80b57b4112797a"></a><!-- doxytag: member="Tower::HasTarget" ref="a4f553bf8883b3c9b4e80b57b4112797a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_tower.html#a4f553bf8883b3c9b4e80b57b4112797a">Tower::HasTarget</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de savoir si une cible est acquise. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Vrai ou faux </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acf550e0bc06e463c40e3e9e98c90141f"></a><!-- doxytag: member="Tower::InRange" ref="acf550e0bc06e463c40e3e9e98c90141f" args="(Vector2f p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_tower.html#acf550e0bc06e463c40e3e9e98c90141f">Tower::InRange</a> </td>
+          <td>(</td>
+          <td class="paramtype">Vector2f&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de savoir si un point est a portee. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Une position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>vrai ou faux </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab3ed10b29b71742e1f29d4bd933e196f"></a><!-- doxytag: member="Tower::SetTarget" ref="ab3ed10b29b71742e1f29d4bd933e196f" args="(Mob *t)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_tower.html#ab3ed10b29b71742e1f29d4bd933e196f">Tower::SetTarget</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mob.html">Mob</a> *&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de definir une cible. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>Un pointeur vers uen cible </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/<a class="el" href="_tower_8hxx_source.html">Tower.hxx</a></li>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/Tower.cxx</li>
@@ -155,7 +347,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>tries</b></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -168,7 +360,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>tries</b></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_tower.html">Tower</a>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

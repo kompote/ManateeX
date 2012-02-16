@@ -102,21 +102,148 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="PopupMenu" --><!-- doxytag: inherits="Menu" -->
+<p>La classe du menu contextuel Permet la construction de tours.  
+ <a href="class_popup_menu.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_popup_menu_8hxx_source.html">PopupMenu.hxx</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_menu.html">Menu</a>.</p>
 
 <p><a href="class_popup_menu-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab48e11079fd2456df7c4d3cdb19e7baa"></a><!-- doxytag: member="PopupMenu::PopupMenu" ref="ab48e11079fd2456df7c4d3cdb19e7baa" args="(int x, int y)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>PopupMenu</b> (int x, int y)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad3c22e0c3d72c984f8be8dbb311e2ec9"></a><!-- doxytag: member="PopupMenu::Render" ref="ad3c22e0c3d72c984f8be8dbb311e2ec9" args="(RenderTarget &amp;target) const " -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> (RenderTarget &amp;target) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e7d0cc6dfadf1ea9427ecda48c54ac2"></a><!-- doxytag: member="PopupMenu::GetPosition" ref="a3e7d0cc6dfadf1ea9427ecda48c54ac2" args="()" -->
-Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>GetPosition</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefcbb490dc358d1de208ea8d2a261598"></a><!-- doxytag: member="PopupMenu::SetPosition" ref="aefcbb490dc358d1de208ea8d2a261598" args="(int x, int y)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPosition</b> (int x, int y)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_popup_menu.html#ab48e11079fd2456df7c4d3cdb19e7baa">PopupMenu</a> (int x, int y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le constructeur.  <a href="#ab48e11079fd2456df7c4d3cdb19e7baa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_popup_menu.html#ad3c22e0c3d72c984f8be8dbb311e2ec9">Render</a> (RenderTarget &amp;target) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine le menu.  <a href="#ad3c22e0c3d72c984f8be8dbb311e2ec9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_popup_menu.html#a3e7d0cc6dfadf1ea9427ecda48c54ac2">GetPosition</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir la position du menu.  <a href="#a3e7d0cc6dfadf1ea9427ecda48c54ac2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_popup_menu.html#aefcbb490dc358d1de208ea8d2a261598">SetPosition</a> (int x, int y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de definir la position du menu.  <a href="#aefcbb490dc358d1de208ea8d2a261598"></a><br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>La classe du menu contextuel Permet la construction de tours. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab48e11079fd2456df7c4d3cdb19e7baa"></a><!-- doxytag: member="PopupMenu::PopupMenu" ref="ab48e11079fd2456df7c4d3cdb19e7baa" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_popup_menu.html#ab48e11079fd2456df7c4d3cdb19e7baa">PopupMenu::PopupMenu</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Le constructeur. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>L'abscisse du coin superieur gauche du menu </td></tr>
+    <tr><td class="paramname">y</td><td>L'ordonnee du coin superieur gauche du menu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a3e7d0cc6dfadf1ea9427ecda48c54ac2"></a><!-- doxytag: member="PopupMenu::GetPosition" ref="a3e7d0cc6dfadf1ea9427ecda48c54ac2" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2f <a class="el" href="class_popup_menu.html#a3e7d0cc6dfadf1ea9427ecda48c54ac2">PopupMenu::GetPosition</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir la position du menu. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Le vecteur position </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad3c22e0c3d72c984f8be8dbb311e2ec9"></a><!-- doxytag: member="PopupMenu::Render" ref="ad3c22e0c3d72c984f8be8dbb311e2ec9" args="(RenderTarget &amp;target) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_popup_menu.html#ad3c22e0c3d72c984f8be8dbb311e2ec9">PopupMenu::Render</a> </td>
+          <td>(</td>
+          <td class="paramtype">RenderTarget &amp;&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Dessine le menu. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Le contexte sur lequel dessiner </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_menu.html#af25ae0626ae30f69055312fffa0f9f60">Menu</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aefcbb490dc358d1de208ea8d2a261598"></a><!-- doxytag: member="PopupMenu::SetPosition" ref="aefcbb490dc358d1de208ea8d2a261598" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_popup_menu.html#aefcbb490dc358d1de208ea8d2a261598">PopupMenu::SetPosition</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de definir la position du menu. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>L'abscisse du coin superieur gauche du menu </td></tr>
+    <tr><td class="paramname">y</td><td>L'ordonnee du coin superieur gauche du menu </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/<a class="el" href="_popup_menu_8hxx_source.html">PopupMenu.hxx</a></li>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/PopupMenu.cxx</li>
@@ -128,7 +255,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPosition</b> (int 
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -141,7 +268,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPosition</b> (int 
     <ul>
       <li class="navelem"><a class="el" href="class_popup_menu.html">PopupMenu</a>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

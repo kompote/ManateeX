@@ -96,29 +96,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">/home/t0m/esil/2A/Projets/ManateeX/src/Map.hxx</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef MAP_H</span>
-<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define MAP_H</span>
-<a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;Square.hxx&quot;</span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a><a class="code" href="class_map.html">00006</a> <span class="keyword">class </span><a class="code" href="class_map.html">Map</a> {
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="keyword">private</span>:
-<a name="l00009"></a>00009   <a class="code" href="class_square.html">Square</a>* _grid[60][80];
-<a name="l00010"></a>00010   <a class="code" href="class_square.html">Square</a>* _lastSelected;
-<a name="l00011"></a>00011   
-<a name="l00012"></a>00012                 
-<a name="l00013"></a>00013 <span class="keyword">public</span>:
-<a name="l00014"></a>00014   <a class="code" href="class_map.html">Map</a>();
-<a name="l00015"></a>00015   <span class="keywordtype">void</span> Redraw(RenderTarget&amp; target) <span class="keyword">const</span>;
-<a name="l00016"></a>00016   
-<a name="l00017"></a>00017   <a class="code" href="class_square.html">Square</a>* GetSquare(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j);
-<a name="l00018"></a>00018   <a class="code" href="class_square.html">Square</a>* GetSquarePixel(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);
-<a name="l00019"></a>00019   <span class="keywordtype">void</span> Select(<a class="code" href="class_square.html">Square</a>*);
-<a name="l00020"></a>00020   
-<a name="l00021"></a>00021 };
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * \file Map.hxx</span>
+<a name="l00003"></a>00003 <span class="comment"> * \brief Class Map Header</span>
+<a name="l00004"></a>00004 <span class="comment"> * \author Thomas FOURCROY</span>
+<a name="l00005"></a>00005 <span class="comment"> * \author Benoit Djerigian</span>
+<a name="l00006"></a>00006 <span class="comment"> * \version 0.9</span>
+<a name="l00007"></a>00007 <span class="comment"> * \date 14 fevrier 2012</span>
+<a name="l00008"></a>00008 <span class="comment"> *</span>
+<a name="l00009"></a>00009 <span class="comment"> * Classe Map</span>
+<a name="l00010"></a>00010 <span class="comment"> * </span>
+<a name="l00011"></a>00011 <span class="comment"> */</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef MAP_H</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define MAP_H</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;<a class="code" href="_square_8hxx.html" title="Class Square Header.">Square.hxx</a>&quot;</span>
+<a name="l00020"></a><a class="code" href="class_map.html">00020</a> <span class="keyword">class </span><a class="code" href="class_map.html" title="La classe de la map (carte)">Map</a> {
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022 <span class="keyword">private</span>:
+<a name="l00023"></a>00023   <a class="code" href="class_square.html" title="La classe des cases.">Square</a>* _grid[60][80];
+<a name="l00024"></a>00024   <a class="code" href="class_square.html" title="La classe des cases.">Square</a>* _lastSelected;
+<a name="l00025"></a>00025   
+<a name="l00026"></a>00026                 
+<a name="l00027"></a>00027 <span class="keyword">public</span>:
+<a name="l00032"></a>00032   <a class="code" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582" title="Construit la carte avec 80x60 Cases.">Map</a>();
+<a name="l00037"></a>00037   <span class="keywordtype">void</span> <a class="code" href="class_map.html#ae3e5705ca31a58fc4de3757f50a44bf7" title="Redessine la carte.">Redraw</a>(RenderTarget&amp; target) <span class="keyword">const</span>;
+<a name="l00044"></a>00044   <a class="code" href="class_square.html" title="La classe des cases.">Square</a>* <a class="code" href="class_map.html#a6ffaf7b7bd9a19099aeca36917eac5d6" title="Permet d&#39;obtenir une case en fonction de ses coordonnees.">GetSquare</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">int</span> j);
+<a name="l00051"></a>00051   <a class="code" href="class_square.html" title="La classe des cases.">Square</a>* <a class="code" href="class_map.html#a0746aac34730ba9838f7d35dc7f31d12" title="Permet d&#39;obtenir une case en fonction de coordonnées reelles (pixels)">GetSquarePixel</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);
+<a name="l00057"></a>00057   <span class="keywordtype">void</span> <a class="code" href="class_map.html#abda691aa839c7754e8c1bb2824911545" title="Met en surbrillance une case.">Select</a>(<a class="code" href="class_square.html" title="La classe des cases.">Square</a>* s);
+<a name="l00058"></a>00058 };
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -126,7 +135,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -139,7 +148,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><b>Map.hxx</b>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

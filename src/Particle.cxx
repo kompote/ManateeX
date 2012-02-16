@@ -1,8 +1,5 @@
 #include "Particle.hxx"
 
-#include <iostream>
-#include <cmath>
-
 Particle::Particle(sf::RenderWindow& aWindow, Vector2f position, int t, Vector2f ci, int nci) :
 _window(aWindow)
 {
@@ -17,16 +14,16 @@ _window(aWindow)
   switch(_type)
     {
     case 1:
-      _circle.SetRadius(4);
-      _circle.SetFillColor(Color::Blue);
+      _circle.SetRadius(2);
+      _circle.SetFillColor(Color::Red);
       _circle.SetPosition(_pos);
       _power = 200;
       
       break;
       
     case 2:
-      _circle.SetRadius(2);
-      _circle.SetFillColor(Color::Red);
+      _circle.SetRadius(3);
+      _circle.SetFillColor(Color::Blue);
       _circle.SetPosition(_pos);
       _power = 400;
       

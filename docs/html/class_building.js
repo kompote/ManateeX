@@ -1,6 +1,6 @@
 var class_building =
 [
-    [ "Building", "class_building.html#a877bad67f47fa89f52dc60844a1fad0f", null ],
+    [ "Building", "class_building.html#a6463aaee0258c649d4ccb4403f55d0e3", null ],
     [ "GetPos", "class_building.html#abad5c31707862ff3b2c5b42ccbc4286e", null ],
     [ "Render", "class_building.html#aac9cb7f93de28dd36062f45882a578b5", null ],
     [ "Select", "class_building.html#ad88647e311e4099ab0fbfdab3d5ceeb5", null ],

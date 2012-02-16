@@ -1,7 +1,7 @@
 var class_menu =
 [
     [ "Menu", "class_menu.html#ad466dd83355124a6ed958430450bfe94", null ],
-    [ "Render", "class_menu.html#a2a3077c7c3e2f2fc080c22741477a39a", null ],
+    [ "Render", "class_menu.html#af25ae0626ae30f69055312fffa0f9f60", null ],
     [ "bgSprite", "class_menu.html#a805ee8e8d1ae51507cdaf5cb0829e60c", null ],
     [ "bgTexture", "class_menu.html#acdf0f2d726d40060f9eee24fba07ccf8", null ],
     [ "button", "class_menu.html#ab71806fbe249d82a91cd1326433ee8c7", null ],

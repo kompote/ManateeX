@@ -4,13 +4,6 @@
 #include <cmath>
 #include <list>
 
-/**
- * \fn  Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero)
- * \brief Constructeur
- * \param aWindow le contexte graphique
- * \param position la position initiale
- * \param numero un id
- */
 Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero) :
 _window(aWindow)
 {
@@ -38,7 +31,7 @@ void Mob::SetPosition(sf::Vector2f aPos)
 }
 
 
-sf::Vector2f Mob::GetPosition(void)
+sf::Vector2f Mob::GetPosition()
 {
   // inutile
   return _pos;

@@ -26,13 +26,21 @@ using namespace sf;
 */
 typedef struct 
   {
+    /** \brief Abscisse du noeud */
     int x;
+    /** \brief Ordonnee du noeud */
     int y;
+    /** \brief Abscisse du noeud parent */
     int parent_x;
+    /** \brief Ordonnee du noeud parent */
     int parent_y;
+    /** \brief Cout jusqu'a destination */
     int costtodest;
+    /** \brief Cout depuis l'origine */
     int costfromorg;
+    /** \brief Cout total */
     int totalcost;
+    /** \brief Pointeur vers la case correspondante */
     Square* current;
   } _node;
 
@@ -44,80 +52,81 @@ typedef struct
  */
 class Mob {
 public:
+/**
+ * \fn  Mob::Mob(sf::RenderWindow& aWindow, Vector2f position, int numero)
+ * \brief Constructeur
+ * \param aWindow le contexte graphique
+ * \param position la position initiale
+ * \param numero un id
+ */
   Mob(RenderWindow& aWindow,Vector2f position ,int numero);
 /**
  * \fn ~Mob()
  * \brief Destructeur
- * 
- * 
- * 
  */
   ~Mob();
 /**
- * \fn void SetPosition(Vector2f pos)
+ * \fn void SetPosition(Vector2f aPos)
  * \brief Applique une position a l'ennemi
- * \param Vector2f Le vecteur position
- * 
- * 
+ * \param aPos Le vecteur position
  */
-  void SetPosition(Vector2f);
+  void SetPosition(Vector2f aPos);
 /**
- * \fn   Vector2f GetPosition(void)
+ * \fn   Vector2f GetPosition()
  * \brief Recupere la position de l'ennemi
- * \return Vector2f Le vecteur position
+ * \return Le vecteur position
  */
-  Vector2f GetPosition(void);
+  Vector2f GetPosition();
 /**
  * \fn void Hit(int)
  * \brief Applique une perte de point de vie a l'ennemi
- * \param int Quantite a retirer
+ * \param k Quantite a retirer
  */
-  void Hit(int);
+  void Hit(int k);
 /**
  * \fn  bool IsDead()
  * \brief Permet de savoir si un ennemi est mort (_hp<0)
- * \return bool
+ * \return vrai ou faux
  */
   bool IsDead();
 /**
  * \fn int GetID()
  * \brief Permet de recuperer l'ID d'un ennemi
- * \return int
+ * \return ID
  */
   int GetID();
 /**
  * \fn  int GetHP()
  * \brief Permet de recuperer les points de vie d'un ennemi
- * \return int
+ * \return HP
  */
   int GetHP();
 /**
  * \fn bool HasArrived()
  * \brief Permet de savoir si un ennemi est arrive a destination
- * \return bool
+ * \return Vrai ou faux
  */
   bool HasArrived();
 /**
- * \fn   void AStar(Map&,int,int)
+ * \fn   void AStar(Map& map, int x, int y)
  * \brief Fonction de calcul de trajectoire
- * \param Map& La carte sur laquel le calcul est a faire
- * \param int L'abscisse de destination (case)
- * \param int L'ordonnee de destination (case)
+ * \param map La carte sur laquel le calcul est a faire
+ * \param x L'abscisse de destination (case)
+ * \param y L'ordonnee de destination (case)
  * Calcul la trajectoire en utilisant l'algorithme A*
  * Utiliste uniquement les cases
  */
-  void AStar(Map&,int,int);
+  void AStar(Map& map, int x,int y);
 /**
  * \fn   void Bresenham(int,int)
  * \brief Fonction d'affinage de la trajectoire
- * \param Map& La carte sur laquel le calcul est a faire
- * \param int L'abscisse de destination (pixel)
- * \param int L'ordonnee de destination (pixel)
+ * \param x L'abscisse de destination (pixel)
+ * \param y L'ordonnee de destination (pixel)
  * Affine la trajectoire en utilisant l'algorithme de Bresenham
  * Permet de calculer le chemin entre 2 cases
  * Appelé par AStar
  */
-  void Bresenham(int,int);
+  void Bresenham(int x, int y);
 /**
  * \fn  void Render()
  * \brief Affiche l'ennemi sur la frame suivante

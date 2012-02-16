@@ -96,51 +96,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">/home/t0m/esil/2A/Projets/ManateeX/src/Square.hxx</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef SQR_H</span>
-<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define SQR_H</span>
-<a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 <span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span>
-<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;SFML/Window.hpp&gt;</span>
-<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00008"></a>00008 
-<a name="l00009"></a>00009 <span class="keyword">using namespace </span>sf;
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011 <span class="keyword">using namespace </span>std;
-<a name="l00012"></a>00012 
-<a name="l00013"></a><a class="code" href="class_square.html">00013</a> <span class="keyword">class </span><a class="code" href="class_square.html">Square</a>
-<a name="l00014"></a>00014 {
-<a name="l00015"></a>00015   
-<a name="l00016"></a>00016 <span class="keyword">private</span>:
-<a name="l00017"></a>00017   <span class="keywordtype">bool</span> _free;
-<a name="l00018"></a>00018   <span class="keywordtype">int</span> _content;
-<a name="l00019"></a>00019   <span class="keywordtype">string</span> _texturePath;
-<a name="l00020"></a>00020   Texture _texture;
-<a name="l00021"></a>00021   Transformable _transform;
-<a name="l00022"></a>00022   
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="keyword">public</span>:
-<a name="l00025"></a>00025   Sprite sprite;
-<a name="l00026"></a>00026   <span class="keywordtype">int</span> number;
-<a name="l00027"></a>00027   <span class="keywordtype">void</span> SetPosition(<span class="keywordtype">int</span>,<span class="keywordtype">int</span>);
-<a name="l00028"></a>00028   Vector2f GetPosition() <span class="keyword">const</span>;
-<a name="l00029"></a>00029   
-<a name="l00030"></a>00030   <span class="keywordtype">void</span> Draw(RenderTarget&amp; target) <span class="keyword">const</span>;
-<a name="l00031"></a>00031   <span class="keywordtype">void</span> Select();
-<a name="l00032"></a>00032   <span class="keywordtype">void</span> UnSelect();
-<a name="l00033"></a>00033   
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035   <a class="code" href="class_square.html">Square</a>(<span class="keywordtype">int</span>);
-<a name="l00036"></a>00036   <span class="keywordtype">bool</span> IsConstructible();
-<a name="l00037"></a>00037   <span class="keywordtype">void</span> SetConstructible(<span class="keywordtype">bool</span>);
-<a name="l00038"></a>00038   
-<a name="l00039"></a>00039   <span class="keywordtype">int</span> GetContent();
-<a name="l00040"></a>00040   <span class="keywordtype">string</span> GetTexturePath();
-<a name="l00041"></a>00041   <span class="keywordtype">void</span> SetTexturePath(<span class="keywordtype">string</span> path, <span class="keywordtype">bool</span>);
-<a name="l00042"></a>00042   
-<a name="l00043"></a>00043 };
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="preprocessor">#endif</span>
+<a href="_square_8hxx.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00013"></a>00013 <span class="preprocessor">#ifndef SQR_H</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#define SQR_H</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;SFML/Graphics.hpp&gt;</span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;SFML/Window.hpp&gt;</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="keyword">using namespace </span>sf;
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 <span class="keyword">using namespace </span>std;
+<a name="l00024"></a>00024 
+<a name="l00028"></a><a class="code" href="class_square.html">00028</a> <span class="keyword">class </span><a class="code" href="class_square.html" title="La classe des cases.">Square</a>
+<a name="l00029"></a>00029 {
+<a name="l00030"></a>00030   
+<a name="l00031"></a>00031 <span class="keyword">private</span>:
+<a name="l00032"></a>00032   <span class="keywordtype">bool</span> _free;
+<a name="l00033"></a>00033   <span class="keywordtype">int</span> _content;
+<a name="l00034"></a>00034   <span class="keywordtype">string</span> _texturePath;
+<a name="l00035"></a>00035   Texture _texture;
+<a name="l00036"></a>00036   Transformable _transform;
+<a name="l00037"></a>00037   
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="keyword">public</span>:
+<a name="l00041"></a><a class="code" href="class_square.html#acf293106501331ae4864925849da8bba">00041</a>   Sprite <a class="code" href="class_square.html#acf293106501331ae4864925849da8bba" title="Le sprite utilise.">sprite</a>;
+<a name="l00043"></a><a class="code" href="class_square.html#a25c8b50bf8debc362719e9fc4f643068">00043</a>   <span class="keywordtype">int</span> <a class="code" href="class_square.html#a25c8b50bf8debc362719e9fc4f643068" title="Le numero de la case.">number</a>;
+<a name="l00048"></a>00048   <a class="code" href="class_square.html" title="La classe des cases.">Square</a>(<span class="keywordtype">int</span> i);
+<a name="l00054"></a>00054   <span class="keywordtype">void</span> SetPosition(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y);
+<a name="l00059"></a>00059   Vector2f GetPosition() <span class="keyword">const</span>;
+<a name="l00064"></a>00064   <span class="keywordtype">void</span> Draw(RenderTarget&amp; target) <span class="keyword">const</span>;
+<a name="l00068"></a>00068   <span class="keywordtype">void</span> Select();
+<a name="l00072"></a>00072   <span class="keywordtype">void</span> UnSelect();
+<a name="l00077"></a>00077   <span class="keywordtype">bool</span> IsConstructible();
+<a name="l00082"></a>00082   <span class="keywordtype">void</span> SetConstructible(<span class="keywordtype">bool</span> b);
+<a name="l00086"></a>00086   <span class="keywordtype">int</span> GetContent();
+<a name="l00091"></a>00091   <span class="keywordtype">string</span> GetTexturePath();
+<a name="l00097"></a>00097   <span class="keywordtype">void</span> SetTexturePath(<span class="keywordtype">string</span> path, <span class="keywordtype">bool</span> cons);
+<a name="l00098"></a>00098 };
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -148,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -159,9 +155,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>Square.hxx</b>      </li>
+      <li class="navelem"><a class="el" href="_square_8hxx.html">Square.hxx</a>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

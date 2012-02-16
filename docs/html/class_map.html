@@ -102,19 +102,174 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Map" -->
+<p>La classe de la map (carte)  
+ <a href="class_map.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_map_8hxx_source.html">Map.hxx</a>&gt;</code></p>
+
 <p><a href="class_map-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3e5705ca31a58fc4de3757f50a44bf7"></a><!-- doxytag: member="Map::Redraw" ref="ae3e5705ca31a58fc4de3757f50a44bf7" args="(RenderTarget &amp;target) const " -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Redraw</b> (RenderTarget &amp;target) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ffaf7b7bd9a19099aeca36917eac5d6"></a><!-- doxytag: member="Map::GetSquare" ref="a6ffaf7b7bd9a19099aeca36917eac5d6" args="(int i, int j)" -->
-<a class="el" href="class_square.html">Square</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetSquare</b> (int i, int j)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0746aac34730ba9838f7d35dc7f31d12"></a><!-- doxytag: member="Map::GetSquarePixel" ref="a0746aac34730ba9838f7d35dc7f31d12" args="(int x, int y)" -->
-<a class="el" href="class_square.html">Square</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetSquarePixel</b> (int x, int y)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2a1d0c6ec3cec9b64a7caacc48fe48a"></a><!-- doxytag: member="Map::Select" ref="ae2a1d0c6ec3cec9b64a7caacc48fe48a" args="(Square *)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Select</b> (<a class="el" href="class_square.html">Square</a> *)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Construit la carte avec 80x60 Cases.  <a href="#a0f5ad0fd4563497b4214038cbca8b582"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#ae3e5705ca31a58fc4de3757f50a44bf7">Redraw</a> (RenderTarget &amp;target) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Redessine la carte.  <a href="#ae3e5705ca31a58fc4de3757f50a44bf7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_square.html">Square</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a6ffaf7b7bd9a19099aeca36917eac5d6">GetSquare</a> (int i, int j)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir une case en fonction de ses coordonnees.  <a href="#a6ffaf7b7bd9a19099aeca36917eac5d6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_square.html">Square</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a0746aac34730ba9838f7d35dc7f31d12">GetSquarePixel</a> (int x, int y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir une case en fonction de coordonnées reelles (pixels)  <a href="#a0746aac34730ba9838f7d35dc7f31d12"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#abda691aa839c7754e8c1bb2824911545">Select</a> (<a class="el" href="class_square.html">Square</a> *s)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Met en surbrillance une case.  <a href="#abda691aa839c7754e8c1bb2824911545"></a><br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>La classe de la map (carte) </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a0f5ad0fd4563497b4214038cbca8b582"></a><!-- doxytag: member="Map::Map" ref="a0f5ad0fd4563497b4214038cbca8b582" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_map.html#a0f5ad0fd4563497b4214038cbca8b582">Map::Map</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Construit la carte avec 80x60 Cases. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_square.html" title="La classe des cases.">Square</a> </dd></dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a6ffaf7b7bd9a19099aeca36917eac5d6"></a><!-- doxytag: member="Map::GetSquare" ref="a6ffaf7b7bd9a19099aeca36917eac5d6" args="(int i, int j)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_square.html">Square</a> * <a class="el" href="class_map.html#a6ffaf7b7bd9a19099aeca36917eac5d6">Map::GetSquare</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir une case en fonction de ses coordonnees. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Abscisse de la case </td></tr>
+    <tr><td class="paramname">j</td><td>Ordonnee de la case </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Un pointeur sur la case correspondante </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0746aac34730ba9838f7d35dc7f31d12"></a><!-- doxytag: member="Map::GetSquarePixel" ref="a0746aac34730ba9838f7d35dc7f31d12" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_square.html">Square</a> * <a class="el" href="class_map.html#a0746aac34730ba9838f7d35dc7f31d12">Map::GetSquarePixel</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir une case en fonction de coordonnées reelles (pixels) </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Abscisse du pixel </td></tr>
+    <tr><td class="paramname">y</td><td>Ordonnee du pixel </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Un pointeur sur la case correspondante </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae3e5705ca31a58fc4de3757f50a44bf7"></a><!-- doxytag: member="Map::Redraw" ref="ae3e5705ca31a58fc4de3757f50a44bf7" args="(RenderTarget &amp;target) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_map.html#ae3e5705ca31a58fc4de3757f50a44bf7">Map::Redraw</a> </td>
+          <td>(</td>
+          <td class="paramtype">RenderTarget &amp;&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Redessine la carte. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>Le contexte graphique </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abda691aa839c7754e8c1bb2824911545"></a><!-- doxytag: member="Map::Select" ref="abda691aa839c7754e8c1bb2824911545" args="(Square *s)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_map.html#abda691aa839c7754e8c1bb2824911545">Map::Select</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_square.html">Square</a> *&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Met en surbrillance une case. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>Un pointeur vers une case </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_square.html" title="La classe des cases.">Square</a> </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/<a class="el" href="_map_8hxx_source.html">Map.hxx</a></li>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/Map.cxx</li>
@@ -126,7 +281,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Select</b> (<a class=
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -139,7 +294,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Select</b> (<a class=
     <ul>
       <li class="navelem"><a class="el" href="class_map.html">Map</a>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

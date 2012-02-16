@@ -102,21 +102,118 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Target" --><!-- doxytag: inherits="Building" -->
+<p>La classe de l'objectif.  
+ <a href="class_target.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_target_8hxx_source.html">Target.hxx</a>&gt;</code></p>
+
 <p>Inherits <a class="el" href="class_building.html">Building</a>.</p>
 
 <p><a href="class_target-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade8cc8ccd7408822ad6475f519a61da5"></a><!-- doxytag: member="Target::Target" ref="ade8cc8ccd7408822ad6475f519a61da5" args="(RenderWindow &amp;)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>Target</b> (RenderWindow &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c05b9a6cc46cb8c8f47c343526df929"></a><!-- doxytag: member="Target::Hit" ref="a2c05b9a6cc46cb8c8f47c343526df929" args="(int)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Hit</b> (int)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fa94fa788f32d481f84d5ab745a7fc4"></a><!-- doxytag: member="Target::IsDead" ref="a1fa94fa788f32d481f84d5ab745a7fc4" args="()" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsDead</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72cc13523713845a24fd74bffba9fa22"></a><!-- doxytag: member="Target::GetHP" ref="a72cc13523713845a24fd74bffba9fa22" args="()" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHP</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_target.html#af6811d1a5adf351e0fc562973dd2d53e">Target</a> (RenderWindow &amp;aWindow)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le constructeur.  <a href="#af6811d1a5adf351e0fc562973dd2d53e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_target.html#a349c066764ae63854b00b2b80e7f94c8">Hit</a> (int damage)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Infige des domages.  <a href="#a349c066764ae63854b00b2b80e7f94c8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_target.html#a1fa94fa788f32d481f84d5ab745a7fc4">IsDead</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si l'objectif est mort.  <a href="#a1fa94fa788f32d481f84d5ab745a7fc4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_target.html#a72cc13523713845a24fd74bffba9fa22">GetHP</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir les points de vie actuels.  <a href="#a72cc13523713845a24fd74bffba9fa22"></a><br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>La classe de l'objectif. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="af6811d1a5adf351e0fc562973dd2d53e"></a><!-- doxytag: member="Target::Target" ref="af6811d1a5adf351e0fc562973dd2d53e" args="(RenderWindow &amp;aWindow)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_target.html#af6811d1a5adf351e0fc562973dd2d53e">Target::Target</a> </td>
+          <td>(</td>
+          <td class="paramtype">RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>aWindow</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Le constructeur. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aWindow</td><td>Le contexte graphique </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a72cc13523713845a24fd74bffba9fa22"></a><!-- doxytag: member="Target::GetHP" ref="a72cc13523713845a24fd74bffba9fa22" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_target.html#a72cc13523713845a24fd74bffba9fa22">Target::GetHP</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir les points de vie actuels. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>HP </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a349c066764ae63854b00b2b80e7f94c8"></a><!-- doxytag: member="Target::Hit" ref="a349c066764ae63854b00b2b80e7f94c8" args="(int damage)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_target.html#a349c066764ae63854b00b2b80e7f94c8">Target::Hit</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>damage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Infige des domages. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">damage</td><td>La quantite de domages </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1fa94fa788f32d481f84d5ab745a7fc4"></a><!-- doxytag: member="Target::IsDead" ref="a1fa94fa788f32d481f84d5ab745a7fc4" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_target.html#a1fa94fa788f32d481f84d5ab745a7fc4">Target::IsDead</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de savoir si l'objectif est mort. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Vrai ou faux </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/<a class="el" href="_target_8hxx_source.html">Target.hxx</a></li>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/Target.cxx</li>
@@ -128,7 +225,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHP</b> ()</td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -141,7 +238,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>GetHP</b> ()</td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_target.html">Target</a>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

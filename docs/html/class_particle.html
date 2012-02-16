@@ -102,29 +102,239 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Particle" -->
+<p>La classe des projectiles Possede les fcondtions de calcul de trajectoires.  
+ <a href="class_particle.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_particle_8hxx_source.html">Particle.hxx</a>&gt;</code></p>
+
 <p><a href="class_particle-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae33720823c747fd7346f91fb54cc1353"></a><!-- doxytag: member="Particle::Particle" ref="ae33720823c747fd7346f91fb54cc1353" args="(RenderWindow &amp;, Vector2f, int, Vector2f, int)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>Particle</b> (RenderWindow &amp;, Vector2f, int, Vector2f, int)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1a06bb7787e6a483d24947e7bec6589"></a><!-- doxytag: member="Particle::IsDone" ref="ac1a06bb7787e6a483d24947e7bec6589" args="()" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsDone</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28ea01a5b1e9a60a681f1df2073f9950"></a><!-- doxytag: member="Particle::GetTargetNbr" ref="a28ea01a5b1e9a60a681f1df2073f9950" args="()" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetTargetNbr</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd77ff3e0c51f9f3303f9d58502128c3"></a><!-- doxytag: member="Particle::GetPower" ref="acd77ff3e0c51f9f3303f9d58502128c3" args="()" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>GetPower</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac44ac11f922dd7ab5828732573a51b03"></a><!-- doxytag: member="Particle::SetPosition" ref="ac44ac11f922dd7ab5828732573a51b03" args="(Vector2f pos)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPosition</b> (Vector2f pos)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae7937865ad2928ef6b624f7ffa1a987e"></a><!-- doxytag: member="Particle::GetPosition" ref="ae7937865ad2928ef6b624f7ffa1a987e" args="(void)" -->
-Vector2f&#160;</td><td class="memItemRight" valign="bottom"><b>GetPosition</b> (void)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac8732260dd9acd6b2d595e09937b8ea7"></a><!-- doxytag: member="Particle::Bresenham" ref="ac8732260dd9acd6b2d595e09937b8ea7" args="(int, int)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Bresenham</b> (int, int)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#a3f1a855406a0f75b81cb2e117a0db785">Particle</a> (RenderWindow &amp;aWindow, Vector2f position, int t, Vector2f ci, int nci)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le constructeur.  <a href="#a3f1a855406a0f75b81cb2e117a0db785"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad030d0fe7b88cf81744b127c99244ff4"></a><!-- doxytag: member="Particle::~Particle" ref="ad030d0fe7b88cf81744b127c99244ff4" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#ad030d0fe7b88cf81744b127c99244ff4">~Particle</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Le destructeur. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#ac1a06bb7787e6a483d24947e7bec6589">IsDone</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si le projectile est arrive a destination.  <a href="#ac1a06bb7787e6a483d24947e7bec6589"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#a28ea01a5b1e9a60a681f1df2073f9950">GetTargetNbr</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir le numero de la cible visee.  <a href="#a28ea01a5b1e9a60a681f1df2073f9950"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#acd77ff3e0c51f9f3303f9d58502128c3">GetPower</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de recuperer la puissance du tir Depend de la tour d'origine.  <a href="#acd77ff3e0c51f9f3303f9d58502128c3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#ac44ac11f922dd7ab5828732573a51b03">SetPosition</a> (Vector2f pos)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de definir la position du projectile.  <a href="#ac44ac11f922dd7ab5828732573a51b03"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#a0b20902400f3a14b2dd7200b1b65593b">GetPosition</a> (void)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'obtenir la position du projectile.  <a href="#a0b20902400f3a14b2dd7200b1b65593b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#a8ad2bbe26dff6ebf22c379b9a2507a13">Bresenham</a> (int x, int y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcul de la trajectoire vers la cible.  <a href="#a8ad2bbe26dff6ebf22c379b9a2507a13"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1ba94a2c4b2facbe4c576679c87f37a"></a><!-- doxytag: member="Particle::Render" ref="af1ba94a2c4b2facbe4c576679c87f37a" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#af1ba94a2c4b2facbe4c576679c87f37a">Render</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine le projectile. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ff98679ed52065d043d29a5af7a8980"></a><!-- doxytag: member="Particle::Update" ref="a9ff98679ed52065d043d29a5af7a8980" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_particle.html#a9ff98679ed52065d043d29a5af7a8980">Update</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">met a jour la position du projectile et son etat si necessaire <br/></td></tr>
 </table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>La classe des projectiles Possede les fcondtions de calcul de trajectoires. </p>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a3f1a855406a0f75b81cb2e117a0db785"></a><!-- doxytag: member="Particle::Particle" ref="a3f1a855406a0f75b81cb2e117a0db785" args="(RenderWindow &amp;aWindow, Vector2f position, int t, Vector2f ci, int nci)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_particle.html#a3f1a855406a0f75b81cb2e117a0db785">Particle::Particle</a> </td>
+          <td>(</td>
+          <td class="paramtype">RenderWindow &amp;&#160;</td>
+          <td class="paramname"><em>aWindow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2f&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2f&#160;</td>
+          <td class="paramname"><em>ci</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nci</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Le constructeur. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">aWindow</td><td>Le contexte graphique </td></tr>
+    <tr><td class="paramname">position</td><td>Le vecteur position de depart </td></tr>
+    <tr><td class="paramname">t</td><td>le type de projectile </td></tr>
+    <tr><td class="paramname">ci</td><td>Le vecteur position de la cible </td></tr>
+    <tr><td class="paramname">nci</td><td>Le numero de l'ennemi vise </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a8ad2bbe26dff6ebf22c379b9a2507a13"></a><!-- doxytag: member="Particle::Bresenham" ref="a8ad2bbe26dff6ebf22c379b9a2507a13" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_particle.html#a8ad2bbe26dff6ebf22c379b9a2507a13">Particle::Bresenham</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Calcul de la trajectoire vers la cible. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>L'abscisse de la cible (pixel) </td></tr>
+    <tr><td class="paramname">y</td><td>L'ordonnee de la cible (pixel) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0b20902400f3a14b2dd7200b1b65593b"></a><!-- doxytag: member="Particle::GetPosition" ref="a0b20902400f3a14b2dd7200b1b65593b" args="(void)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2f <a class="el" href="class_particle.html#a0b20902400f3a14b2dd7200b1b65593b">Particle::GetPosition</a> </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir la position du projectile. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Le vecteur position </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acd77ff3e0c51f9f3303f9d58502128c3"></a><!-- doxytag: member="Particle::GetPower" ref="acd77ff3e0c51f9f3303f9d58502128c3" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_particle.html#acd77ff3e0c51f9f3303f9d58502128c3">Particle::GetPower</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de recuperer la puissance du tir Depend de la tour d'origine. </p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_tower.html" title="La classe des Tours.">Tower</a> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>La valeur de la puissance de feu </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a28ea01a5b1e9a60a681f1df2073f9950"></a><!-- doxytag: member="Particle::GetTargetNbr" ref="a28ea01a5b1e9a60a681f1df2073f9950" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="class_particle.html#a28ea01a5b1e9a60a681f1df2073f9950">Particle::GetTargetNbr</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet d'obtenir le numero de la cible visee. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Le numero de la cible </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac1a06bb7787e6a483d24947e7bec6589"></a><!-- doxytag: member="Particle::IsDone" ref="ac1a06bb7787e6a483d24947e7bec6589" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_particle.html#ac1a06bb7787e6a483d24947e7bec6589">Particle::IsDone</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de savoir si le projectile est arrive a destination. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>vrai ou faux </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac44ac11f922dd7ab5828732573a51b03"></a><!-- doxytag: member="Particle::SetPosition" ref="ac44ac11f922dd7ab5828732573a51b03" args="(Vector2f pos)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_particle.html#ac44ac11f922dd7ab5828732573a51b03">Particle::SetPosition</a> </td>
+          <td>(</td>
+          <td class="paramtype">Vector2f&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Permet de definir la position du projectile. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Le vecteur position </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/<a class="el" href="_particle_8hxx_source.html">Particle.hxx</a></li>
 <li>/home/t0m/esil/2A/Projets/ManateeX/src/Particle.cxx</li>
@@ -136,7 +346,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></t
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -149,7 +359,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></t
     <ul>
       <li class="navelem"><a class="el" href="class_particle.html">Particle</a>      </li>
 
-    <li class="footer">Generated on Wed Feb 15 2012 14:01:12 for ManateeX by
+    <li class="footer">Generated on Thu Feb 16 2012 12:47:55 for ManateeX by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>
